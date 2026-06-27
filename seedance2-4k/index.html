@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>מדריך קצר ל-Seedance 2 | Yuvi.AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#05060b; --bg2:#0a0e1c; --panel:rgba(20,24,40,.55); --panel-bd:rgba(255,255,255,.08);
+    --blue:#4FC3F7; --blue2:#00D9FF; --pink:#FF3D9A; --lime:#C8FA3C;
+    --tx:#EEF2F7; --tx2:#9aa6b8; --mono:'SF Mono',ui-monospace,Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Heebo',Arial,sans-serif; color:var(--tx); line-height:1.75;
+    background:
+      radial-gradient(1200px 700px at 80% -10%, rgba(79,195,247,.10), transparent 60%),
+      radial-gradient(1000px 700px at 0% 10%, rgba(255,61,154,.08), transparent 55%),
+      var(--bg);
+    background-attachment:fixed;
+  }
+  .wrap{max-width:920px; margin:0 auto; padding:0 22px}
+  .glow-blue{color:var(--blue)} .glow-pink{color:var(--pink)} .lime{color:var(--lime)}
+  .grad{background:linear-gradient(100deg,var(--blue),#fff 45%,var(--pink)); -webkit-background-clip:text; background-clip:text; color:transparent}
+
+  /* hero */
+  header.hero{padding:84px 0 40px; text-align:center; position:relative}
+  .kick{display:inline-flex; align-items:center; gap:9px; font-size:14px; font-weight:700; letter-spacing:2px;
+    color:#0a0a0a; background:var(--lime); padding:7px 16px; border-radius:999px; margin-bottom:26px}
+  h1{font-size:clamp(34px,6vw,62px); font-weight:900; line-height:1.08; letter-spacing:-.5px}
+  .sub{font-size:clamp(17px,2.4vw,21px); color:var(--tx2); max-width:640px; margin:20px auto 0; font-weight:400}
+  .hero-video{margin:46px auto 0; max-width:880px; border-radius:20px; overflow:hidden; position:relative;
+    border:1px solid var(--panel-bd);
+    box-shadow:0 40px 120px -30px rgba(0,0,0,.9), 0 0 70px -25px rgba(79,195,247,.5), 0 0 70px -25px rgba(255,61,154,.35)}
+  .hero-video video{display:block; width:100%}
+
+  /* sections */
+  section{padding:46px 0}
+  h2{font-size:clamp(26px,4vw,38px); font-weight:900; line-height:1.15; display:flex; align-items:center; gap:14px}
+  h2::before{content:""; width:8px; height:34px; border-radius:6px; background:linear-gradient(180deg,var(--blue),var(--pink)); flex:none}
+  section p{margin-top:16px; color:#cdd5e2; font-size:18px}
+  section p b,strong{color:#fff; font-weight:700}
+
+  .card{background:var(--panel); border:1px solid var(--panel-bd); border-radius:20px; padding:26px 26px;
+    backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); margin-top:22px}
+
+  /* chips list */
+  .chips{display:flex; flex-wrap:wrap; gap:9px; margin-top:18px}
+  .chip{font-size:15px; color:#e7edf5; background:rgba(255,255,255,.05); border:1px solid var(--panel-bd);
+    padding:7px 14px; border-radius:999px}
+  .chip i{color:var(--blue)}
+
+  /* steps */
+  ol.steps{list-style:none; counter-reset:s; margin-top:22px; display:grid; gap:12px}
+  ol.steps li{counter-increment:s; display:flex; gap:15px; align-items:flex-start;
+    background:var(--panel); border:1px solid var(--panel-bd); border-radius:14px; padding:14px 18px}
+  ol.steps li::before{content:counter(s); flex:none; width:34px; height:34px; border-radius:10px;
+    background:linear-gradient(135deg,var(--blue),var(--pink)); color:#08101f; font-weight:900;
+    display:grid; place-items:center; font-size:17px}
+  ol.steps li span{padding-top:4px; font-size:17px; color:#dde4ee}
+
+  /* higgsfield cta */
+  .hf{background:linear-gradient(135deg,rgba(200,250,60,.12),rgba(20,24,40,.5));
+    border:1px solid rgba(200,250,60,.35); border-radius:20px; padding:30px; margin-top:24px; text-align:center}
+  .hf .logo{font-style:italic; font-weight:900; font-size:clamp(24px,4vw,34px); letter-spacing:1px}
+  .hf .logo b{background:var(--lime); color:#0a0a0a; padding:2px 12px; border-radius:8px; font-style:italic}
+  .btn{display:inline-flex; align-items:center; gap:10px; margin-top:20px; background:var(--lime); color:#0a0a0a;
+    font-weight:900; font-size:19px; padding:15px 34px; border-radius:14px; text-decoration:none;
+    box-shadow:0 14px 44px -12px rgba(200,250,60,.7); transition:transform .15s}
+  .btn:hover{transform:translateY(-2px)}
+
+  /* prompt blocks */
+  .prompt{margin-top:30px; border-radius:22px; overflow:hidden; border:1px solid var(--panel-bd);
+    background:linear-gradient(180deg,rgba(22,26,42,.7),rgba(10,12,20,.7)); backdrop-filter:blur(10px)}
+  .p-head{display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap;
+    padding:20px 24px; border-bottom:1px solid var(--panel-bd)}
+  .p-head .t{font-size:22px; font-weight:900}
+  .p-head .tag{font-size:13px; font-weight:700; letter-spacing:1px; color:#08101f;
+    background:linear-gradient(135deg,var(--blue),#fff); padding:5px 13px; border-radius:999px}
+  .p-body{padding:0}
+  .p-vid{position:relative; background:#000}
+  .p-vid video{display:block; width:100%}
+  .p-desc{padding:18px 24px; color:#c9d2e0; font-size:16.5px}
+  .p-desc .note{display:block; margin-top:10px; font-size:15px; color:var(--tx2);
+    border-right:3px solid var(--lime); padding-right:12px}
+  .code{position:relative; margin:0 18px 18px; border-radius:14px; background:#070a10; border:1px solid var(--panel-bd)}
+  .code .bar{display:flex; align-items:center; justify-content:space-between; padding:10px 14px; border-bottom:1px solid var(--panel-bd)}
+  .code .bar .lbl{font-size:13px; color:var(--tx2); font-family:var(--mono); letter-spacing:.5px}
+  .copy{cursor:pointer; border:1px solid rgba(200,250,60,.4); background:rgba(200,250,60,.12); color:var(--lime);
+    font-family:'Heebo',sans-serif; font-weight:700; font-size:14px; padding:6px 14px; border-radius:9px; transition:.15s}
+  .copy:hover{background:rgba(200,250,60,.22)}
+  .copy.done{background:var(--lime); color:#0a0a0a; border-color:var(--lime)}
+  pre{margin:0; padding:16px 18px; max-height:340px; overflow:auto; direction:ltr; text-align:left}
+  pre code{font-family:var(--mono); font-size:13.5px; line-height:1.65; color:#b9c4d4; white-space:pre-wrap; word-break:break-word}
+  pre::-webkit-scrollbar{width:10px} pre::-webkit-scrollbar-thumb{background:rgba(255,255,255,.12); border-radius:8px}
+
+  /* closing */
+  .closing{text-align:center; padding:60px 0 30px}
+  .closing .big{font-size:clamp(24px,4vw,34px); font-weight:900; line-height:1.3}
+  .closing p{color:var(--tx2); margin-top:14px; font-size:18px}
+  /* brand row + logo */
+  .brandrow{display:flex; flex-direction:column; align-items:center; gap:11px; margin-bottom:26px}
+  .logo-lg{width:78px; height:78px; border-radius:50%; object-fit:cover; border:2px solid rgba(255,255,255,.22);
+    box-shadow:0 0 0 5px rgba(10,14,28,.55), 0 0 36px -4px rgba(79,195,247,.6), 0 0 36px -6px rgba(255,61,154,.45)}
+  .logo-sm{width:42px; height:42px; border-radius:50%; object-fit:cover; border:1.5px solid rgba(255,255,255,.18)}
+  .brandrow .handle{font-weight:800; font-size:19px; color:#fff; letter-spacing:.5px}
+
+  /* video facade (click to play) */
+  .facade{position:relative; width:100%; aspect-ratio:16/9; background:#000 center/cover no-repeat; cursor:pointer; display:flex; align-items:center; justify-content:center}
+  .facade::after{content:""; position:absolute; inset:0; background:rgba(5,6,11,.22)}
+  .playbtn{position:relative; z-index:2; width:84px; height:84px; border-radius:50%; background:rgba(10,14,28,.5);
+    border:2px solid rgba(255,255,255,.75); display:flex; align-items:center; justify-content:center; transition:transform .15s, background .15s}
+  .facade:hover .playbtn{transform:scale(1.08); background:rgba(200,250,60,.9); border-color:var(--lime)}
+  .playbtn::before{content:""; border-style:solid; border-width:15px 0 15px 25px; border-color:transparent transparent transparent #fff; transform:translateX(3px)}
+  .facade:hover .playbtn::before{border-left-color:#0a0a0a}
+  .ighandle{display:inline-flex; align-items:center; gap:7px; color:#fff; font-weight:800; text-decoration:none}
+  .ighandle svg{width:20px; height:20px}
+  .ighandle:hover{color:var(--pink)}
+  .miniprompt{margin-top:12px; background:#070a10; border:1px solid var(--panel-bd); border-radius:10px; padding:11px 14px; direction:ltr; text-align:left}
+  .miniprompt code{font-family:var(--mono); font-size:13px; line-height:1.55; color:#9fb3c9; word-break:break-word}
+
+  footer{text-align:center; padding:46px 0 80px; color:var(--tx2); border-top:1px solid var(--panel-bd); margin-top:30px}
+  footer .logo-sm{width:64px; height:64px; margin:0 auto 14px; display:block}
+  footer .by{font-size:19px; color:#fff; font-weight:500}
+  @media(max-width:600px){ section{padding:34px 0} .card{padding:20px} }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="brandrow">
+      <img class="logo-lg" src="logo.png" alt="Yuvi.AI">
+      <span class="handle" dir="ltr">@Yuvi.AI</span>
+    </div>
+    <span class="kick">SEEDANCE 2.0 · HIGGSFIELD</span>
+    <h1>מדריך קצר ל<span class="grad">Seedance 2</span></h1>
+    <p class="sub">הסבר קצר, וכל הפרומפטים המוכנים שיצרו את הסרטונים שראיתם בריל.</p>
+    <div class="hero-video">
+      <img src="hero.png" alt="Seedance 2" style="display:block;width:100%">
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section>
+    <p>אם הגעתם לכאן מהריל, כנראה שגם אתם ראיתם את הסרטונים וחשבתם: רגע, זה באמת AI?</p>
+    <p>אז כן. הסרטונים נוצרו עם <b>Seedance 2</b>, דרך <b>Higgsfield</b>. במדריך הזה אני עושה לכם סדר קצר: מה זה Seedance 2, איך איכות גבוהה משפיעה על התוצאה, ואיך אפשר להשתמש בפרומפטים שיצרו את הדוגמאות שראיתם בסרטון.</p>
+  </section>
+
+  <section>
+    <h2>מה זה Seedance 2?</h2>
+    <div class="card">
+      <p style="margin-top:0">Seedance 2 הוא מודל AI מתקדם ליצירת וידאו. במילים פשוטות: אתם נותנים לו רעיון, פרומפט, תמונה, וידאו או רפרנסים, והוא יודע להפוך את זה לסרטון.</p>
+      <p>מה שמייחד אותו הוא היכולת להתמודד עם סצנות מורכבות:</p>
+      <div class="chips">
+        <span class="chip"><i class="ti"></i>תנועה מהירה</span>
+        <span class="chip">דמויות</span>
+        <span class="chip">תנועת מצלמה</span>
+        <span class="chip">פרטים קטנים</span>
+        <span class="chip">עקביות בין פריימים</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>למה איכות גבוהה משנה את המשחק?</h2>
+    <p>איכות גבוהה היא לא רק רזולוציה. בוידאו AI היא משנה ממש את התחושה של התוצאה. כשעובדים נכון עם מודל איכותי, הרבה יותר פרטים קטנים מצליחים לעבור בצורה נקייה:</p>
+    <div class="chips">
+      <span class="chip">מרקמים</span><span class="chip">שערות</span><span class="chip">חלקיקים</span>
+      <span class="chip">עשן</span><span class="chip">שלג</span><span class="chip">קונפטי</span>
+      <span class="chip">טקסטים</span><span class="chip">פרצופים קטנים</span><span class="chip">דמויות ברקע</span>
+      <span class="chip">ממשקים</span><span class="chip">אלמנטים מהירים בתנועה</span>
+    </div>
+    <p>זה גורם לסרטון להרגיש הרבה יותר חד, יקר וקולנועי.</p>
+    <div class="card">
+      <p style="margin-top:0">בדוגמה של <b>החיילים</b>, יש המון דמויות קטנות שרצות בשלג, והמודל מצליח לשמור עליהן ברורות ולא להפוך אותן לגוש מטושטש.</p>
+      <p>בדוגמה של <b>המשחק</b>, רואים את זה בטקסטים וב-HUD: מד החיים, האותיות והממשק נשארים קריאים וחדים, וזה בדיוק משהו שמודלים נוטים להיכשל בו.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>איפה כדאי להשתמש בזה?</h2>
+    <p>אני ממליץ להשתמש ב-Seedance 2 דרך <b>Higgsfield</b>. זו פלטפורמה איכותית ליצירת וידאו AI, שמרכזת כמה יכולות ומודלים במקום אחד, ומאפשרת לעבוד בצורה נוחה יותר עם תוצאות ברמה גבוהה.</p>
+    <p>היתרון הגדול מבחינתי: אפשר לעבוד שם עם Seedance 2 בצורה נוחה ולקבל תוצאה הרבה יותר מרשימה, חדה וקולנועית. אם אתם יוצרים תוכן, עורכים, מעצבים, אנשי קריאייטיב או סתם רוצים לבדוק לאן העולם הזה הולך, זה כלי ששווה להכיר.</p>
+    <div class="hf">
+      <div class="logo">HIGGSFIELD <b>SEEDANCE 2.0</b></div>
+      <a class="btn" href="https://higgsfield.ai" target="_blank" rel="noopener">ליצירה ב-Higgsfield</a>
+    </div>
+  </section>
+
+  <section>
+    <h2>איך משתמשים בפרומפטים?</h2>
+    <ol class="steps">
+      <li><span>נכנסים ל-Higgsfield.</span></li>
+      <li><span>בוחרים יצירת וידאו עם Seedance 2.</span></li>
+      <li><span>אם הפרומפט מבקש תמונת רפרנס, מעלים תמונה מתאימה.</span></li>
+      <li><span>מעתיקים את הפרומפט (כפתור ההעתקה בכל בלוק למטה).</span></li>
+      <li><span>משנים את הדמות, הסגנון או הלוקיישן לפי מה שבא לכם.</span></li>
+      <li><span>מפעילים יצירה.</span></li>
+      <li><span>אם התוצאה קרובה אבל לא מושלמת, משפרים את הפרומפט ומריצים שוב.</span></li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>הפרומפטים</h2>
+    <p>כל פרומפט עם דוגמה מהריל. לוחצים העתקה, מדביקים ב-Higgsfield, ומשנים לפי הטעם שלכם.</p>
+
+    <!-- PROMPT 1 -->
+    <div class="prompt">
+      <div class="p-head"><div class="t">1. פנטזיה / עולם אווטארי</div><div class="tag">FANTASY</div></div>
+      <div class="p-vid"><div class="facade" data-src="fantasy.mp4" style="background-image:url('fantasy.jpg')"><div class="playbtn" aria-label="נגן"></div></div></div>
+      <div class="p-desc">מתאים ליצירת עולם פנטזיה ענק, צבעוני וקולנועי, עם דמות שעפה על יצור קטן וחמוד.
+        <span class="note">רוצים שהדמות תהיה אתם? העלו תמונת רפרנס שלכם, והשאירו בפרומפט את השורה הזו (אפשר לכתוב בה תיאור קצר שלכם, כדי שהמראה יהיה מדויק):</span>
+        <div class="miniprompt"><code>THE MAN: the man from the uploaded reference image, wearing the same fantasy-adventurer outfit from the reference, leaning with the creature's banks.</code></div>
+      </div>
+      <div class="code">
+        <div class="bar"><span class="lbl">prompt_01_fantasy.txt</span><button class="copy">העתק</button></div>
+        <pre><code>SURREAL FANTASY — MAN FLIES HIS COLORFUL WORLD ON A CUTE CREATURE (CINEMATIC, 15s)
+
+Lush cinematic fantasy, hyperreal yet painterly — like a living classic matte-painting brought to motion: rich, luminous, deeply SATURATED color, crisp detail, soft volumetric light, fine film grain, anamorphic widescreen. Awe and wonder, colossal surreal scale. A man flies on a small, cute, brightly colored creature, swooping around his impossible homeland to reveal its vastness. 16:9, 15s. Coherent, grounded flight physics, magical.
+
+THE WORLD: an impossible homeland of COLOSSAL natural cathedral arches — mile-high rows of giant trees fused into vaulted green archways marching to the horizon, sunlight and waterfall-mist pouring between them. Far below, a tiny vibrant civilization: patchwork emerald fields, white-and-terracotta towns, slender towers, orchards in red-and-gold bloom. At the edge of the world the land drops in a monumental city-cliff into a glittering turquoise sea dotted with white sailboats. Everything human is tiny.
+
+THE COLOR: maximum vibrancy — deep emerald greens, cobalt-to-turquoise sky and sea, warm golden sunlight, pops of flowering red, coral and gold. Rich, glowing, never muddy.
+
+THE MAN: the man from the uploaded reference image, wearing the same fantasy-adventurer outfit from the reference, leaning with the creature's banks.
+
+THE CREATURE: a small friendly flying creature — soft rounded body, big soulful eyes, a gentle beaky face, iridescent rainbow plumage-scales (teal, magenta, gold), broad membranous-feathered wings, a long ribboned tail. Same design in every frame, no drift.
+
+KEY LOCKS: constantly sell the immensity — the man and creature a tiny bright speck against mile-high arches and the world-edge cliff; deep parallax on every move. Keep color rich and glowing. The creature flaps, glides and banks with real wing dynamics and weight; wind ripples its plumage and his scarf. Consistent design and same man throughout — no morphing. Camera flies WITH the creature — banking alongside, dropping into dives, craning up for reveals. Solid architecture and real perspective, no warping or melting.
+
+SHOTS — ONE CONTINUOUS FLIGHT (or 2-3 clean cuts on motion)
+
+0–4s — UNDER THE GREEN ARCHES: the camera sweeps through a towering emerald cathedral-arch, light and mist pouring down, then finds the man and his creature gliding through the vast green tunnel, tiny against the scale.
+
+4–9s — OVER THE HOMELAND: the creature banks and dives toward the tiny civilization — fields, towns, orchards rushing past below in deep parallax, the man laughing; the camera soars alongside.
+
+9–15s — THE WORLD'S EDGE: they burst out into open sky — the land drops away in a monumental city-cliff into a turquoise sea with sailboats below; the creature spreads its wings and the camera cranes back into a colossal wide. Hold on the wonder.
+
+FORBIDDEN — no franchise or IP references, no recognizable characters, no readable text or logos, no desaturated grading, no warping or melting geometry, no design drift, no plastic CGI gloss, no neon eyes.
+
+15s. 16:9. 24fps. SFX only: wind and wing-beats, the creature's soft chirps, the man's delighted laughter, faint birdsong, surf and a soft town hum far below. No dialogue.</code></pre>
+      </div>
+    </div>
+
+    <!-- PROMPT 2 -->
+    <div class="prompt">
+      <div class="p-head"><div class="t">2. מפלצת קרח מול צבא חיילים</div><div class="tag">CINEMATIC</div></div>
+      <div class="p-vid"><div class="facade" data-src="snow.mp4" style="background-image:url('snow.jpg')"><div class="playbtn" aria-label="נגן"></div></div></div>
+      <div class="p-desc">סצנה קולנועית בקנה מידה ענק, עם המון דמויות קטנות שנשארות חדות וברורות גם בכאוס.</div>
+      <div class="code">
+        <div class="bar"><span class="lbl">prompt_02_ice.txt</span><button class="copy">העתק</button></div>
+        <pre><code>Sweeping wide shot of a mountain-sized titan of ice and stone tearing itself free from a glacier as an army of armored warriors scrambles across the frozen valley below. Handheld camera shakes hard with each cracking movement, snapping from sheets of ice shattering off the titan's shoulders to soldiers diving from collapsing crevasses to a war-horn blaring across the field. Snow erupts in vast plumes, glowing runes flare along the titan's limbs, the whole glacier splinters apart. Stark whites and frozen blues, crushing primordial scale and chaos. 16:9, 10 seconds.</code></pre>
+      </div>
+    </div>
+
+    <!-- PROMPT 3 -->
+    <div class="prompt">
+      <div class="p-head"><div class="t">3. קרקס צף / ליצן ענק</div><div class="tag">DYNAMIC</div></div>
+      <div class="p-vid"><div class="facade" data-src="circus.mp4" style="background-image:url('circus.jpg')"><div class="playbtn" aria-label="נגן"></div></div></div>
+      <div class="p-desc">כאוס צבעוני עם מצלמה מהירה, המון אלמנטים בתנועה, וביטים של סלואו-מושן ובולט-טיים.</div>
+      <div class="code">
+        <div class="bar"><span class="lbl">prompt_03_circus.txt</span><button class="copy">העתק</button></div>
+        <pre><code>single continuous shot, one take no cuts, cinematic FPV oner, 4K ultra-detailed, photorealistic macro detail, anamorphic film look, epic cinematic scale, playful whimsical tone, cinematic lighting, professional color grading, sharp focus, film grain, depth of field mastery, fluid drone flight
+
+A colossal wind-up clown golem — bright, cartoonish and goofy, not scary, its gaudy clockwork body of creaking gears and swinging arms — crashes through a floating carnival park in a brilliant blue sky, where a giant Ferris wheel, striped tents and candy-colored towers drift among the clouds in acid-bright color. Performer-warriors ride animal-shaped hot-air balloons and flying carousels, streamers and confetti trailing, swarming the golem with popper-blasts and bursts of magic. Hard high-key daylight, saturated candy red, yellow, teal and azure. The camera is an FPV presence flying with the golem — opening in extreme 4K macro against its painted clockwork shell, repeatedly diving into confetti and firework clouds, brushing close against performers and ride-metal, with a brief slow-motion macro beat on a performer at the three-second mark and a frozen bullet-time macro orbit on a strike at the seven-second mark, each returning to full speed, never stopping.
+
+Single continuous shot 15s: opens in razor-sharp 4K macro against the clown golem's painted clockwork shell — glossy enamel and turning brass gears grinding past the lens, confetti bursting. It dives into a billowing cloud of confetti and glitter in hyper-detailed macro, then bursts out alongside a diving performer where, at the three-second mark, time eases into a brief slow-motion macro hold — a sequined costume, face paint, the popping muzzle of a confetti-blaster, the stitched fabric of an animal-shaped balloon — before snapping back. The camera surfs the golem's flank as a giant arm swings through a striped tent, then plunges through another burst of confetti. At the seven-second mark a firework volley and a radiant magic burst strike the golem's chest together, and time freezes into an extreme-macro bullet-time orbit — cracking painted plating, crawling sparks suspended mid-air, the firework's blooming core, glitter hanging razor-crisp. Time snaps back and the camera dives between drifting balloons and candy towers, grazing the Ferris wheel and a carousel's gilded trim, before brushing the golem's grinning face once more, surging onward without ever pulling up.</code></pre>
+      </div>
+    </div>
+
+    <!-- PROMPT 4 -->
+    <div class="prompt">
+      <div class="p-head"><div class="t">4. משחק מחשב / מרוץ עם HUD</div><div class="tag">GAME UI</div></div>
+      <div class="p-vid"><div class="facade" data-src="game.mp4" style="background-image:url('game.jpg')"><div class="playbtn" aria-label="נגן"></div></div></div>
+      <div class="p-desc">סגנון משחק מחשב עם מצלמת chase-cam, מכונית, ענקים, וממשק משחק שנשאר חד וברור.
+        <span class="note">בפרומפט המקורי יש אזכור ל-Forza Horizon / Need for Speed כסטייל. כדי להימנע משמות מותגים, אפשר להחליף ב: "AAA arcade racing-game gameplay footage, next-gen racing game look".</span>
+      </div>
+      <div class="code">
+        <div class="bar"><span class="lbl">prompt_04_game.txt</span><button class="copy">העתק</button></div>
+        <pre><code>Style: AAA arcade racing-game gameplay footage — Forza Horizon / Need for Speed look. Hyper-saturated, glossy, high-contrast real-time render with crisp pinned UI. In-game gameplay, NOT a film plate.
+
+Cinematography: classic third-person chase-cam, rock-steady, locked to the car.
+
+Lighting: punchy golden-hour key down the canyon, neon rim on the giants and crystals, heavy bloom, atmospheric haze.
+
+Physics: arcade-racing feel — fast weighty drifts, instant grip, big volumetric tyre smoke. Giants move with ground-shaking mass.
+
+Technical: 60fps ultra-smooth, no jitter.
+
+REFERENCE — image1 is the MASTER STYLE REFERENCE (car, both foreground giants, distant violet giant, flower canyon, glowing portal, full HUD, grade and lighting). Match 100%. Set the scene in motion; the world extends forward as the car races on.
+
+SUBJECT — the carbon hypercar from image1, third-person chase view: big rear wing, twin red tail-lights, chartreuse #d1ef17 hero stripe, rear wheels drifting with a smoke plume.
+
+LOCATION — the flower canyon from image1 as style reference: iridescent crystal walls, glowing magenta flower banks, turquoise cascades, lantern-lined wet track winding to a glowing violet portal. Emerald giant on the left, bronze giant on the right, planted roadside but swinging their hands down into the track to block the car; the violet giant looms down-track.
+
+HUD — keep image1's racing UI pinned and LIVE, chartreuse #d1ef17: bottom-left RPM gauge + km/h speedometer (around 320–360); bottom-right gear number + BOOST bar; top-left mini-map with giant-hazard skull markers; top-center lap timer + position "1st". Flat on screen, never in the 3D world.
+
+SHOT 1 (0:00–0:05) — car drifting at full speed as both giant hands sweep down into the road ahead, smoke and petals exploding, screen shaking, speedometer climbing, BOOST charging.
+
+SHOT 2 (0:05–0:10) — car snap-drifts around the bronze giant's descending palm as it slams the track, threading the gap by inches; BOOST fires — speed-lines blast in, the world streaks.
+
+SHOT 3 (0:10–0:15) — car straightens and rockets toward the violet giant and the portal, weaving past the flower banks as the emerald giant swings behind, tail-lights blazing, giants blurring at the edges.
+
+CONSTRAINTS: 16:9. image1 is style reference not a keyframe — replicate car, giants, canyon, portal, palette, lighting and HUD, animated and moving forward. NO slow-motion — constant full speed. Camera locked to the car. Giants stay roadside but keep swinging hands down. HUD always visible and live. No real brand logos. No eye glow.
+
+AUDIO — NO MUSIC, SFX ONLY: screaming engine revs and gear shifts, BOOST whoosh, tyre screech and drift squeal, ground-shaking giant palm slams, UI beeps on boost and lap markers, wind and gravel spray.</code></pre>
+      </div>
+    </div>
+
+    <!-- PROMPT 5 -->
+    <div class="prompt">
+      <div class="p-head"><div class="t">5. פרפר ותוכי / ריאליסטי</div><div class="tag">PHOTOREAL</div></div>
+      <div class="p-vid"><div class="facade" data-src="parrot.mp4" style="background-image:url('parrot.jpg')"><div class="playbtn" aria-label="נגן"></div></div></div>
+      <div class="p-desc">צילום טבע פוטוריאליסטי בשוט אחד רציף, עם מרדף דינמי שמתפוצץ לבולט-טיים מאקרו.</div>
+      <div class="code">
+        <div class="bar"><span class="lbl">prompt_05_realistic.txt</span><button class="copy">העתק</button></div>
+        <pre><code>Photorealistic cinematic, one single continuous unbroken shot from start to finish — absolutely no cuts, no edits, no transitions, one fluid uninterrupted camera move, 16:9. Bright daylight in a lush green forest, sunlight filtering through the canopy, leaves and tree trunks softly blurred.
+
+The shot begins directly behind a vivid colorful butterfly fluttering fast and dynamically through the forest, the camera chasing close behind its wings as it weaves between trees, shafts of light and foliage — erratic, lively and kinetic.
+
+Without any cut, in the same fluid motion, the camera keeps racing with the darting butterfly deeper through the trees. Then, at the midpoint, a parrot suddenly bursts in from the side and snatches the butterfly out of the air, biting down and clamping onto the edge of one of its wings in its beak — and the camera sweeps with the strike in one continuous move.
+
+Still unbroken, the camera drives in onto the moment of capture and explodes into a dramatic bullet-time effect: time nearly freezes as the parrot's beak bites and clamps onto the butterfly's wing in an extreme macro close-up, the wing bending and creasing in the beak's grip, and the camera sweeps slowly around the frozen instant — shimmering powder and tiny iridescent scales scattering off the pinched wing and hanging suspended motionless in mid-air, the delicate wing membranes and veins razor-sharp, the parrot's beak texture and eye in crisp detail, the butterfly caught mid-flutter — hyper-detailed.
+
+One seamless continuous camera move — chase from behind, racing through the forest, into the parrot's strike, ending in a bullet-time orbit around the catch. Flowing and dynamic, collapsing into near-frozen bullet time only at the macro catch. Shallow depth of field, strong motion blur on the chase resolving into crisp frozen detail, bright natural daylight, dappled forest light, high dynamic range, ultra-detailed photorealistic textures — wing scales, powder, feathers, foliage — 4K, high-end wildlife documentary look. Pacing over 10 seconds: about 4–5 seconds of dynamic butterfly flight, the parrot striking around the midpoint, then the rest in bullet-time macro of the parrot biting the wing. 10 seconds, single continuous take.</code></pre>
+      </div>
+    </div>
+
+  </section>
+
+  <div class="closing">
+    <div class="big">הקסם הוא לא רק במודל.</div>
+    <p>הוא בשילוב בין מודל חזק, פרומפט מדויק ורפרנס טוב.<br>תתכוננו להתמכר, ובהצלחה. תשלחו לי תוצאות.</p>
+  </div>
+
+</main>
+
+<footer>
+  <img class="logo-sm" src="logo.png" alt="Yuvi.AI">
+  <div class="by">נוצר על ידי יובל מויאל |
+    <a class="ighandle" href="https://www.instagram.com/yuvi.ai1/" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r="1.2" fill="currentColor" stroke="none"/></svg>
+      Yuvi.AI
+    </a>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('.copy').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var code = btn.closest('.code').querySelector('code').innerText;
+      navigator.clipboard.writeText(code).then(function(){
+        btn.textContent = 'הועתק!'; btn.classList.add('done');
+        setTimeout(function(){ btn.textContent = 'העתק'; btn.classList.remove('done'); }, 1600);
+      });
+    });
+  });
+
+  /* click-to-play: no video loads until the user presses PLAY */
+  document.querySelectorAll('.facade').forEach(function(f){
+    f.addEventListener('click', function(){
+      var src = f.dataset.src;
+      var v = document.createElement('video');
+      v.src = src;
+      v.controls = true;
+      v.autoplay = true;
+      v.playsInline = true;
+      v.preload = 'none';
+      v.style.width = '100%';
+      v.style.display = 'block';
+
+      v.addEventListener('play', function(){
+        document.querySelectorAll('video').forEach(function(other){
+          if (other !== v) other.pause();
+        });
+      });
+
+      v.addEventListener('error', function(){
+        alert('הסרטון לא נמצא. ודא שהקובץ נמצא באותה תיקייה של index.html וששם הקובץ מדויק: ' + src);
+      });
+
+      f.replaceWith(v);
+      v.play();
+    });
+  });
+</script>
+</body>
+</html>
