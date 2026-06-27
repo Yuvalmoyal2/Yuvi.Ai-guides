@@ -139,14 +139,14 @@
 <header class="hero">
   <div class="wrap">
     <div class="brandrow">
-      <img class="logo-lg" src="assets/logo.png" alt="Yuvi.AI">
+      <img class="logo-lg" src="logo.png" alt="Yuvi.AI">
       <span class="handle" dir="ltr">@Yuvi.AI</span>
     </div>
     <span class="kick">SEEDANCE 2.0 · 4K · HIGGSFIELD</span>
     <h1>מדריך קצר ל<span class="grad">Seedance 2</span> ב-4K</h1>
     <p class="sub">הסבר קצר, וכל הפרומפטים המוכנים שיצרו את הסרטונים שראיתם בריל.</p>
     <div class="hero-video">
-      <img src="assets/hero.png" alt="Seedance 2 ב-4K" style="display:block;width:100%">
+      <img src="hero.png" alt="Seedance 2 ב-4K" style="display:block;width:100%">
     </div>
   </div>
 </header>
@@ -217,15 +217,17 @@
     <p>כל פרומפט עם דוגמה מהריל. לוחצים העתקה, מדביקים ב-Higgsfield, ומשנים לפי הטעם שלכם.</p>
     <div class="qbar"><span>איכות הסרטונים:</span>
       <div class="qtoggle">
-        <button type="button" data-q="sd" class="on">חיסכון 480p</button>
-        <button type="button" data-q="hi">גבוהה 720p</button>
+        <button type="button" data-q="sd" class="on">480p</button>
+        <button type="button" data-q="hi">720p</button>
+        <button type="button" data-q="uhd">4K</button>
       </div>
     </div>
+    <p style="margin-top:12px;font-size:15px;color:#9aa6b8;text-align:center">בחירת 4K דורשת קבצי וידאו אמיתיים באותה תיקייה של העמוד עם הסיומת <span dir="ltr">_4k.mp4</span>, באותה תיקייה שבה נמצא <span dir="ltr">index.html</span>.</p>
 
     <!-- PROMPT 1 -->
     <div class="prompt">
       <div class="p-head"><div class="t">1. פנטזיה / עולם אווטארי</div><div class="tag">FANTASY</div></div>
-      <div class="p-vid"><div class="facade" data-hi="videos/fantasy.mp4" data-sd="videos/fantasy_sd.mp4" style="background-image:url('videos/fantasy.jpg')"><div class="playbtn" aria-label="נגן"></div><span class="qlabel"></span></div></div>
+      <div class="p-vid"><div class="facade" data-hi="fantasy.mp4" data-sd="fantasy_sd.mp4" data-uhd="fantasy_4k.mp4" style="background-image:url('fantasy.jpg')"><div class="playbtn" aria-label="נגן"></div><span class="qlabel"></span></div></div>
       <div class="p-desc">מתאים ליצירת עולם פנטזיה ענק, צבעוני וקולנועי, עם דמות שעפה על יצור קטן וחמוד.
         <span class="note">רוצים שהדמות תהיה אתם? העלו תמונת רפרנס שלכם, והשאירו בפרומפט את השורה הזו (אפשר לכתוב בה תיאור קצר שלכם, כדי שהמראה יהיה מדויק):</span>
         <div class="miniprompt"><code>THE MAN: the man from the uploaded reference image, wearing the same fantasy-adventurer outfit from the reference, leaning with the creature's banks.</code></div>
@@ -263,7 +265,7 @@ FORBIDDEN — no franchise or IP references, no recognizable characters, no read
     <!-- PROMPT 2 -->
     <div class="prompt">
       <div class="p-head"><div class="t">2. מפלצת קרח מול צבא חיילים</div><div class="tag">CINEMATIC</div></div>
-      <div class="p-vid"><div class="facade" data-hi="videos/snow.mp4" data-sd="videos/snow_sd.mp4" style="background-image:url('videos/snow.jpg')"><div class="playbtn" aria-label="נגן"></div><span class="qlabel"></span></div></div>
+      <div class="p-vid"><div class="facade" data-hi="snow.mp4" data-sd="snow_sd.mp4" data-uhd="snow_4k.mp4" style="background-image:url('snow.jpg')"><div class="playbtn" aria-label="נגן"></div><span class="qlabel"></span></div></div>
       <div class="p-desc">סצנה קולנועית בקנה מידה ענק, עם המון דמויות קטנות שנשארות חדות וברורות גם בכאוס.</div>
       <div class="code">
         <div class="bar"><span class="lbl">prompt_02_ice.txt</span><button class="copy">העתק</button></div>
@@ -274,7 +276,7 @@ FORBIDDEN — no franchise or IP references, no recognizable characters, no read
     <!-- PROMPT 3 -->
     <div class="prompt">
       <div class="p-head"><div class="t">3. קרקס צף / ליצן ענק</div><div class="tag">DYNAMIC</div></div>
-      <div class="p-vid"><div class="facade" data-hi="videos/circus.mp4" data-sd="videos/circus_sd.mp4" style="background-image:url('videos/circus.jpg')"><div class="playbtn" aria-label="נגן"></div><span class="qlabel"></span></div></div>
+      <div class="p-vid"><div class="facade" data-hi="circus.mp4" data-sd="circus_sd.mp4" data-uhd="circus_4k.mp4" style="background-image:url('circus.jpg')"><div class="playbtn" aria-label="נגן"></div><span class="qlabel"></span></div></div>
       <div class="p-desc">כאוס צבעוני עם מצלמה מהירה, המון אלמנטים בתנועה, וביטים של סלואו-מושן ובולט-טיים.</div>
       <div class="code">
         <div class="bar"><span class="lbl">prompt_03_circus.txt</span><button class="copy">העתק</button></div>
@@ -289,7 +291,7 @@ Single continuous shot 15s: opens in razor-sharp 4K macro against the clown gole
     <!-- PROMPT 4 -->
     <div class="prompt">
       <div class="p-head"><div class="t">4. משחק מחשב / מרוץ עם HUD</div><div class="tag">GAME UI</div></div>
-      <div class="p-vid"><div class="facade" data-hi="videos/game.mp4" data-sd="videos/game_sd.mp4" style="background-image:url('videos/game.jpg')"><div class="playbtn" aria-label="נגן"></div><span class="qlabel"></span></div></div>
+      <div class="p-vid"><div class="facade" data-hi="game.mp4" data-sd="game_sd.mp4" data-uhd="game_4k.mp4" style="background-image:url('game.jpg')"><div class="playbtn" aria-label="נגן"></div><span class="qlabel"></span></div></div>
       <div class="p-desc">סגנון משחק מחשב עם מצלמת chase-cam, מכונית, ענקים, וממשק משחק שנשאר חד וברור.
         <span class="note">בפרומפט המקורי יש אזכור ל-Forza Horizon / Need for Speed כסטייל. כדי להימנע משמות מותגים, אפשר להחליף ב: "AAA arcade racing-game gameplay footage, next-gen racing game look".</span>
       </div>
@@ -328,7 +330,7 @@ AUDIO — NO MUSIC, SFX ONLY: screaming engine revs and gear shifts, BOOST whoos
     <!-- PROMPT 5 -->
     <div class="prompt">
       <div class="p-head"><div class="t">5. פרפר ותוכי / ריאליסטי</div><div class="tag">PHOTOREAL</div></div>
-      <div class="p-vid"><div class="facade" data-hi="videos/parrot.mp4" data-sd="videos/parrot_sd.mp4" style="background-image:url('videos/parrot.jpg')"><div class="playbtn" aria-label="נגן"></div><span class="qlabel"></span></div></div>
+      <div class="p-vid"><div class="facade" data-hi="parrot.mp4" data-sd="parrot_sd.mp4" data-uhd="parrot_4k.mp4" style="background-image:url('parrot.jpg')"><div class="playbtn" aria-label="נגן"></div><span class="qlabel"></span></div></div>
       <div class="p-desc">צילום טבע פוטוריאליסטי בשוט אחד רציף, עם מרדף דינמי שמתפוצץ לבולט-טיים מאקרו.</div>
       <div class="code">
         <div class="bar"><span class="lbl">prompt_05_realistic.txt</span><button class="copy">העתק</button></div>
@@ -354,7 +356,7 @@ One seamless continuous camera move — chase from behind, racing through the fo
 </main>
 
 <footer>
-  <img class="logo-sm" src="assets/logo.png" alt="Yuvi.AI">
+  <img class="logo-sm" src="logo.png" alt="Yuvi.AI">
   <div class="by">נוצר על ידי יובל מויאל |
     <a class="ighandle" href="https://www.instagram.com/yuvi.ai1/" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r="1.2" fill="currentColor" stroke="none"/></svg>
@@ -376,7 +378,7 @@ One seamless continuous camera move — chase from behind, racing through the fo
 
   /* video quality + click-to-play (nothing loads until PLAY) */
   var quality = 'sd';
-  function qLabel(q){ return q === 'hi' ? '720p' : '480p'; }
+  function qLabel(q){ return q === 'uhd' ? '4K' : (q === 'hi' ? '720p' : '480p'); }
   document.querySelectorAll('.qlabel').forEach(function(l){ l.textContent = qLabel(quality); });
   document.querySelectorAll('.qtoggle button').forEach(function(b){
     b.addEventListener('click', function(){
@@ -387,10 +389,17 @@ One seamless continuous camera move — chase from behind, racing through the fo
   });
   document.querySelectorAll('.facade').forEach(function(f){
     f.addEventListener('click', function(){
-      var src = quality === 'hi' ? f.dataset.hi : f.dataset.sd;
+      var src = quality === 'uhd' ? f.dataset.uhd : (quality === 'hi' ? f.dataset.hi : f.dataset.sd);
+      var fallbackSrc = quality === 'uhd' ? f.dataset.hi : null;
       var v = document.createElement('video');
       v.src = src; v.controls = true; v.autoplay = true; v.playsInline = true; v.preload = 'auto';
       v.style.width = '100%'; v.style.display = 'block';
+      v.addEventListener('error', function(){
+        if (fallbackSrc && v.src.indexOf(fallbackSrc) === -1) {
+          alert('קובץ 4K לא נמצא בתיקייה של העמוד. נטען במקום זאת קובץ 720p. כדי להפעיל 4K אמיתי, העלה קובץ בשם המתאים: fantasy_4k.mp4 / snow_4k.mp4 וכו'.');
+          v.src = fallbackSrc; v.play();
+        }
+      });
       f.replaceWith(v);
     });
   });
