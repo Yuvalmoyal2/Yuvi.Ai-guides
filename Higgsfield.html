@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Higgsfield · מדריך עבודה לפני הסדנה</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#080A07; --bg2:#0F120D; --card:#14170F; --ink:#F3F6EC; --muted:#9AA48C;
+    --green:#C6F135; --green2:#A8E22B; --green-soft:rgba(198,241,53,.14); --green-line:rgba(198,241,53,.28);
+    --warn:#F2A24B; --warn-soft:rgba(242,162,75,.12); --warn-line:rgba(242,162,75,.4);
+    --line:rgba(255,255,255,.08); --radius:20px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Heebo','Rubik',system-ui,sans-serif; background:var(--bg); color:var(--ink); line-height:1.65; padding:0 16px 90px; overflow-x:hidden;}
+  .wrap{max-width:920px; margin:0 auto;}
+
+  header.hero{position:relative; text-align:center; padding:78px 20px 48px; overflow:hidden; border-radius:0 0 36px 36px; margin:0 -16px 14px;
+    background:radial-gradient(120% 120% at 50% 0%,#1A2110 0%,#0E1109 55%,#080A07 100%);}
+  .grain{position:absolute; inset:0; opacity:.6; z-index:0;
+    background:radial-gradient(circle at 22% 26%,rgba(198,241,53,.22),transparent 42%),radial-gradient(circle at 82% 22%,rgba(168,226,43,.16),transparent 44%),radial-gradient(circle at 60% 82%,rgba(198,241,53,.1),transparent 48%);}
+  .blob{position:absolute; border-radius:50%; filter:blur(64px); opacity:.5; z-index:0; animation:floaty 10s ease-in-out infinite;}
+  .blob.b1{width:230px; height:230px; background:#8FBE1E; top:-60px; inset-inline-start:-40px;}
+  .blob.b2{width:180px; height:180px; background:#5C7A16; bottom:-50px; inset-inline-end:-30px; animation-delay:-4s;}
+  @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-22px)}}
+  .hero>*{position:relative; z-index:1;}
+  .hero .brandchip{display:inline-flex; align-items:center; gap:9px; background:rgba(198,241,53,.08); border:1px solid var(--green-line); color:var(--green); font-weight:700; font-size:.85rem; padding:7px 18px; border-radius:999px; margin-bottom:22px; animation:pop .6s both;}
+  .hero .brandchip .dot{width:9px; height:9px; border-radius:50%; background:var(--green); box-shadow:0 0 14px var(--green);}
+  .hero h1{font-size:2.9rem; font-weight:900; letter-spacing:-1px; animation:rise .7s .05s both; line-height:1.15;}
+  .hero h1 .grad{background:linear-gradient(120deg,#D4FF57,#C6F135 45%,#8FBE1E); -webkit-background-clip:text; background-clip:text; color:transparent;}
+  .hero p.sub{color:#C6CEB8; max-width:620px; margin:18px auto 0; font-size:1.06rem; animation:rise .7s .2s both;}
+  @keyframes pop{from{opacity:0; transform:scale(.85)}to{opacity:1; transform:scale(1)}}
+  @keyframes rise{from{opacity:0; transform:translateY(18px)}to{opacity:1; transform:translateY(0)}}
+  .stats{display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-top:30px; animation:rise .7s .35s both;}
+  .stat{background:rgba(255,255,255,.04); border:1px solid var(--line); border-radius:16px; padding:13px 20px; min-width:112px;}
+  .stat b{display:block; font-size:1.6rem; font-weight:900; color:var(--green);}
+  .stat span{font-size:.78rem; color:var(--muted);}
+
+  .js .reveal{opacity:0; transform:translateY(30px); transition:opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1);}
+  .js .reveal.in{opacity:1; transform:none;}
+
+  section{margin-top:34px;}
+  .sec-head{text-align:center; margin-bottom:20px;}
+  .sec-head .kick{color:var(--green); font-weight:800; font-size:.85rem; letter-spacing:.5px;}
+  .sec-head h2{font-size:1.8rem; font-weight:900; margin-top:4px;}
+  .sec-head p{color:var(--muted); max-width:640px; margin:8px auto 0;}
+  .card{background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:24px 26px;}
+
+  /* before/after */
+  .vs{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+  .vs .col{border-radius:16px; padding:20px;}
+  .vs .before{background:rgba(242,162,75,.06); border:1px solid rgba(242,162,75,.22);}
+  .vs .after{background:rgba(198,241,53,.07); border:1px solid var(--green-line);}
+  .vs h4{font-weight:800; margin-bottom:8px;}
+  .vs .before h4{color:var(--warn);} .vs .after h4{color:var(--green);}
+  .vs ul{list-style:none;}
+  .vs li{padding:5px 0; font-size:.92rem; color:#D3D9C6; display:flex; gap:8px;}
+  .vs li::before{content:''; flex:0 0 auto; width:7px; height:7px; border-radius:50%; margin-top:9px;}
+  .vs .before li::before{background:var(--warn);}
+  .vs .after li::before{background:var(--green);}
+
+  /* practical flow steps */
+  .flowcard{background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:24px 26px;}
+  .flowcard .ftitle{display:flex; align-items:center; gap:12px; margin-bottom:16px;}
+  .flowcard .ftitle .fico{width:44px; height:44px; border-radius:12px; background:var(--green-soft); display:flex; align-items:center; justify-content:center; font-size:1.4rem;}
+  .flowcard .ftitle h3{font-size:1.3rem; font-weight:900;}
+  .steps{counter-reset:st; display:flex; flex-direction:column; gap:10px;}
+  .stp{display:flex; gap:14px; align-items:flex-start;}
+  .stp .n{counter-increment:st; flex:0 0 auto; width:32px; height:32px; border-radius:9px; background:linear-gradient(135deg,#A8E22B,#C6F135); color:#0C1005; font-weight:900; font-size:.95rem; display:flex; align-items:center; justify-content:center;}
+  .stp .n::before{content:counter(st);}
+  .stp .txt{padding-top:3px;}
+  .stp .txt b{font-weight:800;}
+  .stp .txt span{color:var(--muted); font-size:.92rem;}
+  .callout{background:var(--green-soft); border:1px solid var(--green-line); border-radius:12px; padding:12px 16px; margin-top:16px; font-size:.9rem; color:#E4EFC8;}
+  .callout b{color:var(--green);}
+
+  /* model table */
+  .mtable{width:100%; border-collapse:collapse; font-size:.92rem; overflow:hidden; border-radius:14px;}
+  .mtable th{background:rgba(198,241,53,.12); color:var(--green); font-weight:800; padding:11px 14px; text-align:right;}
+  .mtable td{padding:11px 14px; border-top:1px solid var(--line); color:#D3D9C6;}
+  .mtable td b{color:var(--ink); font-weight:800;}
+  .mtable .kind{font-size:.72rem; font-weight:700; padding:2px 9px; border-radius:999px; white-space:nowrap;}
+  .mtable .kind.img{background:rgba(168,226,43,.16); color:#C6F135;}
+  .mtable .kind.vid{background:rgba(255,255,255,.08); color:#D3D9C6;}
+
+  .cams{display:flex; flex-wrap:wrap; gap:8px; margin-top:14px;}
+  .cams .cam{background:var(--green-soft); border:1px solid var(--green-line); color:#DCEFA6; font-size:.82rem; font-weight:600; padding:7px 13px; border-radius:999px; transition:transform .18s, background .18s;}
+  .cams .cam:hover{transform:translateY(-3px); background:rgba(198,241,53,.24); color:#0C1005;}
+
+  /* features */
+  .feats{display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:16px;}
+  .feat{background:var(--card); border:1px solid var(--line); border-radius:18px; padding:20px; transition:transform .22s, border-color .22s, background .22s;}
+  .feat:hover{transform:translateY(-5px); border-color:var(--green-line); background:#191D11;}
+  .feat .ico{width:44px; height:44px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:1.4rem; margin-bottom:10px; background:var(--green-soft);}
+  .feat h3{font-size:1.08rem; font-weight:800; margin-bottom:5px;}
+  .feat p{color:var(--muted); font-size:.88rem;}
+
+  /* pricing */
+  .plans{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px;}
+  .plan{background:var(--card); border:1px solid var(--line); border-radius:18px; padding:24px 22px; position:relative; transition:transform .22s, border-color .22s;}
+  .plan:hover{transform:translateY(-5px);}
+  .plan.pop{border-color:var(--green-line); box-shadow:0 0 0 1px var(--green-line), 0 20px 50px rgba(198,241,53,.12);}
+  .plan .badge{position:absolute; top:-11px; inset-inline-start:22px; background:linear-gradient(135deg,#A8E22B,#C6F135); color:#0C1005; font-weight:800; font-size:.72rem; padding:4px 12px; border-radius:999px;}
+  .plan h4{font-size:1.15rem; font-weight:900; margin-bottom:2px;}
+  .plan .who{color:var(--muted); font-size:.82rem; margin-bottom:14px;}
+  .plan .price{font-size:2rem; font-weight:900; color:var(--green);}
+  .plan .price small{font-size:.85rem; color:var(--muted); font-weight:600;}
+  .plan .annual{font-size:.8rem; color:var(--muted); margin-top:2px;}
+  .plan .cr{margin-top:12px; padding-top:12px; border-top:1px solid var(--line); font-size:.9rem; color:#D3D9C6;}
+  .plan .cr b{color:var(--ink);}
+
+  .warn{background:var(--warn-soft); border:1px solid var(--warn-line); border-radius:18px; padding:22px 24px; margin-top:18px; display:flex; gap:16px; align-items:flex-start;}
+  .warn .wico{flex:0 0 auto; font-size:1.8rem; line-height:1;}
+  .warn h4{color:var(--warn); font-size:1.15rem; font-weight:900; margin-bottom:6px;}
+  .warn p{color:#EAD9C4; font-size:.95rem;}
+  .warn p+p{margin-top:8px;}
+  .warn b{color:#F7C68B;}
+
+  .noterow{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px;}
+  .noterow .nt{flex:1 1 210px; background:rgba(255,255,255,.04); border:1px solid var(--line); border-radius:12px; padding:12px 15px; font-size:.85rem; color:#C9D1BC;}
+  .noterow .nt b{color:var(--green); display:block; margin-bottom:2px;}
+
+  .cta{text-align:center; margin-top:36px;}
+  .cta a{display:inline-flex; align-items:center; gap:9px; background:linear-gradient(135deg,#A8E22B,#C6F135); color:#0C1005; font-weight:900; font-size:1.05rem; padding:15px 34px; border-radius:14px; text-decoration:none; box-shadow:0 12px 34px rgba(198,241,53,.28); transition:gap .2s, transform .2s;}
+  .cta a:hover{gap:14px; transform:translateY(-3px);}
+  .cta .note{color:var(--muted); font-size:.82rem; margin-top:12px;}
+
+  footer{text-align:center; color:var(--muted); font-size:.82rem; margin-top:54px;}
+  footer a{color:var(--green2);}
+  @media(max-width:560px){ .vs{grid-template-columns:1fr;} .hero h1{font-size:2.2rem;} }
+  @media print{ body{background:#fff; color:#000;} .blob,.grain{display:none;} .js .reveal{opacity:1; transform:none;} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <div class="grain"></div>
+  <div class="blob b1"></div><div class="blob b2"></div>
+  <div class="brandchip"><span class="dot"></span> לפני הסדנה · מדריך עבודה מהיר</div>
+  <h1>מתחילים לעבוד עם<br><span class="grad">Higgsfield</span></h1>
+  <p class="sub">הפלטפורמה שבה ניצור בסדנה. כאן תלמדו את הבסיס עוד לפני שנתחיל: איך יוצרים תמונה, איך בוחרים מודל, איך מייצרים וידאו, ובאיזו תוכנית כדאי לבחור. אם הגעתם מכלים כמו Weave, הרעיון יהיה מוכר, רק עם הרבה יותר עוצמה.</p>
+  <div class="stats">
+    <div class="stat"><b>25M+</b><span>יוצרים בעולם</span></div>
+    <div class="stat"><b>850M+</b><span>יצירות</span></div>
+    <div class="stat"><b>80+</b><span>אפליקציות</span></div>
+  </div>
+</header>
+
+<!-- WHY -->
+<section class="reveal">
+  <div class="sec-head">
+    <div class="kick">קודם כל, למה פלטפורמה אחת</div>
+    <h2>כל המחוללים תחת קורת גג אחת</h2>
+  </div>
+  <div class="card">
+    <div class="vs">
+      <div class="col before">
+        <h4>בלי פלטפורמה מרכזת</h4>
+        <ul>
+          <li>מנוי נפרד לכל מחולל</li>
+          <li>לומדים מחדש כל ממשק</li>
+          <li>מעבירים קבצים ידנית בין כלים</li>
+          <li>שליטה מוגבלת על המצלמה</li>
+        </ul>
+      </div>
+      <div class="col after">
+        <h4>עם Higgsfield</h4>
+        <ul>
+          <li>כל המודלים המובילים במקום אחד</li>
+          <li>אותו זרם עבודה לכל כלי</li>
+          <li>תמונות, וידאו ורפרנסים נשמרים יחד</li>
+          <li>מצלמת במאי עם עשרות תנועות מוכנות</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW: IMAGE -->
+<section class="reveal">
+  <div class="sec-head">
+    <div class="kick">צעד ראשון</div>
+    <h2>איך יוצרים תמונה</h2>
+    <p>כמעט כל וידאו טוב מתחיל מתמונת מקור טובה. ככה מייצרים אותה:</p>
+  </div>
+  <div class="flowcard">
+    <div class="ftitle"><div class="fico">🖼️</div><h3>יצירת תמונה, צעד אחר צעד</h3></div>
+    <div class="steps">
+      <div class="stp"><div class="n"></div><div class="txt"><b>נכנסים ובוחרים "Image".</b> <span>מהמסך הראשי בוחרים יצירת תמונה (או Soul, אם רוצים את הדמות האישית שלכם).</span></div></div>
+      <div class="stp"><div class="n"></div><div class="txt"><b>בוחרים מודל תמונה.</b> <span>יש תפריט בחירת מודל. לכל אחד חוזקה אחרת (ראו הטבלה למטה): Nano Banana 2 לדמויות ורפרנסים, GPT Image 2 לטקסט ועיצוב, Soul לדמות שאימנתם.</span></div></div>
+      <div class="stp"><div class="n"></div><div class="txt"><b>כותבים פרומפט.</b> <span>מי בפריים, מה קורה, איפה, זווית צילום, תאורה וסגנון. ככל שברור יותר, התוצאה פחות תלויה במזל.</span></div></div>
+      <div class="stp"><div class="n"></div><div class="txt"><b>מגדירים פורמט ורפרנסים.</b> <span>יחס גובה-רוחב (16:9 לרוחב, 9:16 לאנכי), כמות תמונות, ואם צריך, מעלים תמונת רפרנס לשמירת דמות או סגנון.</span></div></div>
+      <div class="stp"><div class="n"></div><div class="txt"><b>Generate, בוחרים, ומורידים.</b> <span>מקבלים כמה אפשרויות, בוחרים את הטובה ביותר. משם אפשר להוריד או לשלוח אותה ישר ליצירת וידאו.</span></div></div>
+    </div>
+    <div class="callout">💡 <b>נקי זה יפה:</b> לתמונה שתשמש להנפשה, שמרו על רקע פשוט ולא עמוס. רקע עמוס גורם לגליצ'ים בווידאו.</div>
+  </div>
+</section>
+
+<!-- HOW: VIDEO -->
+<section class="reveal">
+  <div class="sec-head">
+    <div class="kick">צעד שני</div>
+    <h2>איך יוצרים וידאו</h2>
+    <p>לוקחים את התמונה ומפיחים בה חיים. זה הלב של הפלטפורמה:</p>
+  </div>
+  <div class="flowcard">
+    <div class="ftitle"><div class="fico">🎬</div><h3>יצירת וידאו, צעד אחר צעד</h3></div>
+    <div class="steps">
+      <div class="stp"><div class="n"></div><div class="txt"><b>בוחרים "Video".</b> <span>ומעדיפים את מסלול Image-to-Video, זה הכי מבוקר: התמונה נועלת את הדמות, הלוקיישן והסגנון.</span></div></div>
+      <div class="stp"><div class="n"></div><div class="txt"><b>בוחרים מודל וידאו.</b> <span>Seedance 2 לעולמות עשירים ורב-רפרנס, Kling 3 לריאליזם ובקרה, ויש גם Veo. אפשר לנסות את אותו רעיון בכמה מודלים.</span></div></div>
+      <div class="stp"><div class="n"></div><div class="txt"><b>מעלים תמונת מקור.</b> <span>או כותבים פרומפט מאפס (Text-to-Video), פחות מדויק. עם תמונה, המחולל רק צריך להנפיש, לא לנחש.</span></div></div>
+      <div class="stp"><div class="n"></div><div class="txt"><b>כותבים פרומפט תנועה קצר.</b> <span>פעולה אחת של הדמות + מה המצלמה עושה. לא לתאר מחדש את מה שכבר רואים בתמונה.</span></div></div>
+      <div class="stp"><div class="n"></div><div class="txt"><b>מוסיפים את תנועת המצלמה לפרומפט.</b> <span>את תנועת המצלמה כותבים כחלק מהפרומפט, למשל slow push-in, orbit, pan left. המונחים למטה יעזרו לכם לנסח.</span></div></div>
+      <div class="stp"><div class="n"></div><div class="txt"><b>אורך, רזולוציה, Generate.</b> <span>בוחרים משך (בדרך כלל 5 שניות), מפעילים, ובודקים. לא יצא? משנים פרמטר אחד ומריצים שוב.</span></div></div>
+    </div>
+    <div class="cams">
+      <span class="cam">Dolly In / Out</span><span class="cam">Crash Zoom</span><span class="cam">Orbit 360°</span>
+      <span class="cam">Crane Up</span><span class="cam">Tracking</span><span class="cam">Pan / Tilt</span>
+      <span class="cam">Bullet Time</span><span class="cam">FPV</span><span class="cam">Handheld</span>
+    </div>
+    <div class="callout">⚡ <b>קיצור דרך, טמפלטים מוכנים:</b> בחלק מהמודלים (כמו Kling 3, Seedance 2 ו-Seedance 2 FAST) יש טמפלטים / אפקטים מוכנים, למשל "יושבים בקהל ופתאום נכנסים למגרש למשחק כדורגל", או מורפינג של דמות אחת לאחרת. בוחרים טמפלט, מעלים תמונה, ולא צריך לכתוב פרומפט בכלל.</div>
+  </div>
+</section>
+
+<!-- MODEL PICKER -->
+<section class="reveal">
+  <div class="sec-head">
+    <div class="kick">שאלה נפוצה</div>
+    <h2>איך בוחרים מודל?</h2>
+    <p>אין מודל "הכי טוב" תמיד, יש מודל שמתאים למשימה. מדריך מהיר:</p>
+  </div>
+  <div class="card" style="padding:0; overflow:hidden;">
+    <table class="mtable">
+      <tr><th>מודל</th><th>הכי טוב ל...</th><th>סוג</th></tr>
+      <tr><td><b>Nano Banana 2</b></td><td>דמויות, רפרנסים, עקביות בין תמונות</td><td><span class="kind img">תמונה</span></td></tr>
+      <tr><td><b>GPT Image 2</b></td><td>טקסט בתוך התמונה, עיצוב, פוסטרים ולוגו</td><td><span class="kind img">תמונה</span></td></tr>
+      <tr><td><b>Soul</b></td><td>הדמות האישית שאימנתם (Soul ID), סלפי-סטייל</td><td><span class="kind img">תמונה</span></td></tr>
+      <tr><td><b>Seedance 2</b></td><td>וידאו עשיר וקולנועי, הרבה רפרנסים יחד</td><td><span class="kind vid">וידאו</span></td></tr>
+      <tr><td><b>Kling 3</b></td><td>וידאו ריאליסטי ומבוקר, Motion Control</td><td><span class="kind vid">וידאו</span></td></tr>
+      <tr><td><b>Veo</b></td><td>וידאו איכותי לשימושים כלליים</td><td><span class="kind vid">וידאו</span></td></tr>
+    </table>
+  </div>
+  <div class="callout">🎯 שלוש שאלות לפני שבוחרים: מה יש לי ביד? מה אני רוצה לקבל? מה הכי חשוב לשמור?</div>
+</section>
+
+<!-- ADVANCED CAPS -->
+<section class="reveal">
+  <div class="sec-head">
+    <div class="kick">מעבר לבסיס</div>
+    <h2>יכולות ששוות להכיר</h2>
+  </div>
+  <div class="feats">
+    <div class="feat"><div class="ico">🧬</div><h3>Soul ID · דמות עקבית</h3><p>מעלים 3–5 תמונות פנים, מאמנים דמות תוך דקות, והיא נשמרת זהה בכל יצירה. מוביל השוק בעקביות דמות.</p></div>
+    <div class="feat"><div class="ico">🎥</div><h3>מצלמת במאי</h3><p>עשרות תנועות מצלמה קולנועיות מוכנות, ואפשר לשלב עד 3 תנועות בו-זמנית. זה מה שהפך את Higgsfield למפורסמת.</p></div>
+    <div class="feat"><div class="ico">🎬</div><h3>Cinema Studio + AI Director</h3><p>"במאי AI" שלוקח קונספט ומפרק אותו לשוטים בודדים, מרעיון ועד הנפשה מלאה.</p></div>
+    <div class="feat"><div class="ico">📣</div><h3>Marketing Studio</h3><p>מופעל על Seedance 2, לתוכן מסחרי: אווטארים, מוצרים, והוקים. יש אפילו URL-to-video מקישור מוצר.</p></div>
+    <div class="feat"><div class="ico">📈</div><h3>Virality Predictor</h3><p>מנתח סרטון ומעריך פוטנציאל ויראליות: חוזק ההוק, קשב ושימור צופים, עוד לפני שמעלים.</p></div>
+    <div class="feat"><div class="ico">🗂️</div><h3>ריבוי מודלים</h3><p>Seedance, Kling, Veo, Nano Banana ועוד, כולם במקום אחד. הכלי הנכון לכל שוט.</p></div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="reveal">
+  <div class="sec-head">
+    <div class="kick">כמה זה עולה</div>
+    <h2>תוכניות ומחירים</h2>
+    <p>העבודה מבוססת קרדיטים: כל יצירה "עולה" מספר קרדיטים לפי המודל, האורך והרזולוציה. הנה התוכניות המרכזיות (נכון ל-2026):</p>
+  </div>
+  <div class="plans">
+    <div class="plan">
+      <h4>Starter</h4>
+      <div class="who">להתנסות ולתרגילים</div>
+      <div class="price">$15 <small>/ חודש</small></div>
+      <div class="annual">כ-200 קרדיטים בחודש</div>
+      <div class="cr"><b>~100 תמונות</b> או <b>~33 סרטונים</b> קצרים בחודש</div>
+    </div>
+    <div class="plan">
+      <h4>Plus</h4>
+      <div class="who">לעבודה רצינית לאורך הקורס</div>
+      <div class="price">$49 <small>/ חודש</small></div>
+      <div class="annual">1,000 קרדיטים בחודש · ($39/חודש אם בוחרים שנתי)</div>
+      <div class="cr">מספיק קרדיטים כדי לתרגל בנוחות, לנסות מודלים ולתקן בלי לספור כל הרצה</div>
+    </div>
+    <div class="plan">
+      <h4>Ultra</h4>
+      <div class="who">ליוצרים כבדים ומקצועיים</div>
+      <div class="price">~$99+ <small>/ חודש</small></div>
+      <div class="annual">3,000 קרדיטים ומעלה</div>
+      <div class="cr">כולל גישה מורחבת ומודל וידאו נבחר ללא הגבלה. מעבר למה שצריך לסדנה</div>
+    </div>
+  </div>
+
+  <!-- CRITICAL WARNING -->
+  <div class="warn">
+    <div class="wico">⚠️</div>
+    <div>
+      <h4>שימו לב, אל תקנו מנוי שנתי בטעות!</h4>
+      <p>דף המחירים מציג כברירת מחדל מחיר "חודשי" נמוך, אבל זה בעצם <b>חיוב שנתי מראש</b>, כלומר תשלום על שנה שלמה בבת אחת. קל מאוד לפספס את זה.</p>
+      <p>אם אתם רוצים לשלם רק על חודש: לפני התשלום, <b>החליפו את מתג החיוב ל-Monthly / חודשי</b>. המחיר יהיה מעט גבוה יותר לחודש, אבל בלי התחייבות לשנה.</p>
+      <p>המנוי החודשי <b>מתחדש אוטומטית</b> כל חודש. אם נרשמתם רק בשביל הסדנה, זכרו <b>לבטל מההגדרות</b> כשסיימתם, כדי שלא תחויבו שוב.</p>
+    </div>
+  </div>
+
+  <div class="noterow">
+    <div class="nt"><b>קרדיטים לא מצטברים</b>מה שלא ניצלתם מתאפס בסוף מחזור החיוב. אל תקנו יותר ממה שתשתמשו.</div>
+    <div class="nt"><b>אפשר לקנות תוספת</b>חבילות קרדיטים נוספות (בערך $5 ל-100 קרדיט) לחודש עמוס, פגות אחרי כ-90 יום.</div>
+    <div class="nt"><b>המחירים משתנים</b>Higgsfield מעדכנת תוכניות ומחירים תדיר, בדקו את המספרים המדויקים בדף המחירים לפני שנרשמים.</div>
+  </div>
+</section>
+
+<div class="cta">
+  <a href="https://higgsfield.ai/pricing" target="_blank" rel="noopener">לדף התוכניות והמחירים <span>←</span></a>
+  <p class="note">כדאי להיכנס, ליצור חשבון ולהסתובב קצת לפני המפגש, כדי שנגיע מוכנים ליצירה.</p>
+</div>
+
+<footer>
+  Yuvi.AI · סדנת יצירת וידאו בבינה מלאכותית · האוניברסיטה הפתוחה<br>
+  נתונים, יכולות ומחירים לפי <a href="https://higgsfield.ai/pricing" target="_blank" rel="noopener">Higgsfield</a> · נכון ל-2026, מתעדכן תדיר.
+</footer>
+</div>
+
+<script>
+  document.documentElement.classList.add('js');
+  document.body.classList.add('js');
+  if('IntersectionObserver' in window){
+    const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in'); io.unobserve(e.target);}});},{threshold:.08});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  } else { document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in')); }
+</script>
+</body>
+</html>
