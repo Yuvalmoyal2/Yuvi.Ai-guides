@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>תרגיל בית · מפגש 2 · המיני-סצנה שלכם</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#EEF0FB; --card:#FFFFFF; --ink:#1E1B4B; --muted:#6B7194;
+    --indigo:#4F46E5; --indigo-soft:#E3E4FB; --coral:#F43F5E; --coral-soft:#FDE7EB;
+    --teal:#0D9488; --teal-soft:#D9F2EE; --amber:#B45309; --amber-soft:#FDF0DC; --gold:#D97706;
+    --radius:18px; --shadow:0 10px 30px rgba(30,27,75,.08);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Heebo','Rubik',system-ui,sans-serif; background:var(--bg); color:var(--ink); line-height:1.65; padding:0 16px 90px; overflow-x:hidden;}
+  .wrap{max-width:900px; margin:0 auto;}
+
+  .progress{position:fixed; inset:0 0 auto 0; height:6px; background:rgba(244,63,94,.12); z-index:60;}
+  .progress .fill{height:100%; width:0; background:linear-gradient(90deg,var(--coral),var(--indigo)); transition:width .5s cubic-bezier(.2,.7,.2,1);}
+  .progress .pill{position:absolute; top:12px; inset-inline-start:16px; background:var(--card); color:var(--coral); font-weight:800; font-size:.8rem; padding:5px 14px; border-radius:999px; box-shadow:var(--shadow);}
+
+  header.hero{position:relative; text-align:center; padding:70px 20px 40px; overflow:hidden; border-radius:0 0 34px 34px; margin:0 -16px 10px;
+    background:linear-gradient(120deg,#FBE7EC,#F0E8FB,#FBE9E4,#F3E7FB); background-size:300% 300%; animation:bgshift 16s ease infinite;}
+  @keyframes bgshift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+  .blob{position:absolute; border-radius:50%; filter:blur(46px); opacity:.5; z-index:0; animation:floaty 9s ease-in-out infinite;}
+  .blob.b1{width:190px; height:190px; background:#F7C0CE; top:-40px; inset-inline-start:-30px;}
+  .blob.b2{width:150px; height:150px; background:#C9C6F7; bottom:-40px; inset-inline-end:-20px; animation-delay:-3s;}
+  .blob.b3{width:120px; height:120px; background:#F7D8C0; top:30px; inset-inline-end:60px; animation-delay:-6s;}
+  @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-20px)}}
+  .hero>*{position:relative; z-index:1;}
+  .hero .kicker{display:inline-block; background:var(--card); color:var(--coral); font-weight:800; font-size:.85rem; padding:7px 20px; border-radius:999px; box-shadow:var(--shadow); margin-bottom:20px; animation:pop .6s both;}
+  .hero h1{font-size:2.8rem; font-weight:900; letter-spacing:-1px; animation:rise .7s .05s both;}
+  .hero h2{font-size:1.3rem; color:var(--coral); font-weight:800; margin-top:6px; animation:rise .7s .15s both;}
+  .hero p.sub{color:var(--muted); max-width:600px; margin:16px auto 0; animation:rise .7s .25s both;}
+  @keyframes pop{from{opacity:0; transform:scale(.85)}to{opacity:1; transform:scale(1)}}
+  @keyframes rise{from{opacity:0; transform:translateY(18px)}to{opacity:1; transform:translateY(0)}}
+
+  .meta{display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:26px; animation:rise .7s .35s both;}
+  .meta .chip{background:var(--card); border-radius:14px; padding:10px 20px; box-shadow:var(--shadow); font-size:.92rem; transition:transform .2s;}
+  .meta .chip:hover{transform:translateY(-3px);}
+  .meta .chip b{color:var(--coral); font-weight:800;}
+
+  .js .reveal{opacity:0; transform:translateY(30px); transition:opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1);}
+  .js .reveal.in{opacity:1; transform:none;}
+
+  section{margin-top:30px;}
+  .reqs{background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow); padding:28px 30px; margin-top:14px; transition:transform .25s, box-shadow .25s;}
+  .reqs:hover{transform:translateY(-4px); box-shadow:0 18px 44px rgba(30,27,75,.13);}
+  .reqs h3{font-size:1.3rem; font-weight:900; margin-bottom:6px;}
+  .reqs p{color:var(--muted); font-size:.95rem; margin-bottom:12px;}
+  .req-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:10px;}
+  .req{display:flex; gap:10px; align-items:center; background:var(--bg); border-radius:12px; padding:10px 14px; transition:background .2s;}
+  .req:hover{background:#fff; box-shadow:var(--shadow);}
+  .req input[type=checkbox]{appearance:none; flex:0 0 auto; width:23px; height:23px; border:2px solid var(--coral); border-radius:7px; cursor:pointer; position:relative;}
+  .req input[type=checkbox]:checked{background:var(--coral);}
+  .req input[type=checkbox]:checked::after{content:'✓'; color:#fff; position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:900; animation:checkpop .3s;}
+  @keyframes checkpop{0%{transform:scale(0)}60%{transform:scale(1.3)}100%{transform:scale(1)}}
+  .req label{cursor:pointer; font-size:.94rem;}
+
+  .card{background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow); padding:28px 30px; transition:transform .25s, box-shadow .25s;}
+  .card:hover{transform:translateY(-4px); box-shadow:0 18px 44px rgba(30,27,75,.13);}
+  .step-head{display:flex; align-items:center; gap:14px; margin-bottom:14px;}
+  .step-num{flex:0 0 auto; width:46px; height:46px; border-radius:14px; background:linear-gradient(135deg,#E11D48,#F76B85); color:#fff; font-weight:900; font-size:1.35rem; display:flex; align-items:center; justify-content:center; box-shadow:0 6px 16px rgba(244,63,94,.35);}
+  .step-head h3{font-size:1.3rem; font-weight:900;}
+  .step-head .tag{margin-inline-start:auto; font-size:.78rem; color:var(--muted); background:var(--bg); padding:5px 13px; border-radius:999px; white-space:nowrap;}
+  .card p.lead{color:var(--muted); margin-bottom:12px;}
+
+  .grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:12px; margin-top:12px;}
+  .mini{background:var(--bg); border-radius:14px; padding:14px 16px; transition:transform .2s, background .2s;}
+  .mini:hover{transform:translateY(-3px); background:#fff;}
+  .mini b{display:block; font-weight:700; margin-bottom:2px;}
+  .mini span{font-size:.88rem; color:var(--muted);}
+
+  table{width:100%; border-collapse:collapse; margin-top:12px; font-size:.9rem;}
+  th{background:var(--indigo-soft); font-weight:700; padding:9px 10px; text-align:right;}
+  td{padding:9px 10px; border-bottom:1px solid var(--bg); vertical-align:top;}
+  tr:last-child td{border-bottom:none;}
+  th:first-child{border-radius:0 10px 10px 0;} th:last-child{border-radius:10px 0 0 10px;}
+  td.fill{color:#B6BAD6; font-style:italic;}
+
+  .good{background:var(--teal-soft); border-inline-start:5px solid var(--teal); border-radius:14px; padding:14px 18px; margin-top:10px; font-size:.95rem;}
+  .good b{color:var(--teal);}
+  .tip{background:var(--amber-soft); border-radius:14px; padding:14px 18px; margin-top:14px; font-size:.95rem;}
+  .tip b{color:var(--amber);}
+  .en{direction:ltr; text-align:left; font-family:Consolas,'Courier New',monospace; font-size:.85rem; background:#1E1B4B; color:#E3E4FB; border-radius:10px; padding:12px 14px; margin-top:8px; overflow-x:auto;}
+  details{background:var(--bg); border-radius:14px; padding:14px 18px; margin-top:10px;}
+  details summary{cursor:pointer; font-weight:700; color:var(--indigo);}
+  details[open] summary{margin-bottom:8px;}
+  details .fix{padding:6px 0; border-bottom:1px dashed #D9DCF0;}
+  details .fix:last-child{border-bottom:none;}
+  details .fix b{color:var(--coral);}
+
+  /* toolbox */
+  .toolbox{background:linear-gradient(140deg,#3B1E3E,#4A2258 55%,#312E81); border-radius:24px; padding:32px 30px; margin-top:32px; position:relative; overflow:hidden;}
+  .toolbox::after{content:''; position:absolute; width:240px; height:240px; background:radial-gradient(circle,rgba(244,63,94,.3),transparent 70%); top:-80px; inset-inline-end:-60px;}
+  .toolbox>*{position:relative; z-index:1;}
+  .toolbox .tb-kicker{display:inline-block; background:rgba(255,255,255,.12); color:#FBCFE8; font-weight:700; font-size:.8rem; padding:5px 15px; border-radius:999px; margin-bottom:10px;}
+  .toolbox h3{color:#fff; font-size:1.5rem; font-weight:900;}
+  .toolbox p.tb-sub{color:#D6BEDC; font-size:.95rem; margin-top:4px; margin-bottom:20px;}
+  .tools{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:14px;}
+  .tool{background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1); border-radius:16px; padding:18px; display:flex; flex-direction:column; transition:transform .22s, background .22s, border-color .22s;}
+  .tool:hover{transform:translateY(-5px); background:rgba(255,255,255,.11); border-color:rgba(251,207,232,.5);}
+  .tool .ico{width:44px; height:44px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:1.4rem; margin-bottom:10px;}
+  .tool.k .ico{background:rgba(99,102,241,.28);}
+  .tool.s .ico{background:rgba(244,63,94,.24);}
+  .tool.o .ico{background:rgba(13,148,136,.28);}
+  .tool.sb .ico{background:rgba(217,119,6,.28);}
+  .tool.sb{border-color:rgba(251,191,36,.4); background:rgba(217,119,6,.09);}
+  .tool h4{color:#fff; font-size:1.02rem; font-weight:800;}
+  .tool .en-name{color:#B79FC0; font-size:.72rem; font-family:Rubik,sans-serif; letter-spacing:.3px; margin-bottom:8px;}
+  .tool p{color:#D8C8DE; font-size:.85rem; flex:1; margin-bottom:14px;}
+  .tool .badge{display:inline-block; background:var(--gold); color:#3B1E3E; font-weight:800; font-size:.68rem; padding:3px 9px; border-radius:999px; margin-bottom:8px; align-self:flex-start;}
+  .tool a.btn{display:inline-flex; align-items:center; gap:7px; align-self:flex-start; background:#fff; color:#3B1E3E; font-weight:800; font-size:.85rem; padding:9px 16px; border-radius:10px; text-decoration:none; transition:gap .2s, background .2s;}
+  .tool a.btn:hover{gap:12px; background:#FBE9EC;}
+  .toolbox .tb-tip{color:#C6A9CE; font-size:.84rem; margin-top:18px;}
+
+  .tools2{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px; margin-top:12px;}
+  .tcard{border-radius:14px; padding:16px; background:var(--bg);}
+  .tcard h4{font-weight:900; margin-bottom:4px;}
+  .tcard.k h4{color:#4F46E5;} .tcard.s h4{color:#E11D48;} .tcard.o h4{color:#0D9488;}
+  .tcard ul{padding-inline-start:16px; font-size:.88rem; color:var(--muted);}
+
+  .levels{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:14px; margin-top:14px;}
+  .level{border-radius:16px; padding:20px; color:#fff; transition:transform .22s;}
+  .level:hover{transform:translateY(-5px);}
+  .level h4{font-size:1.1rem; font-weight:900; margin-bottom:6px;}
+  .level ul{margin:0; padding-inline-start:18px; font-size:.92rem;}
+  .level.l1{background:linear-gradient(135deg,#0D9488,#14B8A6);}
+  .level.l2{background:linear-gradient(135deg,#4F46E5,#6366F1);}
+  .level.l3{background:linear-gradient(135deg,#E11D48,#F43F5E);}
+
+  .submit{background:linear-gradient(135deg,#7F1D3A,#E11D48); color:#fff; border-radius:var(--radius); padding:30px; margin-top:34px;}
+  .submit h3{font-size:1.4rem; font-weight:900; margin-bottom:10px;}
+  .submit ul{padding-inline-start:20px;}
+  .submit .note{opacity:.9; font-size:.9rem; margin-top:12px;}
+
+  a{color:var(--indigo); font-weight:700; text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  .submit a{color:#FECDD3;}
+  footer{text-align:center; color:var(--muted); font-size:.85rem; margin-top:52px;}
+
+  .done{position:fixed; inset-block-end:20px; inset-inline:0; margin-inline:auto; width:min(520px,92%); background:linear-gradient(135deg,#E11D48,#4F46E5); color:#fff; border-radius:18px; padding:18px 24px; box-shadow:0 18px 50px rgba(30,27,75,.35); display:flex; align-items:center; gap:14px; z-index:70; opacity:0; transform:translateY(30px); pointer-events:none; transition:opacity .5s, transform .5s;}
+  .done.show{opacity:1; transform:translateY(0);}
+  .done .big{font-size:1.9rem;}
+  .done b{display:block; font-size:1.05rem;}
+  .done span{font-size:.85rem; opacity:.9;}
+  .confetti{position:fixed; width:10px; height:14px; top:-20px; z-index:65; pointer-events:none; border-radius:2px;}
+
+  @media print{ body{background:#fff; padding:0;} .card,.reqs,.meta .chip,.toolbox,.submit{box-shadow:none;} .progress,.done{display:none;} .js .reveal{opacity:1; transform:none;} }
+</style>
+</head>
+<body>
+<div class="progress"><div class="fill" id="pfill"></div><div class="pill" id="ppill">0% הושלם</div></div>
+<div class="wrap">
+
+<header class="hero">
+  <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+  <div class="kicker">סדנת יצירת וידאו ב-AI · תרגיל בית · מפגש 2</div>
+  <h1>המיני-סצנה שלכם</h1>
+  <h2>רצף של 20–30 שניות שמספר משהו</h2>
+  <p class="sub">במפגש למדנו לחבר שוטים לסצנה: דמות עקבית, עולם אחד, ותנועה שמקדמת סיפור. עכשיו תורכם: מהרעיון ועד רצף מונפש, דרך כל פס הייצור שראינו.</p>
+  <div class="meta">
+    <div class="chip">⏱ זמן משוער: <b>2–3 שעות</b> (מותר לפצל לימיים)</div>
+    <div class="chip">🎬 תוצר: <b>4–5 שוטים · לפחות 2 מונפשים</b></div>
+    <div class="chip">🧠 העיקר: <b>רצף שעובד, לא סרטון מושלם</b></div>
+  </div>
+</header>
+
+<!-- TOOLBOX -->
+<section class="toolbox reveal">
+  <div class="tb-kicker">⚡ ארגז הכלים שלכם</div>
+  <h3>עוזרי כתיבה, סטוריבורד ופרומפטים</h3>
+  <p class="tb-sub">רעיון קצר נכנס, חומר מוכן יוצא. תמיד עברו על התוצאה ודייקו לפני הרצה.</p>
+  <div class="tools">
+    <div class="tool sb">
+      <div class="ico">🗂️</div>
+      <span class="badge">★ מבית Yuvi.AI</span>
+      <h4>מאסטר-פרומפט הסטוריבורד</h4>
+      <div class="en-name">Storyboard Engine · by Yuvi.AI</div>
+      <p>סקיל שבניתי בעצמי, בשני שלבים: (1) רעיון במשפט אחד → סטוריבורד מלא; (2) פרומפט הנפשה מוכן ל-Seedance 2. אפשר גם להפוך אותו לסקיל ב-Claude Code.</p>
+      <a class="btn" href="https://docs.google.com/document/d/1aUC1LvfayqnYhxOJfVOGsGDItSqC0KiwUySWs_Qv7ls/edit?usp=sharing" target="_blank" rel="noopener">פתיחה <span class="arw">←</span></a>
+    </div>
+    <div class="tool k">
+      <div class="ico">🎥</div>
+      <h4>מחולל הפרומפטים ל-Kling 3.0</h4>
+      <div class="en-name">Kling 3.0 · Prompt Generator (GPT)</div>
+      <p>רעיון קצר נכנס, פרומפט וידאו ריאליסטי ומבוקר ל-Kling יוצא.</p>
+      <a class="btn" href="https://chatgpt.com/g/g-69158881dd6c81919bc5b901dfd69055-kling-3-0-ai-video-prompt-generator" target="_blank" rel="noopener">פתיחה <span class="arw">←</span></a>
+    </div>
+    <div class="tool s">
+      <div class="ico">🎞️</div>
+      <h4>מחולל הפרומפטים ל-Seedance 2.0</h4>
+      <div class="en-name">Seedance 2.0 · Prompt Generator (GPT)</div>
+      <p>בונה פרומפט קולנועי ורב-רפרנסים לעולמות עשירים ותנועה דינמית.</p>
+      <a class="btn" href="https://chatgpt.com/g/g-691eb2bca9bc8191a43336d0f6556c26-seedance-2-0-ai-video-generator" target="_blank" rel="noopener">פתיחה <span class="arw">←</span></a>
+    </div>
+    <div class="tool o">
+      <div class="ico">💬</div>
+      <h4>מדריך הפרומפטים הרשמי ל-Gemini Omni</h4>
+      <div class="en-name">Google DeepMind · Official Guide</div>
+      <p>המדריך הרשמי של גוגל לכתיבת פרומפטים ל-Omni, כולל עבודה בעברית.</p>
+      <a class="btn" href="https://deepmind.google/models/gemini-omni/prompt-guide/" target="_blank" rel="noopener">פתיחה <span class="arw">←</span></a>
+    </div>
+  </div>
+  <p class="tb-tip">💡 מתייגים רפרנסים לפי סדר ההעלאה: @Image1, @Image2… ולא "התמונה של השפית". ברור יותר גם לכם וגם למחולל.</p>
+</section>
+
+<div class="reqs reveal">
+  <h3>🎯 דרישות הסצנה</h3>
+  <p>אלה הגבולות של המשחק, והם מה שהופך את זה לתרגיל ולא לניסוי אקראי:</p>
+  <div class="req-grid">
+    <div class="req"><input type="checkbox" id="r1"><label for="r1">4–5 שוטים</label></div>
+    <div class="req"><input type="checkbox" id="r2"><label for="r2">דמות אחת עקבית</label></div>
+    <div class="req"><input type="checkbox" id="r3"><label for="r3">עולם ויזואלי אחד</label></div>
+    <div class="req"><input type="checkbox" id="r4"><label for="r4">שתי זוויות צילום שונות</label></div>
+    <div class="req"><input type="checkbox" id="r5"><label for="r5">שתי תנועות מצלמה שונות</label></div>
+    <div class="req"><input type="checkbox" id="r6"><label for="r6">לפחות רפרנס אחד (@Image)</label></div>
+    <div class="req"><input type="checkbox" id="r7"><label for="r7">מעבר חכם אחד מתוכנן</label></div>
+    <div class="req"><input type="checkbox" id="r8"><label for="r8">בלי מוזיקה וקריינות (בינתיים)</label></div>
+  </div>
+</div>
+
+<section class="card reveal">
+  <div class="step-head">
+    <div class="step-num">1</div>
+    <h3>רעיון במשפט אחד + מבנה בחמש שאלות</h3>
+    <span class="tag">10 דקות</span>
+  </div>
+  <p class="lead">בחרו רעיון מהבנק או המציאו. ואז ענו בכתב על חמש השאלות. אם אין תשובה לאחת מהן, אין עדיין סצנה:</p>
+  <div class="grid">
+    <div class="mini"><b>"הקפה"</b><span>אישה מבוגרת ממתינה בבית קפה. לפתע מישהו נכנס.</span></div>
+    <div class="mini"><b>"שפית והקינוח"</b><span>שפית צעירה מכינה קינוח תוך כדי סרוויס עמוס.</span></div>
+    <div class="mini"><b>"הילד בתחנה"</b><span>ילד בן 8 יורד בתחנת אוטובוס לא נכונה. מה הוא רואה?</span></div>
+    <div class="mini"><b>"הצלם והעיר"</b><span>צלם צעיר תופס רגעים בעדשה, והעיר מפתיעה אותו.</span></div>
+    <div class="mini"><b>ההמשך שלכם</b><span>קחו את השוט מתרגיל 1 והפכו אותו לסצנה שלמה. יתרון: כבר יש לכם דמות ועולם!</span></div>
+  </div>
+  <table>
+    <tr><th style="width:34%">השאלה</th><th>התשובה שלכם</th></tr>
+    <tr><td><b>1 · איפה אנחנו?</b></td><td class="fill">לוקיישן אחד ברור…</td></tr>
+    <tr><td><b>2 · מי הדמות?</b></td><td class="fill">שם, גיל, מראה, משפט אחד…</td></tr>
+    <tr><td><b>3 · מה היא עושה?</b></td><td class="fill">הפעולה שפותחת את הסצנה…</td></tr>
+    <tr><td><b>4 · מה משתנה?</b></td><td class="fill">הרגע שבו קורה משהו, לב הסצנה…</td></tr>
+    <tr><td><b>5 · איך זה מסתיים?</b></td><td class="fill">הפריים האחרון שהצופה זוכר…</td></tr>
+  </table>
+</section>
+
+<section class="card reveal">
+  <div class="step-head">
+    <div class="step-num">2</div>
+    <h3>פירוק לשוטים: טבלת הבימוי</h3>
+    <span class="tag">15 דקות</span>
+  </div>
+  <p class="lead">כל שורה = שוט. ודאו שיש גיוון בזוויות ובתנועות, ושכל שוט עונה על "מה תפקידו בסיפור?":</p>
+  <table>
+    <tr><th>#</th><th>מה רואים</th><th>זווית</th><th>תנועת מצלמה</th><th>משך</th><th>תפקיד בסיפור</th></tr>
+    <tr><td><b>1</b></td><td class="fill">…</td><td class="fill">Wide</td><td class="fill">Static / Pan</td><td class="fill">4ש'</td><td class="fill">פתיחה: איפה ומי</td></tr>
+    <tr><td><b>2</b></td><td class="fill">…</td><td class="fill">Medium</td><td class="fill">Tracking</td><td class="fill">5ש'</td><td class="fill">הפעולה מתחילה</td></tr>
+    <tr><td><b>3</b></td><td class="fill">…</td><td class="fill">Close-Up</td><td class="fill">Push-In</td><td class="fill">4ש'</td><td class="fill">הרגע שמשתנה</td></tr>
+    <tr><td><b>4</b></td><td class="fill">…</td><td class="fill">…</td><td class="fill">…</td><td class="fill">5ש'</td><td class="fill">תגובה / תוצאה</td></tr>
+    <tr><td><b>5</b></td><td class="fill">…</td><td class="fill">…</td><td class="fill">…</td><td class="fill">4ש'</td><td class="fill">סיום שנשאר בראש</td></tr>
+  </table>
+  <div class="tip">💡 <b>4–6 שניות לשוט.</b> גם אם הכלי מאפשר 15 שניות בג'נרוט, שוטים קצרים וברורים נותנים יותר שליטה ופחות גליצ'ים.</div>
+</section>
+
+<section class="card reveal">
+  <div class="step-head">
+    <div class="step-num">3</div>
+    <h3>סטוריבורד או פריימים נפרדים</h3>
+    <span class="tag">20–30 דקות</span>
+  </div>
+  <p class="lead">בחרו את רמת השליטה שלכם. הדרך הכי מהירה: <b>מאסטר-פרומפט הסטוריבורד</b> ב<a href="#" onclick="document.querySelector('.toolbox').scrollIntoView({behavior:'smooth'});return false;">ארגז הכלים למעלה</a>. רעיון במשפט אחד נכנס, סטוריבורד שלם יוצא.</p>
+  <div class="grid">
+    <div class="mini"><b>מסלול מהיר: גיליון אחד</b><span>מייצרים סטוריבורד שלם כתמונה אחת, בודקים שהרצף מספר את הסיפור, ומעלים כרפרנס למחולל עם פרומפט הנפשה.</span></div>
+    <div class="mini"><b>מסלול מדויק: פריים לכל שוט</b><span>מייצרים כל פריים פתיחה כתמונה נפרדת ואיכותית, מאשרים אותו מול הטבלה משלב 2, ורק אז מנפישים. פחות הפתעות.</span></div>
+  </div>
+  <p style="margin-top:12px;"><b>לפני שממשיכים, בדקו את הרצף כפריימים:</b> הסיפור ברור? יש גיוון? הדמות עקבית? הסיום עובד?</p>
+  <div class="tip">⚠️ מספרים, מסגרות וכיתובים מותרים <b>רק בגיליון הסטוריבורד</b>, לא בפריימים הסופיים ולא בווידאו. אם עבדתם עם גיליון, הוסיפו לפרומפט:
+    <div class="en">Use the storyboard only as visual direction. Do not show panel numbers, labels, captions, borders or storyboard text in the final video.</div>
+  </div>
+</section>
+
+<section class="card reveal">
+  <div class="step-head">
+    <div class="step-num">4</div>
+    <h3>רפרנסים: עוגני השליטה שלכם</h3>
+    <span class="tag">15 דקות</span>
+  </div>
+  <p class="lead">הכינו מינימום שני נכסים: <b>דמות</b> (רצוי על רקע נקי) ו<b>לוקיישן</b>. תנו לכל רפרנס תפקיד מפורש בפרומפט:</p>
+  <div class="en">Use @Image1 as the main character. Place her inside @Image2. Keep her face, hairstyle, outfit and body proportions consistent across all shots.</div>
+  <ul style="margin-top:12px; padding-inline-start:20px; color:var(--muted); font-size:.94rem;">
+    <li>מתייגים לפי <b>סדר ההעלאה</b>: @Image1, @Image2… ולא "התמונה של השפית"</li>
+    <li>אפשר להוסיף רפרנס שלישי לסגנון/צבעוניות אם חשוב לכם לוק מסוים</li>
+    <li>מה שלא מוגדר, המחולל ימציא. מה שמוגדר, יישמר</li>
+  </ul>
+</section>
+
+<section class="card reveal">
+  <div class="step-head">
+    <div class="step-num">5</div>
+    <h3>בחרו כלי, כתבו פרומפטים, הנפישו</h3>
+    <span class="tag">45–60 דקות</span>
+  </div>
+  <p class="lead">אין כלי "הכי טוב", יש כלי מתאים למשימה. בחרו לפי מה שיש לכם ביד:</p>
+  <div class="tools2">
+    <div class="tcard k"><h4>Kling 3</h4><ul><li>ריאליסטי, נקי ומבוקר</li><li>תנועה מרפרנס וידאו (Motion Control)</li><li>מולטי-שוט קצר</li><li>חסכוני בניסיונות</li></ul></div>
+    <div class="tcard s"><h4>Seedance 2</h4><ul><li>הרבה רפרנסים יחד</li><li>עולם עשיר וקולנועי</li><li>דינמי מאוד</li><li>שווה קרדיטים כשחשוב</li></ul></div>
+    <div class="tcard o"><h4>Gemini Omni</h4><ul><li>יצירה ועריכה בשיחה</li><li>תיקונים על חומר קיים</li><li>עברית 🙂</li><li>לשנות בלי להתחיל מאפס</li></ul></div>
+  </div>
+  <p style="margin-top:14px;">בכל פרומפט שוט, שמרו על מבנה קבוע: רפרנסים ← פעולה ← מצלמה ← אווירה ← המשכיות ← מה למנוע:</p>
+  <div class="en">Use @Image1 as the character, @Image2 as the location.
+The chef plates the dessert and looks up, proud.
+Medium shot, slow push-in. Warm kitchen lighting, cinematic.
+Keep the same face, outfit, lighting and room across shots.
+No extra people, no text, no distorted hands.</div>
+  <div class="tip">🎬 <b>הנפישו לפחות 2 שוטים</b> (עדיף את כולם, אם הקרדיטים מאפשרים). התחילו מהשוט הכי חשוב, הרגע שמשתנה, כדי לוודא שהוא עובד לפני שמשקיעים בשאר.</div>
+</section>
+
+<section class="card reveal">
+  <div class="step-head">
+    <div class="step-num">6</div>
+    <h3>רצף, מעבר חכם, ותיקונים</h3>
+    <span class="tag">20 דקות</span>
+  </div>
+  <p class="lead">שימו את השוטים אחד אחרי השני (אפילו בפליימור פשוט) ובדקו: זה מרגיש כמו סצנה אחת?</p>
+  <p><b>תכננו מעבר חכם אחד לפחות</b> בין שני שוטים, בלי אפקט, רק היגיון:</p>
+  <div class="grid">
+    <div class="mini"><b>Action to Action</b><span>הפעולה נמשכת לשוט הבא</span></div>
+    <div class="mini"><b>Look Match</b><span>היא מסתכלת → רואים מה היא רואה</span></div>
+    <div class="mini"><b>Detail Cut</b><span>מפריים רחב לפרט קטן</span></div>
+    <div class="mini"><b>Reveal</b><span>השוט הבא חושף משהו חדש</span></div>
+  </div>
+  <details>
+    <summary>🔧 משהו נשבר? התיקונים המהירים מהמפגש</summary>
+    <div class="fix"><b>הדמות משתנה בין שוטים</b> ← חזקו את הרפרנס: same face, same outfit, same body proportions</div>
+    <div class="fix"><b>התאורה קופצת</b> ← הוסיפו: lighting continuity, same warm light, same palette</div>
+    <div class="fix"><b>השוט עמוס מדי</b> ← פעולה אחת, מצלמה אחת, פחות אובייקטים</div>
+    <div class="fix"><b>התנועה מוגזמת</b> ← subtle, slow, natural, minimal movement</div>
+    <div class="fix"><b>מספרים מהסטוריבורד בווידאו</b> ← do not show panel numbers, labels, captions</div>
+    <div class="fix"><b>רצף ארוך לא יציב</b> ← פצלו לשוטים קצרים או הנפישו פריימים בנפרד</div>
+    <div class="fix"><b>יפה אבל לא מספר סיפור</b> ← חזרו לשאלה: מה השוט הזה אמור לעשות?</div>
+    <div class="fix" style="margin-top:6px;"><b>כלל הברזל:</b> משנים פרמטר <b>אחד</b> בכל ניסיון, ומריצים שוב.</div>
+  </details>
+</section>
+
+<section class="card reveal">
+  <div class="step-head">
+    <div class="step-num">+</div>
+    <h3>רוצים ללכת רחוק יותר? (רשות)</h3>
+    <span class="tag">בונוס</span>
+  </div>
+  <p class="lead">הדרישות למעלה הן המשימה המלאה. מי שרוצה עוד אתגר, בלי חובה:</p>
+  <div class="grid">
+    <div class="mini"><b>מולטי-שוט</b><span>נסו לייצר שוט אחד עם כמה קאטים בג'נרוט אחד, במקום כל שוט בנפרד.</span></div>
+    <div class="mini"><b>תנועה מרפרנס וידאו</b><span>צלמו את עצמכם עושים תנועה, ותנו ל-Kling Motion Control להעביר אותה לדמות. השוו לתוצאה הרגילה.</span></div>
+  </div>
+</section>
+
+<section class="submit reveal">
+  <h3>📦 מה מביאים למפגש 3</h3>
+  <ul>
+    <li>משפט הרעיון + טבלת השוטים (צילום מסך מספיק)</li>
+    <li>הסטוריבורד או הפריימים</li>
+    <li>השוטים המונפשים (לפחות 2)</li>
+    <li>משפט אחד: <b>מה נשבר בדרך ואיך תיקנתם</b></li>
+  </ul>
+  <p class="note">במפגש 3 נוסיף לסצנות שלכם קריינות, מוזיקה, ליפסינק וכתוביות, ונחבר הכול לסרטון שלם. סצנה שמגיעה מוכנה מהבית = סרטון גמור בסוף המפגש. אל תגיעו בידיים ריקות 😉</p>
+</section>
+
+<footer>Yuvi.AI · סדנת יצירת וידאו בבינה מלאכותית · האוניברסיטה הפתוחה</footer>
+</div>
+
+<div class="done" id="doneBanner"><span class="big">🎉</span><div><b>כל הכבוד, סיימת את הסצנה!</b><span>עברת את כל השלבים. תביא אותה מוכנה למפגש 3 ותצא עם סרטון שלם.</span></div></div>
+
+<script>
+  document.documentElement.classList.add('js');
+  document.body.classList.add('js');
+
+  if('IntersectionObserver' in window){
+    const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in'); io.unobserve(e.target);}});},{threshold:.1});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  } else { document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in')); }
+
+  const boxes=[...document.querySelectorAll('input[type=checkbox]')];
+  const fill=document.getElementById('pfill'), pill=document.getElementById('ppill'), banner=document.getElementById('doneBanner');
+  let celebrated=false;
+  function update(){
+    const done=boxes.filter(b=>b.checked).length, pct=Math.round(done/boxes.length*100);
+    fill.style.width=pct+'%'; pill.textContent=pct+'% הושלם';
+    if(pct===100 && !celebrated){celebrated=true; banner.classList.add('show'); confetti(); setTimeout(()=>banner.classList.remove('show'),6000);}
+    if(pct<100) celebrated=false;
+  }
+  boxes.forEach(cb=>{
+    const key='ex2_'+cb.id;
+    cb.checked=localStorage.getItem(key)==='1';
+    cb.addEventListener('change',()=>{localStorage.setItem(key,cb.checked?'1':'0'); update();});
+  });
+  update();
+
+  function confetti(){
+    const colors=['#4F46E5','#F43F5E','#0D9488','#D97706','#7C74F0'];
+    for(let i=0;i<40;i++){
+      const c=document.createElement('div'); c.className='confetti';
+      c.style.insetInlineStart=Math.random()*100+'vw';
+      c.style.background=colors[i%colors.length];
+      c.style.transform='rotate('+Math.random()*360+'deg)';
+      const dur=2.2+Math.random()*1.8, delay=Math.random()*.6;
+      c.animate([{transform:'translateY(0) rotate(0)',opacity:1},{transform:'translateY(105vh) rotate('+(360+Math.random()*360)+'deg)',opacity:.9}],{duration:dur*1000,delay:delay*1000,easing:'cubic-bezier(.3,.6,.5,1)'});
+      document.body.appendChild(c); setTimeout(()=>c.remove(),(dur+delay)*1000+100);
+    }
+  }
+</script>
+</body>
+</html>
