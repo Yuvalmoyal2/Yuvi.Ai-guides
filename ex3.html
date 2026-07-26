@@ -1,0 +1,609 @@
+﻿<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>תרגיל · מפגש 3 · הסרטון הגמור שלכם</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#EEF0FB; --card:#FFFFFF; --ink:#1E1B4B; --muted:#6B7194; --line:#E2E5F5;
+    --indigo:#4F46E5; --indigo-soft:#E7E8FC; --coral:#F43F5E; --coral-soft:#FDE7EB;
+    --teal:#0D9488; --teal-soft:#D9F2EE; --amber:#B45309; --amber-soft:#FDF1DE; --gold:#D97706;
+    --violet:#7C3AED; --violet-soft:#EDE6FE;
+    --radius:20px; --shadow:0 10px 34px rgba(30,27,75,.09); --shadow-lg:0 22px 60px rgba(30,27,75,.16);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth; -webkit-text-size-adjust:100%;}
+  body{font-family:'Heebo','Rubik',system-ui,sans-serif; background:var(--bg); color:var(--ink);
+       line-height:1.72; padding:0 16px 60px; overflow-x:hidden;
+       background-image:radial-gradient(circle at 12% 0%, #E4E1FB 0%, transparent 45%),
+                        radial-gradient(circle at 92% 8%, #FBE3E9 0%, transparent 40%);
+       background-attachment:fixed;}
+  .wrap{max-width:920px; margin:0 auto;}
+  .n{unicode-bidi:isolate;}
+  ::selection{background:var(--coral); color:#fff;}
+
+  /* ---------- sticky bar ---------- */
+  .topbar{position:fixed; inset:0 0 auto 0; z-index:80; background:rgba(238,240,251,.86); backdrop-filter:blur(14px);
+          border-bottom:1px solid rgba(30,27,75,.07); transform:translateY(-102%); transition:transform .45s cubic-bezier(.2,.7,.2,1);}
+  .topbar.show{transform:none;}
+  .topbar .in{max-width:920px; margin:0 auto; display:flex; align-items:center; gap:14px; padding:11px 16px;}
+  .topbar .nm{font-weight:900; font-size:.92rem; white-space:nowrap;}
+  .topbar .nm i{color:var(--coral); font-style:normal;}
+  .topbar nav{display:flex; gap:6px; margin-inline-start:auto; overflow-x:auto; scrollbar-width:none;}
+  .topbar nav::-webkit-scrollbar{display:none;}
+  .topbar nav a{font-size:.8rem; font-weight:700; color:var(--muted); text-decoration:none; padding:5px 11px; border-radius:999px; white-space:nowrap; transition:.2s;}
+  .topbar nav a:hover{background:#fff; color:var(--indigo);}
+  .topbar nav a.on{background:var(--ink); color:#fff;}
+
+  /* ---------- hero ---------- */
+  header.hero{position:relative; text-align:center; padding:86px 22px 0; margin:0 -16px 26px; overflow:hidden;
+    border-radius:0 0 40px 40px;
+    background:linear-gradient(118deg,#F6E4EA,#EAE4FB 34%,#E2EEF2 62%,#F7E9DF);
+    background-size:280% 280%; animation:bgshift 20s ease infinite;}
+  @keyframes bgshift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+  .blob{position:absolute; border-radius:50%; filter:blur(52px); opacity:.55; z-index:0; animation:floaty 11s ease-in-out infinite;}
+  .blob.b1{width:210px; height:210px; background:#F3B7C8; top:-56px; inset-inline-start:-40px;}
+  .blob.b2{width:180px; height:180px; background:#BFB9F6; bottom:10px; inset-inline-end:-30px; animation-delay:-4s;}
+  .blob.b3{width:130px; height:130px; background:#A9DDD6; top:44px; inset-inline-end:90px; animation-delay:-8s;}
+  @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-24px)}}
+  .hero>*:not(.blob){position:relative; z-index:1;}
+  .hero .kicker{display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,.82); color:var(--coral);
+    font-weight:800; font-size:.83rem; padding:8px 20px; border-radius:999px; box-shadow:var(--shadow); animation:pop .6s both;}
+  .hero h1{font-size:clamp(2.2rem,7vw,3.35rem); font-weight:900; letter-spacing:-1.4px; line-height:1.12; margin-top:20px; animation:rise .8s .06s both;}
+  .hero h1 em{font-style:normal; background:linear-gradient(96deg,var(--coral),var(--violet) 60%,var(--indigo)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;}
+  .hero h2{font-size:clamp(1.02rem,3.4vw,1.28rem); color:#4A4470; font-weight:700; margin-top:12px; animation:rise .8s .16s both;}
+  .hero p.sub{color:#5C5885; max-width:620px; margin:16px auto 0; font-size:1.01rem; animation:rise .8s .26s both;}
+  @keyframes pop{from{opacity:0; transform:scale(.86)}to{opacity:1; transform:scale(1)}}
+  @keyframes rise{from{opacity:0; transform:translateY(20px)}to{opacity:1; transform:translateY(0)}}
+  .eq{display:flex; align-items:flex-end; justify-content:center; gap:5px; height:66px; margin-top:26px; animation:rise .9s .36s both;}
+  .eq i{display:block; width:6px; border-radius:6px 6px 0 0; background:linear-gradient(180deg,var(--coral),var(--violet)); opacity:.75;
+        animation:bar 1.5s ease-in-out infinite;}
+  @keyframes bar{0%,100%{height:12%}50%{height:100%}}
+
+  /* ---------- shared ---------- */
+  .js .reveal{opacity:0; transform:translateY(26px); transition:opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1);}
+  .js .reveal.in{opacity:1; transform:none;}
+  section{margin-top:22px;}
+  .card{position:relative; background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow); padding:30px 32px; overflow:hidden;
+        transition:transform .3s cubic-bezier(.2,.7,.2,1), box-shadow .3s;}
+  .card::before{content:''; position:absolute; inset:0 0 auto 0; height:4px; background:linear-gradient(90deg,var(--coral),var(--violet),var(--indigo)); opacity:0; transition:opacity .3s;}
+  .card:hover{transform:translateY(-5px); box-shadow:var(--shadow-lg);}
+  .card:hover::before{opacity:1;}
+  p.lead{color:var(--muted); margin-top:6px;}
+  h4.sub{margin-top:24px; font-size:1.06rem; font-weight:900;}
+  .rule{display:flex; align-items:center; gap:14px; margin:34px 0 4px;}
+  .rule span{font-size:.78rem; font-weight:800; letter-spacing:2.5px; color:#9096B8; white-space:nowrap;}
+  .rule::before,.rule::after{content:''; flex:1; height:1px; background:linear-gradient(90deg,transparent,var(--line),transparent);}
+
+  /* ---------- goal ---------- */
+  .goal{background:linear-gradient(135deg,#241F52,#3A2069 52%,#5B2050); color:#fff; border-radius:26px; padding:38px 34px; position:relative; overflow:hidden; box-shadow:0 24px 60px rgba(36,31,82,.34);}
+  .goal::after{content:''; position:absolute; width:320px; height:320px; border-radius:50%; top:-140px; inset-inline-end:-90px;
+    background:radial-gradient(circle,rgba(244,63,94,.42),transparent 68%);}
+  .goal::before{content:''; position:absolute; width:260px; height:260px; border-radius:50%; bottom:-130px; inset-inline-start:-70px;
+    background:radial-gradient(circle,rgba(99,102,241,.4),transparent 70%);}
+  .goal>*{position:relative; z-index:1;}
+  .goal .gk{display:inline-block; background:rgba(255,255,255,.14); color:#FBD5DF; font-weight:800; font-size:.78rem; letter-spacing:.4px; padding:6px 16px; border-radius:999px;}
+  .goal h3{font-size:1.6rem; font-weight:900; margin-top:14px; letter-spacing:-.6px;}
+  .goal p{color:#D9D3EE; margin-top:12px; font-size:1.02rem;}
+  .goal p b{color:#fff;}
+  .goal .now{margin-top:22px; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.14); border-radius:16px; padding:18px 20px; font-size:.98rem; color:#EDE9F9;}
+  .goal .now b{color:#FFD9A8;}
+  .goal .arrowline{display:flex; flex-wrap:wrap; gap:8px; margin-top:20px;}
+  .goal .arrowline span{background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.16); color:#fff; font-weight:700; font-size:.85rem; padding:7px 15px; border-radius:11px;}
+  .goal .arrowline span.dim{opacity:.5; font-weight:500;}
+
+  /* ---------- quick path ---------- */
+  .path{background:var(--card); border-radius:24px; box-shadow:var(--shadow); padding:30px 32px; position:relative; overflow:hidden;}
+  .path::before{content:''; position:absolute; inset:0 0 auto 0; height:5px; background:linear-gradient(90deg,var(--coral),var(--violet),var(--indigo),var(--teal));}
+  .path .pk{display:inline-block; background:var(--coral-soft); color:var(--coral); font-weight:800; font-size:.78rem; padding:6px 15px; border-radius:999px;}
+  .path h3{font-size:1.44rem; font-weight:900; margin-top:13px; letter-spacing:-.5px;}
+  .path p.lead{margin-bottom:20px;}
+  .prow{display:flex; align-items:flex-start; gap:15px; padding:14px 0; border-bottom:1px solid var(--line);}
+  .prow:last-of-type{border-bottom:none;}
+  .prow .pn{flex:0 0 auto; width:36px; height:36px; border-radius:12px; display:flex; align-items:center; justify-content:center;
+            font-size:1.12rem; background:var(--bg);}
+  .prow b{display:block; font-weight:900; font-size:1.04rem;}
+  .prow span{display:block; font-size:.93rem; color:var(--muted);}
+  .path .len{margin-top:18px; background:var(--indigo-soft); border-radius:14px; padding:14px 18px; font-size:.95rem;}
+  .path .len b{color:var(--indigo);}
+
+  /* ---------- toolbox ---------- */
+  .toolbox{background:linear-gradient(142deg,#2A1B3D,#412459 48%,#2B2A6B); border-radius:26px; padding:36px 32px; position:relative; overflow:hidden; box-shadow:0 24px 60px rgba(30,27,75,.3);}
+  .toolbox::after{content:''; position:absolute; width:280px; height:280px; background:radial-gradient(circle,rgba(244,63,94,.32),transparent 70%); top:-100px; inset-inline-end:-70px;}
+  .toolbox>*{position:relative; z-index:1;}
+  .toolbox .tb-kicker{display:inline-block; background:rgba(255,255,255,.13); color:#FBCFE8; font-weight:800; font-size:.78rem; padding:6px 16px; border-radius:999px; margin-bottom:12px;}
+  .toolbox h3{color:#fff; font-size:1.48rem; font-weight:900; letter-spacing:-.5px;}
+  .toolbox p.tb-sub{color:#CBBBDA; font-size:.96rem; margin-top:6px; margin-bottom:22px;}
+  .tools{display:grid; grid-template-columns:repeat(auto-fit,minmax(228px,1fr)); gap:14px;}
+  .tool{background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.11); border-radius:18px; padding:19px; display:flex; flex-direction:column;
+        transition:transform .25s, background .25s, border-color .25s;}
+  .tool:hover{transform:translateY(-6px); background:rgba(255,255,255,.11); border-color:rgba(251,207,232,.45);}
+  .tool .ico{width:44px; height:44px; border-radius:13px; display:flex; align-items:center; justify-content:center; font-size:1.35rem; margin-bottom:11px;}
+  .tool.v .ico{background:rgba(99,102,241,.3);} .tool.m .ico{background:rgba(244,63,94,.26);}
+  .tool.g .ico{background:rgba(13,148,136,.3);} .tool.p .ico{background:rgba(217,119,6,.3);}
+  .tool h4{color:#fff; font-size:1.04rem; font-weight:800;}
+  .tool .en-name{color:#B29CC0; font-size:.71rem; font-family:Rubik,sans-serif; letter-spacing:.4px; margin-bottom:9px; direction:ltr; text-align:right;}
+  .tool p{color:#D5C7DD; font-size:.86rem; flex:1; margin-bottom:15px;}
+  .tool a.btn{display:inline-flex; align-items:center; gap:8px; align-self:flex-start; background:#fff; color:#2A1B3D; font-weight:800; font-size:.85rem; padding:9px 17px; border-radius:11px; text-decoration:none; transition:gap .22s, background .22s;}
+  .tool a.btn:hover{gap:13px; background:#FBE7EC;}
+  .toolbox .tb-tip{color:#C1A6CB; font-size:.85rem; margin-top:20px;}
+
+  /* ---------- steps ---------- */
+  .step-head{display:flex; align-items:center; gap:15px; margin-bottom:12px;}
+  .step-num{flex:0 0 auto; width:48px; height:48px; border-radius:15px; color:#fff; font-weight:900; font-size:1.32rem;
+    display:flex; align-items:center; justify-content:center; box-shadow:0 8px 20px rgba(244,63,94,.3); font-family:Rubik,sans-serif;
+    background:linear-gradient(135deg,#E11D48,#F76B85);}
+  .card.s2 .step-num{background:linear-gradient(135deg,#6D28D9,#A855F7); box-shadow:0 8px 20px rgba(124,58,237,.3);}
+  .card.s3 .step-num{background:linear-gradient(135deg,#4338CA,#6366F1); box-shadow:0 8px 20px rgba(79,70,229,.3);}
+  .card.s4 .step-num{background:linear-gradient(135deg,#B45309,#F59E0B); box-shadow:0 8px 20px rgba(217,119,6,.3);}
+  .card.s5 .step-num{background:linear-gradient(135deg,#0F766E,#14B8A6); box-shadow:0 8px 20px rgba(13,148,136,.3);}
+  .step-head h3{font-size:1.3rem; font-weight:900; letter-spacing:-.4px;}
+  .step-head .of{margin-inline-start:auto; font-size:.75rem; font-weight:800; color:#A2A7C4; font-family:Rubik,sans-serif; letter-spacing:1px;}
+
+  .grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(228px,1fr)); gap:12px; margin-top:14px;}
+  .mini{background:var(--bg); border-radius:15px; padding:16px 17px; transition:transform .22s, background .22s, box-shadow .22s;}
+  .mini:hover{transform:translateY(-4px); background:#fff; box-shadow:var(--shadow);}
+  .mini b{display:block; font-weight:800; margin-bottom:3px;}
+  .mini span{font-size:.89rem; color:var(--muted);}
+
+  ul.body{padding-inline-start:22px; margin-top:10px;}
+  ul.body li{margin-bottom:7px;}
+  ul.body li::marker{color:var(--coral);}
+  ul.q{list-style:none; padding:0; margin-top:14px;}
+  ul.q li{position:relative; padding-inline-start:26px; margin-bottom:9px; font-size:.97rem;}
+  ul.q li::before{content:'?'; position:absolute; inset-inline-start:0; top:0; width:18px; height:18px; margin-top:5px; border-radius:6px;
+    background:var(--indigo-soft); color:var(--indigo); font-weight:900; font-size:.72rem; display:flex; align-items:center; justify-content:center;}
+
+  .box{border-radius:15px; padding:15px 17px; font-size:.95rem;}
+  .box.bad{background:#FBEAEC; border-inline-start:4px solid #E11D48;}
+  .box.good{background:var(--teal-soft); border-inline-start:4px solid var(--teal);}
+  .box em{display:block; font-style:normal; font-size:.74rem; font-weight:900; letter-spacing:.6px; margin-bottom:5px; opacity:.75;}
+  .box.bad em{color:#9F1239;} .box.good em{color:#0F766E;}
+
+  .callout{border-radius:16px; padding:16px 19px; margin-top:15px; font-size:.96rem;}
+  .callout b{font-weight:900;}
+  .callout.tip{background:var(--amber-soft);} .callout.tip b{color:var(--amber);}
+  .callout.key{background:var(--indigo-soft);} .callout.key b{color:var(--indigo);}
+  .callout.warn{background:var(--coral-soft);} .callout.warn b{color:#BE123C;}
+  .callout.win{background:var(--teal-soft);} .callout.win b{color:var(--teal);}
+
+  .en{direction:ltr; text-align:left; font-family:'Courier New',Consolas,monospace; font-size:.855rem; line-height:1.62;
+      background:#1B1840; color:#DCDCF8; border-radius:14px; padding:15px 17px; margin-top:12px; overflow-x:auto; box-shadow:inset 0 0 0 1px rgba(255,255,255,.06);}
+  .he-box{background:var(--bg); border-radius:14px; padding:15px 18px; margin-top:12px; font-size:.97rem; border-inline-start:4px solid var(--violet);}
+  .he-box b{color:var(--violet);}
+
+  details{background:var(--bg); border-radius:16px; padding:15px 19px; margin-top:12px; transition:background .2s;}
+  details:hover{background:#E8EAF9;}
+  details summary{cursor:pointer; font-weight:800; color:var(--indigo); list-style:none;}
+  details summary::-webkit-details-marker{display:none;}
+  details summary::before{content:'+'; display:inline-flex; align-items:center; justify-content:center; width:20px; height:20px; border-radius:6px;
+    background:var(--indigo); color:#fff; font-weight:900; font-size:.9rem; margin-inline-end:9px; vertical-align:-4px;}
+  details[open] summary::before{content:'–';}
+  details[open] summary{margin-bottom:10px;}
+  details .fix{padding:8px 0; border-bottom:1px dashed #D6DAF0; font-size:.95rem;}
+  details .fix:last-child{border-bottom:none;}
+  details .fix b{color:var(--coral);}
+
+  /* ---------- cuts ---------- */
+  .cuts{display:grid; gap:11px; margin-top:14px;}
+  .cut{display:flex; gap:15px; align-items:flex-start; background:var(--bg); border-radius:15px; padding:15px 18px; transition:transform .22s, background .22s, box-shadow .22s;}
+  .cut:hover{transform:translateX(-5px); background:#fff; box-shadow:var(--shadow);}
+  .cut .k{flex:0 0 auto; width:34px; height:34px; border-radius:11px; background:var(--ink); color:#fff; font-weight:900; font-size:.95rem;
+          display:flex; align-items:center; justify-content:center; font-family:Rubik,sans-serif;}
+  .cut b{display:block; font-weight:900; margin-bottom:2px;}
+  .cut p{font-size:.93rem; color:var(--muted);}
+  .cut p .hl{color:var(--ink); font-weight:700;}
+
+  .split{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:12px; margin-top:14px;}
+  .jl{border-radius:16px; padding:18px 19px; background:linear-gradient(150deg,#1B1840,#332A5E); color:#E4E1F7;}
+  .jl h5{color:#fff; font-size:1.04rem; font-weight:900; margin-bottom:6px; display:flex; align-items:center; gap:9px; flex-wrap:wrap;}
+  .jl h5 span{font-family:Rubik,sans-serif; font-size:.7rem; font-weight:700; letter-spacing:1px; background:rgba(255,255,255,.14); padding:3px 9px; border-radius:999px;}
+  .jl p{font-size:.92rem; color:#C6C1E4;}
+  .jl p b{color:#fff;}
+  .jl .vis{display:flex; gap:4px; margin-top:10px; align-items:center;}
+  .jl .vis .b{height:15px; border-radius:4px;}
+  .jl .vis .lbl{font-size:.68rem; color:#A9A3D0; letter-spacing:.4px; margin-inline-end:6px; min-width:38px;}
+
+  /* ---------- lipsync ---------- */
+  .opt-wrap{background:linear-gradient(150deg,#FFF9EF,#FFF3E2); border:1.5px dashed #E8C48E; border-radius:24px; padding:32px 30px; box-shadow:var(--shadow);}
+  .opt-wrap .badge{display:inline-flex; align-items:center; gap:7px; background:var(--gold); color:#fff; font-weight:800; font-size:.76rem; padding:6px 15px; border-radius:999px;}
+  .opt-wrap h3{font-size:1.4rem; font-weight:900; margin-top:14px; letter-spacing:-.5px;}
+  .opt-wrap p.lead{color:#8A6B3C;}
+  .picker{display:grid; gap:9px; margin-top:16px;}
+  .pick{display:flex; align-items:center; gap:13px; background:#fff; border-radius:14px; padding:13px 17px; box-shadow:0 4px 14px rgba(180,83,9,.09); transition:transform .2s; flex-wrap:wrap;}
+  .pick:hover{transform:translateX(-5px);}
+  .pick .cond{font-weight:800; font-size:.95rem; flex:1; min-width:150px;}
+  .pick .ans{font-family:Rubik,sans-serif; font-weight:700; font-size:.87rem; color:var(--gold);}
+
+  /* ---------- final ---------- */
+  .final{background:linear-gradient(135deg,#0E7C71,#14B8A6 72%,#22C7A9); color:#fff; border-radius:26px; padding:36px 32px; position:relative; overflow:hidden; box-shadow:0 22px 56px rgba(13,148,136,.32);}
+  .final::after{content:''; position:absolute; width:300px; height:300px; border-radius:50%; background:radial-gradient(circle,rgba(255,255,255,.22),transparent 70%); top:-130px; inset-inline-start:-80px;}
+  .final>*{position:relative; z-index:1;}
+  .final h3{font-size:1.46rem; font-weight:900; letter-spacing:-.5px;}
+  .final p.lead{color:#D6F5EF;}
+  .final ul.q li::before{background:rgba(255,255,255,.24); color:#fff;}
+  .final .last{margin-top:20px; background:rgba(0,0,0,.16); border-radius:15px; padding:16px 19px; font-size:1rem;}
+
+  /* ---------- footer ---------- */
+  footer{margin-top:52px; text-align:center; padding:44px 24px 30px; background:var(--card); border-radius:28px; box-shadow:var(--shadow); position:relative; overflow:hidden;}
+  footer::before{content:''; position:absolute; inset:0 0 auto 0; height:5px; background:linear-gradient(90deg,var(--coral),var(--violet),var(--indigo),var(--teal));}
+  footer .logo{width:104px; height:104px; border-radius:50%; object-fit:cover; box-shadow:0 12px 34px rgba(30,27,75,.22); border:4px solid #fff; margin-bottom:18px;}
+  footer .thanks{font-size:1.34rem; font-weight:900; letter-spacing:-.5px;}
+  footer .who{color:var(--muted); font-size:.95rem; margin-top:6px;}
+  footer a.ig{display:inline-flex; align-items:center; gap:10px; margin-top:22px; text-decoration:none;
+    background:linear-gradient(96deg,#F58529,#DD2A7B 48%,#8134AF 78%,#515BD4); color:#fff; font-weight:800; font-size:1rem;
+    padding:13px 26px; border-radius:999px; box-shadow:0 12px 30px rgba(221,42,123,.34); transition:transform .25s, box-shadow .25s;}
+  footer a.ig:hover{transform:translateY(-4px) scale(1.03); box-shadow:0 18px 40px rgba(221,42,123,.45);}
+  footer a.ig svg{width:22px; height:22px; fill:#fff;}
+  footer .fine{color:#A2A7C4; font-size:.82rem; margin-top:22px;}
+
+  @media (max-width:600px){
+    .card,.goal,.toolbox,.final,.opt-wrap,.path{padding:24px 20px;}
+    .step-head .of{display:none;}
+    body{padding-bottom:40px;}
+  }
+  @media print{
+    body{background:#fff; padding:0;} .topbar,.eq,.blob{display:none;}
+    .card,.goal,.toolbox,.final,.opt-wrap,.path,footer{box-shadow:none; break-inside:avoid;}
+    .js .reveal{opacity:1; transform:none;}
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none !important; transition:none !important;}}
+</style>
+</head>
+<body>
+
+<div class="topbar" id="topbar"><div class="in">
+  <div class="nm">תרגיל מפגש <i>3</i></div>
+  <nav>
+    <a href="#goal">המטרה</a>
+    <a href="#path">המסלול</a>
+    <a href="#tools">כלים</a>
+    <a href="#s1">תסריט</a>
+    <a href="#s2">קול</a>
+    <a href="#s3">סאונד</a>
+    <a href="#s4">עריכה</a>
+    <a href="#s5">מיקס</a>
+    <a href="#lip">ליפסינק</a>
+  </nav>
+</div></div>
+
+<div class="wrap">
+
+<header class="hero">
+  <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+  <div class="kicker">🎧 סדנת יצירת וידאו ב-AI · תרגיל מפגש 3</div>
+  <h1>הסרטון <em>הגמור</em> שלכם</h1>
+  <h2>קול · ליפסינק · מוזיקה · כתוביות · עריכה</h2>
+  <p class="sub">עד עכשיו עבדנו על מה שרואים. עכשיו נוסיף את מה ששומעים, וזה בדיוק מה שהופך אוסף שוטים לסרטון שאפשר להציג, לפרסם או לשלוח ללקוח.</p>
+  <div class="eq" id="eq"></div>
+</header>
+
+<!-- ===== GOAL ===== -->
+<section class="goal reveal" id="goal">
+  <span class="gk">מה המטרה של התרגיל</span>
+  <h3>לסגור את המעגל: מהשוטים אל הסרטון</h3>
+  <p>המטרה היא לא סרטון מושלם. המטרה היא לעבור פעם אחת על <b>כל פס הייצור</b>, ולהרגיש איפה כל שכבה משנה את התוצאה. אחרי התרגיל הזה, כשמשהו בסרטון ירגיש "לא גמור", תדעו להצביע בדיוק על מה חסר: הקול, הקצב, המוזיקה, הכתוביות או החיתוך.</p>
+  <div class="now">
+    בשלב הזה כבר אמור להיות לכם <b>רעיון מגובש</b>, ואולי אפילו סצנות נפרדות או סרטון מחובר. עכשיו אנחנו עוברים לשלב הבא: <b>קריינות, מוזיקה, סאונד אפקטס ועריכה</b>. אם אין לכם חומר מוכן מהמפגש הקודם, זה בסדר. אפשר לעבוד עם שוט אחד ארוך, או לייצר שני שוטים קצרים במיוחד לתרגיל.
+  </div>
+  <div class="arrowline">
+    <span class="dim">מפגש 1 · מתמונה לשוט</span>
+    <span class="dim">מפגש 2 · משוטים לסצנה</span>
+    <span>מפגש 3 · מסצנה לסרטון</span>
+  </div>
+</section>
+
+<!-- ===== QUICK PATH ===== -->
+<section class="path reveal" id="path">
+  <span class="pk">🚀 המסלול המהיר</span>
+  <h3>חמש שורות. מי שעובד רק לפיהן, סיים את התרגיל.</h3>
+  <p class="lead">כל מה שמתחת לזה הוא הרחבה למי שרוצה להעמיק. אין חובה לקרוא הכל כדי להתחיל.</p>
+  <div class="prow"><div class="pn">✍️</div><div><b>תסריט קצר</b><span>ארבע שורות שנשמעות טוב בקול, לא בכתב.</span></div></div>
+  <div class="prow"><div class="pn">🎙️</div><div><b>קריינות</b><span>קול AI או הקול שלכם, עם הנחיה על הטון והקצב.</span></div></div>
+  <div class="prow"><div class="pn">🎵</div><div><b>מוזיקה וסאונד</b><span>טראק רקע קצר שמתאים לווייב, ועוד שני אפקטים קוליים.</span></div></div>
+  <div class="prow"><div class="pn">✂️</div><div><b>עריכה וכתוביות</b><span>מחברים את השוטים, חותכים במקומות הנכונים, מוסיפים כתוביות בעברית.</span></div></div>
+  <div class="prow"><div class="pn">🎚️</div><div><b>מיקס וייצוא</b><span>הקול חזק, המוזיקה מתחתיו, שתי בדיקות ולוחצים ייצוא.</span></div></div>
+  <div class="len">🎬 <b>אורך מומלץ:</b> 20 עד 40 שניות. קצר מזה לא נותן לשכבות להתבטא, ארוך מזה יגרום לכם לעבוד קשה על החלקים הפחות מעניינים.</div>
+</section>
+
+<!-- ===== TOOLBOX ===== -->
+<div class="rule reveal"><span>ארגז הכלים</span></div>
+<section class="toolbox reveal" id="tools">
+  <div class="tb-kicker">⚡ הכל במקום אחד</div>
+  <h3>הכלים שנעבוד איתם</h3>
+  <p class="tb-sub">אין צורך בכולם. תבחרו מסלול אחד לקול ואחד למוזיקה, ותתמקדו בתוצאה.</p>
+  <div class="tools">
+    <div class="tool g">
+      <div class="ico">🗣️</div>
+      <h4>Google AI Studio</h4>
+      <div class="en-name">Generate Speech</div>
+      <p>יצירת קריינות מטקסט, עם שליטה בטון ובאופן ההגייה דרך הנחיה בשפה חופשית. נקודת פתיחה נוחה וזמינה.</p>
+      <a class="btn" href="https://aistudio.google.com/generate-speech" target="_blank" rel="noopener">פתיחה <span>←</span></a>
+    </div>
+    <div class="tool v">
+      <div class="ico">🎙️</div>
+      <h4>ElevenLabs</h4>
+      <div class="en-name">Voices · Dubbing · SFX</div>
+      <p>ספריית קולות רחבה, שיבוט קול, דיבוב, <b>וגם יצירת אפקטים קוליים</b> מטקסט. הכלי המקיף מבין השניים.</p>
+      <a class="btn" href="https://elevenlabs.io/app/home" target="_blank" rel="noopener">פתיחה <span>←</span></a>
+    </div>
+    <div class="tool m">
+      <div class="ico">🎼</div>
+      <h4>Suno</h4>
+      <div class="en-name">AI Music Generation</div>
+      <p>יצירת מוזיקה מטקסט. לתרגיל הזה לא צריך שיר שלם, רק רקע קצר שמתאים לסרטון.</p>
+      <a class="btn" href="https://suno.com/discover" target="_blank" rel="noopener">פתיחה <span>←</span></a>
+    </div>
+    <div class="tool p">
+      <div class="ico">🪄</div>
+      <h4>מחולל פרומפטים ל-Suno</h4>
+      <div class="en-name">Suno Prompt Maker (GPT)</div>
+      <p>לא בטוחים איך לתאר את המוזיקה שאתם רוצים? תכתבו את הווייב במשפט, וקבלו פרומפט מוזיקלי מסודר.</p>
+      <a class="btn" href="https://chatgpt.com/g/g-69796f77cff081919784f7ded812cc7a-ai-music-song-lyrics-maker-suno-free-generator" target="_blank" rel="noopener">פתיחה <span>←</span></a>
+    </div>
+  </div>
+  <p class="tb-tip">💡 לעריכה עצמה מספיק כלי חינמי אחד שיודע לנהל כמה ערוצי אודיו. <span class="n">CapCut</span> על המחשב או בטלפון עושה את העבודה מצוין, וגם ספריית הסאונד שלו בפנים.</p>
+</section>
+
+<!-- ===== STEP 1 ===== -->
+<div class="rule reveal"><span>ההרחבה, שלב אחרי שלב</span></div>
+<section class="card reveal" id="s1">
+  <div class="step-head">
+    <div class="step-num">1</div>
+    <h3>הווייב והתסריט</h3>
+    <span class="of">01 / 05</span>
+  </div>
+  <p class="lead">לפני שנוגעים בכלי, שתי החלטות קטנות שמונעות בלגן אחר כך.</p>
+
+  <h4 class="sub">קודם, מילה אחת</h4>
+  <p>איזה סרטון זה: <b>יוקרתי, דינמי, רגשי, טכנולוגי או משועשע?</b> אם אין מילה אחת, כל בחירה תיעשה בנפרד: הקול יהיה נלהב, המוזיקה עצובה והכתוביות קופצניות. הצופה לא יידע מה הוא אמור להרגיש, וזה מה שגורם לסרטון להרגיש חובבני גם כשהוא נראה טוב.</p>
+
+  <h4 class="sub">ואז, ארבע שורות</h4>
+  <div class="callout key">🧠 <b>הנוסחה:</b> פתיחה שמושכת תשומת לב, משפט שמסביר מה קורה, תועלת או תובנה, סיום קצר שנשאר בראש.</div>
+  <p style="margin-top:14px;">וכותבים <b>לדיבור, לא לקריאה</b>: משפטים קצרים, מילים פשוטות, נשימות. נסו לשכתב את המשפט הזה בעצמכם, ואז פתחו את ההצעה:</p>
+  <div class="box bad" style="margin-top:12px;"><em>המשפט המקורי</em>"במסגרת הסרטון הנוכחי נציג את תהליך העבודה המלא ליצירת תוכן וידאו מבוסס בינה מלאכותית."</div>
+  <details>
+    <summary>הצעה לשכתוב</summary>
+    <div class="box good">"בואו נראה איך לוקחים רעיון, והופכים אותו לסרטון AI שלם."</div>
+  </details>
+  <div class="callout tip">🔍 <b>מבחן הקול הרם:</b> תקריאו את התסריט בקול לפני שאתם מייצרים משהו. נתקעתם בנשימה באמצע משפט? המשפט ארוך מדי.</div>
+</section>
+
+<!-- ===== STEP 2 ===== -->
+<section class="card s2 reveal" id="s2">
+  <div class="step-head">
+    <div class="step-num">2</div>
+    <h3>הקול: לא רק מה נאמר, גם איך</h3>
+    <span class="of">02 / 05</span>
+  </div>
+  <p class="lead">רוב האנשים מדביקים טקסט, לוחצים "צור" ומקבלים משהו שטוח. כל ההבדל הוא בהנחיה.</p>
+  <div class="he-box">תמיד תעצרו רגע ותחשבו על <b>הטון, הקצב, הרגש והסגנון</b>. אתם רוצים שהדמות תדבר מהר, או שתיתן לכל מילה מקום? שהיא תישמע נלהבת, בטוחה בעצמה, או שהיא בעצם מפחדת מהדבר הבא שעומד לקרות? היא מספרת לחבר, מסבירה בשיעור, או מוכרת מוצר? כל תשובה כזאת נותנת קול אחר לגמרי, לאותו טקסט בדיוק.</div>
+  <p style="margin-top:14px;">בשני הכלים אפשר לכתוב את זה במילים פשוטות, ליד הטקסט:</p>
+  <div class="he-box" style="border-inline-start-color:var(--indigo);">"קרא את הטקסט בעברית בטון מקצועי ונעים, בגובה העיניים. קצב בינוני עם אנרגיה יצירתית, לא דרמטי מדי. הדגשה קלה על המילים 'תכנון' ו'תיקון', והפסקה קטנה לפני המשפט האחרון."</div>
+  <div class="grid">
+    <div class="mini"><b>שתי גרסאות, לא אחת</b><span>הריצו את אותו טקסט בשני טונים שונים, תאזינו לשתיהן ותבחרו. ההשוואה הזאת תלמד אתכם יותר מכל מדריך.</span></div>
+    <div class="mini"><b>הקול שלכם גם עובד</b><span>טלפון, חדר שקט, מיקרופון קרוב לפה. קול אמיתי מנצח קול AI בתוכן אישי או הדרכתי, גם אם הוא פחות חלק.</span></div>
+  </div>
+  <div class="callout warn">🇮🇱 <b>בעברית תבדקו קצב ואינטונציה, לא רק אם הקול יפה.</b> קול AI בעברית נוטה לרוץ מהר מדי ולהשטיח סופי משפטים. אם זה קורה, תקצרו את המשפט ותשימו נקודה במקום פסיק.</div>
+</section>
+
+<!-- ===== STEP 3 ===== -->
+<section class="card s3 reveal" id="s3">
+  <div class="step-head">
+    <div class="step-num">3</div>
+    <h3>מוזיקה וסאונד אפקטס</h3>
+    <span class="of">03 / 05</span>
+  </div>
+  <p class="lead">אתם לא מייצרים שיר. אתם מייצרים 30 שניות שגורמות לסרטון להרגיש נכון.</p>
+
+  <h4 class="sub">המוזיקה</h4>
+  <p>תתארו סגנון, מצב רוח, קצב, כלי נגינה, מה השימוש, ומה להימנע ממנו. פרומפט אחד מוכן להעתקה:</p>
+  <div class="en">Create a short cinematic electronic instrumental track for a 30-second AI video. Inspiring, modern, clean and premium. Medium tempo, soft synths, subtle pulse, no vocals, no heavy drums.</div>
+  <div class="callout warn">🚫 <b>כלל הברזל: <span class="n">no vocals</span>.</b> ווקאל מתחת לקריינות, בעברית או באנגלית, זה שני אנשים שמדברים יחד. אם התוצאה חזרה עם שירה, תריצו שוב ותבקשו אינסטרומנטלי בלבד.</div>
+  <div class="callout tip">🎧 <b>נסו את זה:</b> תייצרו שני טראקים בסגנונות שונים ותשימו כל אחד מתחת לאותו וידאו בדיוק. הפריימים לא משתנים, והסרטון מרגיש אחר לגמרי. זו ההוכחה הכי טובה לכמה שסאונד הוא חצי מהעבודה.</div>
+
+  <h4 class="sub">ושני אפקטים קטנים</h4>
+  <p>אפקט קולי מדויק עושה לסרטון יותר ממוזיקה גדולה. הוא מה שגורם לתמונה להרגיש פיזית וקיימת: צעדים, דלת, נשימה, רשרוש נייר, רעש רחוב רחוק, <span class="n">whoosh</span> על מעבר, פופ קטן כשטקסט מופיע.</p>
+  <div class="callout key">🔎 <b>איפה משיגים:</b> ב-<span class="n">CapCut</span> יש ספריית סאונד אפקטס מובנית וחינמית, מחפשים בעברית או באנגלית ("<span class="n">whoosh</span>", "<span class="n">click</span>", "צעדים") וגוררים לטיימליין. וב-<span class="n">ElevenLabs</span> אפשר גם <b>לייצר</b> אפקט שלא קיים, על ידי תיאור שלו במילים: "<span class="n">heavy wooden door closing in an empty hall</span>".</div>
+  <div class="callout tip">🎯 <b>שניים מדויקים עדיפים על עשרה זרוקים.</b> אפקט שיושב על הפריים שבו הפעולה קורית נשמע מקצועי. אותו אפקט, שני פריימים אחרי, נשמע כמו טעות.</div>
+</section>
+
+<!-- ===== STEP 4 ===== -->
+<section class="card s2 reveal" id="s4">
+  <div class="step-head">
+    <div class="step-num">4</div>
+    <h3>עריכה: מתי בכלל עוברים לשוט הבא</h3>
+    <span class="of">04 / 05</span>
+  </div>
+  <p class="lead">קאט הוא לא "נגמרו לי השניות". קאט הוא הרגע שבו לצופה נגמר מה לעשות עם התמונה הזאת. זה החלק שלא הספקנו לגעת בו לעומק, אז הנה, מסודר.</p>
+
+  <h4 class="sub">ארבעה סימנים שאומרים "עכשיו"</h4>
+  <div class="cuts">
+    <div class="cut"><div class="k">1</div><div><b>המידע נגמר</b><p>כל שוט בא להגיד דבר אחד. ברגע שהצופה הבין אותו, הוא מתחיל לחכות. <span class="hl">שנייה של המתנה היא שנייה שאיבדתם.</span> אם אתם מתלבטים אם לקצר שוט, התשובה כמעט תמיד כן.</p></div></div>
+    <div class="cut"><div class="k">2</div><div><b>חותכים על התנועה, לא אחריה</b><p>יד שנשלחת, ראש שמסתובב, דלת שנפתחת: חותכים <span class="hl">בזמן שהתנועה קורית</span>. העין ממשיכה את התנועה לתוך השוט הבא ולא מרגישה את התפר. חיתוך אחרי שהתנועה נגמרה תמיד מרגיש כמו עצירה.</p></div></div>
+    <div class="cut"><div class="k">3</div><div><b>חותכים בין רעיון לרעיון בקריינות</b><p>לא באמצע מילה ולא באמצע נשימה. קאט שנופל <span class="hl">על נקודה או בין שני משפטים</span> נעלם לצופה. קאט באמצע מילה נשמע כמו תקלה, גם אם הפריים מושלם.</p></div></div>
+    <div class="cut"><div class="k">4</div><div><b>חותכים על הביט</b><p>אם יש מוזיקה עם פעימה, קאט שנוחת בדיוק על הביט מרגיש מכוון ומקצועי. אותו קאט חצי שנייה לפניו מרגיש שגיאה. <span class="hl">תזיזו את החיתוך, לא את המוזיקה.</span></p></div></div>
+  </div>
+
+  <h4 class="sub">איך עוברים, בלי שום אפקט</h4>
+  <div class="grid">
+    <div class="mini"><b>Action to Action</b><span>הפעולה מתחילה בשוט אחד ונמשכת בשוט הבא. המעבר הכי בלתי מורגש שיש.</span></div>
+    <div class="mini"><b>Look Match</b><span>היא מסתכלת, והשוט הבא מראה מה היא רואה. הצופה מרגיש שהוא בתוך הראש שלה.</span></div>
+    <div class="mini"><b>Detail Cut</b><span>מפריים רחב לפרט קטן: יד, עין, אובייקט. מוסיף מיד תחושה קולנועית וקצב.</span></div>
+    <div class="mini"><b>Reveal</b><span>השוט הבא חושף משהו שלא ידענו. זה המעבר שמחזיק את הצופה עד הסוף.</span></div>
+    <div class="mini"><b>Match Cut</b><span>אותה צורה, אותו צבע או אותה תנועה בשני שוטים שונים, והמעבר מרגיש כמו קסם.</span></div>
+    <div class="mini"><b>Hard Cut על שינוי אנרגיה</b><span>מרגוע למהיר. עובד מצוין כשהמוזיקה נכנסת או כשהמסר מתחלף.</span></div>
+  </div>
+
+  <h4 class="sub">ושני מעברים שהסאונד עושה בשבילכם</h4>
+  <div class="split">
+    <div class="jl">
+      <h5>הקול נכנס לפני התמונה <span>J-CUT</span></h5>
+      <p>מזיזים את האודיו של השוט הבא כחצי שנייה לפני החיתוך. הצופה <b>שומע ואז רואה</b>, וזה מרגיש זורם וקולנועי במקום מקוטע.</p>
+      <div class="vis"><span class="lbl">קול</span><span class="b" style="flex:2; background:#F43F5E;"></span><span class="b" style="flex:5; background:#A855F7;"></span></div>
+      <div class="vis"><span class="lbl">תמונה</span><span class="b" style="flex:3; background:#F43F5E; opacity:.5;"></span><span class="b" style="flex:4; background:#A855F7; opacity:.5;"></span></div>
+    </div>
+    <div class="jl">
+      <h5>הקול נשאר אחרי התמונה <span>L-CUT</span></h5>
+      <p>התמונה מתחלפת אבל האודיו הקודם ממשיך עוד רגע. <b>מחבר שני שוטים</b> שלא באמת מדברים אחד עם השני, ומרכך מעבר חד מדי.</p>
+      <div class="vis"><span class="lbl">קול</span><span class="b" style="flex:5; background:#F43F5E;"></span><span class="b" style="flex:2; background:#A855F7;"></span></div>
+      <div class="vis"><span class="lbl">תמונה</span><span class="b" style="flex:3; background:#F43F5E; opacity:.5;"></span><span class="b" style="flex:4; background:#A855F7; opacity:.5;"></span></div>
+    </div>
+  </div>
+  <div class="callout warn">🛑 <b>ומתי לא לחתוך:</b> אם השוט הבא מראה בדיוק את מה שכבר הבנו, זה לא מעבר אלא חזרה. במקום להוסיף שוט, תקצרו את הקיים.</div>
+  <div class="callout key">⏱️ <b>קצב, כלל אצבע:</b> בסרטון של 30 שניות עם ארבעה או חמישה שוטים, שוט ממוצע הוא 5 עד 8 שניות. בפתיחה חותכים מהר יותר כדי לתפוס, ולפריים האחרון נותנים לנשום שנייה נוספת לפני שהסרטון נגמר.</div>
+
+  <h4 class="sub">והכתוביות</h4>
+  <ul class="body">
+    <li><b>שורה קצרה.</b> שתי שורות מקסימום, לעולם לא שלוש.</li>
+    <li><b>פונט עגול וברור בעברית</b> (Rubik, Heebo, Assistant) עם ניגודיות גבוהה או משטח מאחור.</li>
+    <li><b>לא על הפנים.</b> כתובית שמכסה את הפה של הדמות יוצרת שתי בעיות במחיר אחת.</li>
+    <li><b>מדגישים מעט.</b> מילה אחת או שתיים בכל הסרטון. הדגשתם עשר מילים, לא הדגשתם כלום.</li>
+  </ul>
+  <div class="callout tip">✨ <b>כתוביות דינמיות, בזהירות.</b> מעולות למשפט קצר ולתוכן לרשתות, פוגעות בסרטון רגשי ושקט. שאלת השער: זה עוזר להבין, או מוכיח שיש לי אפקטים?</div>
+</section>
+
+<!-- ===== STEP 5 ===== -->
+<section class="card s5 reveal" id="s5">
+  <div class="step-head">
+    <div class="step-num">5</div>
+    <h3>המיקס, שתי הבדיקות והייצוא</h3>
+    <span class="of">05 / 05</span>
+  </div>
+  <p class="lead">כלל ראשון ואחרון: <b>הקול הוא המלך.</b> אם יש קריינות, כל השאר קיים כדי לתמוך בה.</p>
+  <ul class="body">
+    <li><b>קול</b> ברור וקדימה, בעוצמה אחידה לאורך כל הסרטון.</li>
+    <li><b>מוזיקה</b> מתחת לקול. אם אתם מתאמצים להבין מילה, המוזיקה חזקה מדי.</li>
+    <li><b>סאונד אפקטס</b> רק איפה שצריך, ורק כדי להדגיש רגע.</li>
+    <li><b>בלי באס ותופים שמכסים מילים.</b> זה מה שהופך סרטון טוב לעייף.</li>
+  </ul>
+  <div class="split" style="margin-top:18px;">
+    <div class="callout win" style="margin:0;">🙈 <b>מכבים את המסך.</b> מבינים את הסרטון רק מהקול? הקריינות עובדת.</div>
+    <div class="callout win" style="margin:0;">🔇 <b>מכבים את הסאונד.</b> מבינים את המבנה רק מהתמונה? העריכה עובדת.</div>
+  </div>
+  <div class="callout tip">אם אחת מהבדיקות נכשלה, אתם יודעים בדיוק לאיזה שלב לחזור. זו כל המטרה של התרגיל.</div>
+</section>
+
+<!-- ===== LIPSYNC ===== -->
+<div class="rule reveal"><span>ולמי שרוצה להתקדם</span></div>
+<section class="opt-wrap reveal" id="lip">
+  <span class="badge">⭐ רשות · לא חובה</span>
+  <h3>ליפסינק בעברית: דמות שבאמת מדברת</h3>
+  <p class="lead">החלק הכי מרשים וגם הכי עקשן. ליפסינק בעברית אפשרי, אבל לא תמיד יוצא מדויק, ולכן נתייחס אליו כניסוי ולא כדרישה.</p>
+
+  <h4 class="sub">חומר הגלם קובע 80 אחוז מהתוצאה</h4>
+  <ul class="body">
+    <li>פנים חזיתיות וברורות, פה גלוי לחלוטין</li>
+    <li>אין יד, מיקרופון או חפץ שעובר על הפנים</li>
+    <li>תאורה יציבה, רקע נקי, בלי תנועת ראש מוגזמת</li>
+    <li><b>משפט קצר אחד</b>, שש עד עשר מילים. זו הדרך היחידה לתוצאה טובה בניסיון ראשון.</li>
+  </ul>
+
+  <h4 class="sub">ואיזה כלי? לא "מה הכי טוב", אלא "מה יש לי ביד"</h4>
+  <div class="picker">
+    <div class="pick"><span class="cond">יש לי תמונה אחת של דמות</span><span class="ans">Hedra · HeyGen · Gemini Omni</span></div>
+    <div class="pick"><span class="cond">יש לי וידאו קיים שהדמות בו כבר נעה ומשחקת</span><span class="ans">Sync 3 · Gemini Omni</span></div>
+    <div class="pick"><span class="cond">אני צריך פרזנטר קבוע שיחזור בעוד סרטונים</span><span class="ans">HeyGen</span></div>
+    <div class="pick"><span class="cond">אני רוצה לתקן ולדייק בעברית דרך שיחה</span><span class="ans">Gemini Omni</span></div>
+  </div>
+
+  <div class="callout key" style="margin-top:18px;">👀 <b>מה בודקים בתוצאה:</b> הפה יושב על המילים? השיניים לא מתעוותות? העיניים נשארו חיות? הדמות עוד דומה לעצמה? ומעל הכל: <b>הצופה מקשיב לה, או עסוק בלזהות שמשהו מזויף?</b></div>
+
+  <details>
+    <summary>הליפסינק לא יוצא? הטבלה המהירה</summary>
+    <div class="fix"><b>הפה לא מתאים למילים</b> ← להאט את הקריינות, לקצר את המשפט, או לנסות כלי אחר</div>
+    <div class="fix"><b>הדמות נראית קפואה</b> ← וידאו מקור עם יותר תנועה, או תנועת ראש עדינה</div>
+    <div class="fix"><b>העברית נשמעת לא טבעית</b> ← לשכתב את הטקסט לשפה מדוברת יותר</div>
+    <div class="fix"><b>הפנים מתעוותות</b> ← תמונה חזיתית, חדה וברורה יותר</div>
+    <div class="fix"><b>הכל נראה טכני מדי</b> ← לעבור לקריינות ולוותר על הליפסינק</div>
+    <div class="fix"><b>כלל הברזל:</b> משנים פרמטר <b>אחד</b> בכל ניסיון, ומריצים שוב.</div>
+  </details>
+
+  <div class="callout tip" style="margin-top:14px;">🤔 <b>והשאלה הכי חשובה בסוף:</b> ליפסינק או קריינות היה נכון יותר לסרטון הזה? אם התשובה היא קריינות, זו החלטה מקצועית ולא כישלון. לפעמים העבודה הנכונה היא לעקוף את הליפסינק, לא לתקן אותו.</div>
+</section>
+
+<!-- ===== FINAL ===== -->
+<div class="rule reveal"><span>לפני שמייצאים</span></div>
+<section class="final reveal">
+  <h3>שש שאלות, ואז לוחצים ייצוא</h3>
+  <p class="lead">תעברו עליהן בכיוון אחד, בלי לתקן באמצע. רק בסוף מחליטים למה חוזרים.</p>
+  <ul class="q">
+    <li>ברור מה הסרטון אומר</li>
+    <li>הקול נקי, והמוזיקה לא משתלטת על המילים</li>
+    <li>הכתוביות קריאות ולא מסתירות פנים</li>
+    <li>אין שוט שנמרח או חוזר על עצמו</li>
+    <li>שלוש השניות הראשונות מספיק חזקות</li>
+    <li>הסרטון מרגיש כמו יצירה אחת, לא כמו אוסף</li>
+  </ul>
+  <div class="last">🏁 רוב התשובות כן? <b>מייצאים.</b> סרטון שיצא לאוויר ולמדתם ממנו שווה יותר מסרטון מושלם שנשאר בטיימליין.</div>
+</section>
+
+<details class="reveal" style="margin-top:16px;">
+  <summary>🔧 משהו נשבר? התיקונים המהירים</summary>
+  <div class="fix"><b>המוזיקה מכסה את הקריינות</b> ← להנמיך את הטראק, ולהוסיף <span class="n">no heavy drums</span> לפרומפט בפעם הבאה</div>
+  <div class="fix"><b>הקריינות בעברית נשמעת רובוטית</b> ← לשכתב מדובר, לקצר משפטים, להחליף פסיקים בנקודות</div>
+  <div class="fix"><b>הסרטון נמרח באמצע</b> ← לחתוך שוט שלם, לא לקצר את כולם בשנייה</div>
+  <div class="fix"><b>הכתוביות לא מסונכרנות</b> ← לפצל למשפטים קצרים ולהזיז ידנית, קטע אחרי קטע</div>
+  <div class="fix"><b>המעבר בין שני שוטים מרגיש חד</b> ← <span class="n">whoosh</span> על נקודת החיתוך, או להזיז את האודיו לפני התמונה</div>
+  <div class="fix"><b>הכל נקי אבל משעמם</b> ← חסר הוק בשלוש השניות הראשונות, וחסרים סאונד אפקטס</div>
+  <div class="fix"><b>לא מצליחים להחליט מה לא בסדר</b> ← להריץ את שתי הבדיקות: מסך כבוי, סאונד כבוי</div>
+  <div class="fix"><b>כלל הברזל:</b> משנים דבר <b>אחד</b> בכל פעם, ומקשיבים שוב מההתחלה.</div>
+</details>
+
+<!-- ===== FOOTER ===== -->
+<footer class="reveal">
+  <img class="logo" src="data:image/jpeg;base64,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" alt="Yuvi.AI">
+  <div class="thanks">מקווה שנהניתם ומלא בהצלחה!</div>
+  <div class="who">Yuvi.AI · סדנת יצירת וידאו בבינה מלאכותית · האוניברסיטה הפתוחה</div>
+  <a class="ig" href="https://www.instagram.com/yuvi.ai1/" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.96.24 2.65.51.71.28 1.31.65 1.91 1.25.6.6.97 1.2 1.25 1.91.27.69.46 1.48.51 2.65.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.24 1.96-.51 2.65-.28.71-.65 1.31-1.25 1.91-.6.6-1.2.97-1.91 1.25-.69.27-1.48.46-2.65.51-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.96-.24-2.65-.51-.71-.28-1.31-.65-1.91-1.25-.6-.6-.97-1.2-1.25-1.91-.27-.69-.46-1.48-.51-2.65C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.24-1.96.51-2.65.28-.71.65-1.31 1.25-1.91.6-.6 1.2-.97 1.91-1.25.69-.27 1.48-.46 2.65-.51C8.42 2.17 8.8 2.16 12 2.16zm0 1.98c-3.14 0-3.51.01-4.75.07-.95.04-1.47.2-1.81.34-.46.18-.79.39-1.13.74-.35.34-.56.67-.74 1.13-.14.34-.3.86-.34 1.81-.06 1.24-.07 1.61-.07 4.75s.01 3.51.07 4.75c.4.95.2 1.47.34 1.81.18.46.39.79.74 1.13.34.35.67.56 1.13.74.34.14.86.3 1.81.34 1.24.06 1.61.07 4.75.07s3.51-.01 4.75-.07c.95-.04 1.47-.2 1.81-.34.46-.18.79-.39 1.13-.74.35-.34.56-.67.74-1.13.14-.34.3-.86.34-1.81.06-1.24.07-1.61.07-4.75s-.01-3.51-.07-4.75c-.04-.95-.2-1.47-.34-1.81-.18-.46-.39-.79-.74-1.13-.34-.35-.67-.56-1.13-.74-.34-.14-.86-.3-1.81-.34-1.24-.06-1.61-.07-4.75-.07zm0 3.37a4.49 4.49 0 110 8.98 4.49 4.49 0 010-8.98zm0 7.4a2.91 2.91 0 100-5.82 2.91 2.91 0 000 5.82zm5.72-7.6a1.05 1.05 0 11-2.1 0 1.05 1.05 0 012.1 0z"/></svg>
+    <span>@yuvi.ai1</span>
+  </a>
+  <div class="fine">כל הכלים בדף נבחרו לפי מה שנלמד במפגש. אין חובה להשתמש בכולם, יש חובה להקשיב לתוצאה.</div>
+</footer>
+
+</div>
+
+<script>
+  document.documentElement.classList.add('js');
+  document.body.classList.add('js');
+
+  (function(){
+    const eq=document.getElementById('eq'); if(!eq) return;
+    const n=window.innerWidth<600?22:34;
+    for(let i=0;i<n;i++){
+      const b=document.createElement('i');
+      b.style.animationDelay=(-Math.random()*1.5).toFixed(2)+'s';
+      b.style.animationDuration=(1.05+Math.random()*1.1).toFixed(2)+'s';
+      b.style.height=(10+Math.random()*70)+'%';
+      eq.appendChild(b);
+    }
+  })();
+
+  if('IntersectionObserver' in window){
+    const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in'); io.unobserve(e.target);}});},{threshold:.08});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  } else { document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in')); }
+
+  const bar=document.getElementById('topbar');
+  const links=[...document.querySelectorAll('.topbar nav a')];
+  const targets=links.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+  let raf=null;
+  function onScroll(){
+    if(raf) return;
+    raf=requestAnimationFrame(()=>{
+      raf=null;
+      bar.classList.toggle('show', window.scrollY>460);
+      let idx=-1;
+      targets.forEach((t,i)=>{ if(t.getBoundingClientRect().top<170) idx=i; });
+      links.forEach((a,i)=>a.classList.toggle('on', i===idx));
+    });
+  }
+  window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
+</script>
+</body>
+</html>
