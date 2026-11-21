@@ -20,7 +20,12 @@
   var rowId = null;
 
   function say(text) { msg.textContent = text; msg.hidden = !text; }
-  function show(el) { [form, step2, done].forEach(function (x) { if (x) x.hidden = x !== el; }); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+  // Brings the box that holds the screens into view (on a phone it sits below the headline, not at the top).
+  function show(el) {
+    [form, step2, done].forEach(function (x) { if (x) x.hidden = x !== el; });
+    var box = form.parentElement;
+    if (box.getBoundingClientRect().top < 0) box.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
   function post(fields) {
     return fetch(ENDPOINT, { method: 'POST', body: new URLSearchParams(fields) })
       .then(function (r) { return r.json(); })
