@@ -44,8 +44,17 @@ input[type=email],input[type=tel]{direction:ltr;text-align:right}
 button{width:100%;font:inherit;font-weight:700;font-size:18px;background:var(--turq);color:var(--ink);border:0;border-radius:999px;padding:14px 22px;cursor:pointer;margin-top:6px;transition:transform .2s;box-shadow:0 12px 26px -14px var(--turq)}
 button:hover{transform:translateY(-2px)}
 button:disabled{opacity:.6;cursor:wait;transform:none}
+.q{font-weight:500;margin:18px 0 8px}
+.q small{color:var(--muted);font-weight:400}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}
+.chips button{width:auto;margin:0;font-size:15px;font-weight:500;padding:8px 14px;background:transparent;color:var(--white);border:1px solid rgba(255,255,255,.22);box-shadow:none}
+.chips button[aria-pressed="true"]{background:var(--turq);color:var(--ink);border-color:var(--turq)}
+.chips button:hover{transform:none;border-color:var(--turq)}
+#waitlist-more input[name=other]{margin-top:6px}
+button.skip,button.ghost{background:transparent;color:var(--muted);box-shadow:none;font-size:15px;font-weight:500}
+button.ghost{color:var(--white);border:1px solid rgba(255,255,255,.28);margin-top:16px}
 #waitlist-msg{color:var(--err);margin:12px 0 0;font-weight:500}
-#waitlist-done h2{font-family:"Secular One","Rubik",sans-serif;font-weight:400;font-size:30px;margin:6px 0 8px;color:var(--hl)}
+#waitlist-done h2,#waitlist-step2 h2{font-family:"Secular One","Rubik",sans-serif;font-weight:400;font-size:30px;margin:6px 0 8px;color:var(--hl)}
 .fine{color:var(--muted);font-size:14px;margin:18px 0 0}
 </style>
 </head>
@@ -55,26 +64,54 @@ button:disabled{opacity:.6;cursor:wait;transform:none}
   <a class="brand" href="https://www.instagram.com/yuvi.ai1/" target="_blank" rel="noopener"><img src="logo.png" alt="Yuvi.AI"><span>Yuvi.AI</span></a>
 
   <div class="card">
-    <span class="soon">בקרוב</span>
-    <h1>רשימת ההמתנה לקורס</h1>
-    <p class="lead">השאירו מייל או טלפון, ותהיו הראשונים לשמוע על הקורס, ולקבל עדכון ראשון על הסדנה הקרובה.</p>
-
     <form id="waitlist-form" novalidate>
+      <span class="soon">בקרוב</span>
+      <h1>רשימת ההמתנה לקורס</h1>
+      <p class="lead">השאירו מייל או טלפון, ותהיו הראשונים לשמוע כשהקורס נפתח.</p>
       <label for="email">מייל</label>
       <input id="email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="name@example.com">
       <div class="or">או</div>
       <label for="phone">טלפון</label>
       <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="050-0000000">
-      <label for="instagram">אינסטגרם <small>(לא חובה)</small></label>
-      <div class="ig"><input id="instagram" name="instagram" type="text" autocomplete="off" placeholder="your.handle"></div>
       <div class="trap" aria-hidden="true"><label for="website">אתר</label><input id="website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
       <button type="submit">אני רוצה לשמוע ראשון ←</button>
       <p id="waitlist-msg" role="alert" hidden></p>
     </form>
 
+    <div id="waitlist-step2" hidden>
+      <h2>נרשמת ✓</h2>
+      <p class="lead">עוד כמה שאלות קצרות, כדי שהקורס יענה בדיוק על מה שאתם צריכים. לא חובה.</p>
+      <form id="waitlist-more" novalidate>
+        <label for="name">איך קוראים לך?</label>
+        <input id="name" name="name" type="text" autocomplete="given-name" maxlength="60" placeholder="שם">
+
+        <p class="q">במה את/ה עוסק/ת?</p>
+        <div class="chips">
+          <button type="button" data-occupation aria-pressed="false">אדריכלות, עיצוב פנים ונדל״ן</button>
+          <button type="button" data-occupation aria-pressed="false">עיצוב, מיתוג וקריאייטיב</button>
+          <button type="button" data-occupation aria-pressed="false">וידאו ותוכן</button>
+          <button type="button" data-occupation aria-pressed="false">בעל/ת עסק</button>
+          <button type="button" data-occupation aria-pressed="false">סקרנים, בשביל עצמי</button>
+        </div>
+        <p class="q">מה הכי מעניין אותך ב-AI? <small>(אפשר כמה)</small></p>
+        <div class="chips">
+          <button type="button" data-interest aria-pressed="false">שהדמות או המוצר לא ישתנו בין שוטים</button>
+          <button type="button" data-interest aria-pressed="false">לפצח רעיון לפרסומת</button>
+          <button type="button" data-interest aria-pressed="false">לתכנן שוטים ותנועת מצלמה</button>
+          <button type="button" data-interest aria-pressed="false">להפיק סרטונים ללקוחות</button>
+        </div>
+        <input name="other" type="text" maxlength="120" placeholder="משהו אחר? (לא חובה)">
+        <label for="instagram">אינסטגרם <small>(לא חובה)</small></label>
+        <div class="ig"><input id="instagram" name="instagram" type="text" autocomplete="off" placeholder="your.handle"></div>
+        <button type="submit">שליחה ←</button>
+        <button type="button" class="skip" data-skip>דלג</button>
+      </form>
+    </div>
+
     <div id="waitlist-done" hidden>
-      <h2>נרשמתם ✓</h2>
-      <p class="lead">אעדכן אתכם ראשונים. בינתיים, כל המדריכים החדשים עולים ב-<a href="https://www.instagram.com/yuvi.ai1/" target="_blank" rel="noopener" style="color:var(--turq)">@yuvi.ai1</a>.</p>
+      <h2>תודה<span data-name-comma></span> ✓</h2>
+      <p class="lead">אעדכן אותך ראשון/ה כשהקורס נפתח. בינתיים, כל המדריכים החדשים עולים ב-<a href="https://www.instagram.com/yuvi.ai1/" target="_blank" rel="noopener" style="color:var(--turq)">@yuvi.ai1</a>.</p>
+      <button type="button" class="ghost" data-share>שלחו לחבר שנתקע עם זה</button>
     </div>
 
     <p class="fine">הפרטים משמשים רק לעדכונים על הקורס ועל הסדנה. אפשר לבקש להוריד אותם בכל רגע.</p>
