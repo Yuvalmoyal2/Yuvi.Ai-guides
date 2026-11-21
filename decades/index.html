@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>8 סגנונות אנימציה מ-100 שנה | Yuvi.AI</title>
+<meta name="description" content="8 סגנונות אנימציה, מ-1930 ועד 2000, וכל אחד במשפט אחד. הנוסחה והמשפטים המלאים. מדריך של Yuvi.AI.">
+<meta property="og:title" content="8 סגנונות אנימציה מ-100 שנה, שלא הכרתם">
+<meta property="og:description" content="וכל אחד מהם במשפט אחד. הנוסחה והמשפטים המלאים.">
+<meta property="og:image" content="media/hero.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;800&family=Suez+One&display=swap" rel="stylesheet">
+<style>
+/* Yuvi.AI guide · 8 decades · "the little cinema" (Yuval picked direction B, 21.11).
+   Wes Anderson symmetry + gouache illustration: mint, coral, cream, navy, butter. Headings in Suez One (marquee letters).
+   Every decade is a poster on the wall and a ticket with the full sentence. Original characters only. */
+:root{
+  --mint:#A8DCC8; --mint-d:#5FB39A; --coral:#E2553F; --coral-d:#B93A27; --cream:#FFF6E6; --paper:#FFFBF3;
+  --navy:#1F3B5A; --butter:#FFD66B; --pink:#F6B9C6; --ink:#2B2320; --muted:#7A6A60; --gold:#D8A93B;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:"Rubik",system-ui,Arial,sans-serif;font-size:17px;line-height:1.75;overflow-x:hidden;
+  background-image:repeating-linear-gradient(90deg,rgba(226,85,63,.06) 0 46px,transparent 46px 92px)}
+img{max-width:100%;display:block}
+a{color:inherit}
+button{font:inherit}
+.ltr{direction:ltr;unicode-bidi:isolate;display:inline-block}
+.wrap{max-width:1080px;margin:0 auto;padding-left:max(18px,env(safe-area-inset-left,0px));padding-right:max(18px,env(safe-area-inset-right,0px))}
+h1,h2,h3,.suez{font-family:"Suez One","Rubik",serif;font-weight:400}
+.progress{position:fixed;top:0;right:0;height:5px;width:0;background:repeating-linear-gradient(90deg,var(--coral) 0 14px,var(--butter) 14px 28px);z-index:70}
+
+/* bulbs: a row of glowing dots, blinking in a chase */
+.bulbs{height:16px;background:radial-gradient(circle,#FFF3C4 0 4px,var(--butter) 5px,transparent 6.5px) 0 50%/22px 16px repeat-x;animation:chase 1.2s steps(2) infinite}
+@keyframes chase{50%{background-position:11px 50%}}
+
+/* hero: the illustrated cinema, the title sits on its marquee board */
+.hero{position:relative;z-index:1;padding-block:26px 10px}
+.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.brand{display:inline-flex;gap:10px;align-items:center;direction:ltr;text-decoration:none;font-weight:800;font-size:19px;color:var(--navy)}
+.brand img{width:42px;height:42px;border-radius:50%;box-shadow:0 0 0 3px var(--paper),0 0 0 5px var(--coral)}
+.now{font-family:"Suez One",serif;color:var(--coral);font-size:15px;letter-spacing:.06em;background:var(--paper);border:2px solid var(--coral);border-radius:999px;padding:2px 14px}
+.hero-in{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:40px;align-items:center}
+.facade{position:relative;container-type:inline-size;border-radius:22px;overflow:hidden;box-shadow:0 30px 60px -30px rgba(43,35,32,.55);border:8px solid var(--paper);outline:3px solid var(--coral)}
+.facade img{width:100%;height:auto}
+.marquee{position:absolute;left:21.8%;right:21.8%;top:31.8%;height:9.6%;display:grid;place-items:center;text-align:center;color:var(--navy);line-height:1.02}
+.marquee small{display:block;font-family:"Suez One",serif;font-size:4.2cqw;letter-spacing:.01em}
+.marquee b{display:block;font-family:"Suez One",serif;font-weight:400;font-size:6.4cqw;color:var(--coral-d)}
+.marquee b,.marquee small{opacity:0;transform:translateY(8px);transition:opacity .6s,transform .7s}
+.loaded .marquee small{opacity:1;transform:none}.loaded .marquee b{opacity:1;transform:none;transition-delay:.25s}
+h1{font-size:clamp(34px,4.6vw,60px);line-height:1.08;margin:0 0 14px;color:var(--navy)}
+h1 em{font-style:normal;color:var(--coral);display:block;font-size:1.3em}
+h1 span{display:block;font-size:.5em;font-family:"Rubik",sans-serif;font-weight:700;color:var(--ink);margin-top:6px}
+.lead{font-size:18.5px;color:#4b3f39;max-width:520px;margin:0 0 22px}
+.cta-row{display:flex;gap:10px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--coral);color:#fff;padding:13px 24px;border-radius:999px;text-decoration:none;border:0;font-weight:700;cursor:pointer;transition:transform .2s;box-shadow:0 6px 0 var(--coral-d)}
+.btn:hover{transform:translateY(-2px)}
+.btn.ghost{background:var(--paper);color:var(--navy);box-shadow:0 6px 0 var(--mint-d);border:2px solid var(--mint-d)}
+
+/* now showing: the wall of eight posters */
+section{padding-block:56px 10px;position:relative;z-index:1}
+.kicker{font-family:"Suez One",serif;font-size:16px;letter-spacing:.06em;color:var(--coral);margin:0 0 4px}
+h2{font-size:clamp(30px,4.2vw,48px);line-height:1.12;margin:0 0 16px;color:var(--navy)}
+.wall{background:var(--mint);border-radius:22px;padding:14px 14px 18px;box-shadow:inset 0 0 0 6px var(--paper),0 24px 50px -30px rgba(43,35,32,.5)}
+.wall .bulbs{margin:0 6px 12px}
+.posters{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.wall-poster{position:relative;display:block;text-decoration:none;background:var(--paper);padding:7px 7px 0;border-radius:6px;box-shadow:0 0 0 3px var(--gold),0 14px 24px -14px rgba(0,0,0,.5);transition:transform .25s}
+.wall-poster:nth-child(odd){transform:rotate(-1.2deg)}.wall-poster:nth-child(even){transform:rotate(1.2deg)}
+.wall-poster:hover{transform:rotate(0) translateY(-6px) scale(1.03)}
+.wall-poster img{aspect-ratio:4/5;object-fit:cover;width:100%;border-radius:3px}
+.wall-poster span{display:flex;justify-content:space-between;align-items:baseline;gap:6px;padding:6px 4px 8px;font-weight:700;font-size:14px;color:var(--navy)}
+.wall-poster b{font-family:"Suez One",serif;font-weight:400;font-size:20px;color:var(--dc)}
+.wall-poster:nth-child(1) b,.wall-poster:nth-child(5) b{color:var(--navy)}
+
+/* the secret: two tickets */
+.secret{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px}
+.tk{position:relative;border-radius:16px;padding:22px 26px;background:var(--paper);box-shadow:0 18px 30px -22px rgba(0,0,0,.45);
+  -webkit-mask:radial-gradient(circle 13px at 0 50%,transparent 12px,#000 13px) left/51% 100% no-repeat,radial-gradient(circle 13px at 100% 50%,transparent 12px,#000 13px) right/51% 100% no-repeat;
+  mask:radial-gradient(circle 13px at 0 50%,transparent 12px,#000 13px) left/51% 100% no-repeat,radial-gradient(circle 13px at 100% 50%,transparent 12px,#000 13px) right/51% 100% no-repeat}
+.tk.bad{background:#EFE6D8;color:#6b5d55}
+.tk.good{background:var(--butter)}
+.tk small{display:block;font-weight:800;font-size:13px;letter-spacing:.06em;margin-bottom:4px}
+.tk.good small{color:var(--coral-d)}
+.tk q{display:block;font-family:"Suez One",serif;font-size:26px;quotes:none;margin-bottom:6px;color:var(--navy)}
+.tk.bad q{text-decoration:line-through;text-decoration-color:var(--coral);text-decoration-thickness:3px;color:#8a7a70}
+.tk p{margin:0}
+
+/* the projection booth: formula + builder */
+.booth{background:var(--navy);color:var(--cream);border-radius:24px;padding:30px 26px 26px;box-shadow:0 30px 60px -30px rgba(31,59,90,.7);position:relative;overflow:hidden}
+.booth::before{content:"";position:absolute;top:-40%;left:50%;width:70%;height:180%;transform:translateX(-50%) rotate(8deg);background:linear-gradient(180deg,rgba(255,214,107,.18),transparent 70%);clip-path:polygon(45% 0,55% 0,100% 100%,0 100%);pointer-events:none}
+.booth h2{color:var(--butter)}
+.booth .kicker{color:var(--pink)}
+.parts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:8px 0 18px;position:relative}
+.part{background:rgba(255,246,230,.08);border:2px dashed rgba(255,246,230,.25);border-radius:14px;padding:14px 14px 12px}
+.part i{display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:var(--coral);color:#fff;font-style:normal;font-weight:800;margin-bottom:6px}
+.part b{display:block;font-size:19px;color:var(--butter)}
+.part span{font-size:14px;color:#D8E3EC;line-height:1.5}
+.builder{background:var(--paper);color:var(--ink);border-radius:18px;padding:18px;display:grid;gap:12px;position:relative}
+.builder label{font-weight:700;font-size:15px;display:grid;gap:6px;color:var(--navy)}
+.builder select,.builder input{font:inherit;font-size:16px;padding:11px 14px;border-radius:12px;border:2px solid #E7D8C2;background:#fff;color:var(--ink);width:100%}
+.builder select:focus,.builder input:focus{outline:none;border-color:var(--coral)}
+.row2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}
+.booth .note{background:rgba(255,246,230,.1);border-right:4px solid var(--butter);padding:12px 16px;border-radius:8px;margin:16px 0 0;font-size:16px;color:#E9EEF3;position:relative}
+
+/* every decade: a poster + a ticket + the sentence */
+.show{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:22px 26px;align-items:center;margin:60px 0 0}
+.poster{margin:0;background:var(--paper);padding:10px 10px 0;border-radius:8px;box-shadow:0 0 0 4px var(--gold),0 0 0 10px var(--dc),0 30px 50px -26px rgba(0,0,0,.55);transform:rotate(-1.5deg);transition:transform .4s}
+.show:nth-of-type(even) .poster{transform:rotate(1.5deg)}
+.poster:hover{transform:rotate(0) scale(1.02)}
+.poster img{width:100%;height:auto;border-radius:4px}
+.poster figcaption{font-family:"Suez One",serif;text-align:center;font-size:22px;color:var(--navy);padding:4px 0 8px}
+.ticket{display:grid;grid-template-columns:84px minmax(0,1fr);background:var(--paper);border-radius:16px;box-shadow:0 22px 36px -26px rgba(0,0,0,.5);overflow:hidden}
+.stub{background:var(--dc);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;border-left:3px dashed rgba(255,255,255,.7);text-shadow:0 1px 0 rgba(0,0,0,.25);transform-origin:top right;transition:transform .6s cubic-bezier(.3,1.4,.5,1)}
+.stub b{font-family:"Suez One",serif;font-weight:400;font-size:34px;line-height:1}
+.stub span{font-size:12px;font-weight:800;letter-spacing:.05em}
+.show.torn .stub{transform:rotate(-8deg) translateY(4px)}
+.tbody{padding:18px 22px 14px}
+.tbody .year{font-family:"Suez One",serif;font-size:clamp(50px,6.4vw,76px);line-height:.9;color:var(--dc);margin:0;-webkit-text-stroke:1px rgba(43,35,32,.15)}
+.tbody h3{font-size:clamp(26px,3.2vw,36px);line-height:1.1;margin:4px 0 8px;color:var(--navy)}
+.tbody .type{display:inline-block;background:var(--navy);color:var(--cream);border-radius:999px;padding:3px 14px;font-weight:700;font-size:15px;margin:0 0 10px}
+.type .ltr{color:var(--butter)}
+.tbody p{margin:0 0 8px;font-size:16.5px;color:#4b3f39}
+.tbody b{color:var(--ink)}
+.show .prompt{grid-column:1/-1}
+
+/* prompt box: a strip of film */
+.prompt{background:var(--navy);border-radius:16px;overflow:hidden;box-shadow:0 26px 46px -30px rgba(31,59,90,.8);color:#EEF2F6;position:relative}
+.prompt::before,.prompt::after{content:"";position:absolute;left:0;right:0;height:9px;background:repeating-linear-gradient(90deg,transparent 0 9px,rgba(255,246,230,.25) 9px 18px);pointer-events:none}
+.prompt::before{top:3px}.prompt::after{bottom:3px}
+.prompt-top{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:16px 16px 10px;border-bottom:1px solid rgba(255,255,255,.1)}
+.ptitle{font-family:"Suez One",serif;color:var(--butter);font-size:16px;white-space:nowrap}
+.lang{display:flex;background:rgba(255,255,255,.1);border-radius:999px;padding:3px}
+.lang button{border:0;background:none;color:#C9D4DE;font-weight:700;font-size:13px;padding:4px 12px;border-radius:999px;cursor:pointer}
+.lang button.on{background:var(--cream);color:var(--navy)}
+.copy{border:0;background:var(--coral);color:#fff;font-weight:700;font-size:14px;border-radius:999px;padding:7px 18px;cursor:pointer;box-shadow:0 3px 0 var(--coral-d);transition:transform .15s}
+.copy:active{transform:translateY(2px)}.copy.ok{background:var(--butter);color:var(--navy);box-shadow:0 3px 0 var(--gold)}
+.prompt pre{margin:0;padding:16px 22px 24px;white-space:pre-wrap;word-break:break-word;font-family:"Rubik",sans-serif;font-size:16px;line-height:1.75}
+.prompt pre[dir=ltr]{text-align:left;font-family:ui-monospace,Consolas,monospace;font-size:14.5px}
+
+/* after the credits: the bonus */
+.credits{display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:20px;align-items:center;background:var(--pink);border-radius:24px;padding:28px 26px;box-shadow:inset 0 0 0 6px var(--paper)}
+.credits h2{margin-bottom:8px}
+.credits p{margin:0 0 12px}
+.credits img{width:100%;animation:bob 3.2s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-8px) rotate(-2deg)}}
+.credits .note{background:rgba(255,251,243,.7);border-right:4px solid var(--coral);padding:10px 14px;border-radius:8px;margin-top:12px;font-size:16px}
+
+/* summary + premiere (waitlist) */
+.sum{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;counter-reset:s}
+.sum div{counter-increment:s;background:var(--paper);border-radius:16px;padding:20px;box-shadow:0 14px 26px -20px rgba(0,0,0,.4);border-top:6px solid var(--mint-d)}
+.sum div:nth-child(2){border-top-color:var(--coral)}.sum div:nth-child(3){border-top-color:var(--butter)}
+.sum div::before{content:counter(s);display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--navy);color:var(--butter);font-family:"Suez One",serif;margin-bottom:8px}
+.premiere{display:grid;grid-template-columns:minmax(0,1fr) 200px;gap:20px;align-items:end;background:var(--coral);color:#fff;border-radius:26px;padding:16px 30px 0;margin:64px 0 0;box-shadow:inset 0 0 0 6px var(--paper),0 30px 60px -30px rgba(185,58,39,.7);overflow:hidden}
+.premiere .bulbs{grid-column:1/-1;margin:6px 0 6px}
+.premiere .txt{padding:8px 0 30px}
+.premiere .soon{display:inline-block;background:var(--navy);color:var(--butter);font-family:"Suez One",serif;font-size:15px;border-radius:999px;padding:2px 14px;margin-bottom:8px}
+.premiere h2{color:#fff;margin-bottom:8px}
+.premiere p{font-size:18px;max-width:600px;margin:0 0 18px}
+.premiere .btn{background:var(--navy);box-shadow:0 6px 0 #0f2236;font-size:18px;padding:15px 26px}
+.premiere img{width:100%;align-self:end}
+footer{text-align:center;color:var(--muted);padding:56px 18px 70px}
+footer .bye{font-family:"Suez One",serif;font-size:clamp(24px,3vw,32px);color:var(--navy);margin:0 0 6px}
+footer a{color:var(--coral);font-weight:700}
+
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .7s,transform .9s cubic-bezier(.2,.8,.2,1)}
+.reveal.in{opacity:1;transform:none}
+.confetti{position:fixed;pointer-events:none;z-index:90;width:9px;height:14px;border-radius:2px}
+
+@media (max-width:860px){
+  .hero-in,.secret,.show,.row2,.credits,.premiere{grid-template-columns:minmax(0,1fr)}
+  .hero-in{gap:22px}
+  .posters{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .parts{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .sum{grid-template-columns:minmax(0,1fr)}
+  .booth{padding:26px 16px 18px}
+  .credits img{width:150px;margin:0 auto}
+  .premiere{padding:14px 20px 0}
+  .premiere img{width:150px;margin:0 auto}
+  .poster,.show:nth-of-type(even) .poster{transform:none}
+  .ticket{grid-template-columns:64px minmax(0,1fr)}
+  .stub b{font-size:26px}
+  .prompt-top{flex-wrap:wrap}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal,.marquee b,.marquee small{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+
+<header class="hero wrap">
+  <div class="topbar">
+    <a class="brand" href="https://www.instagram.com/yuvi.ai1/" target="_blank" rel="noopener"><img src="media/logo.png" alt="Yuvi.AI"><span>Yuvi.AI</span></a>
+    <span class="now">עכשיו בהקרנה</span>
+  </div>
+  <div class="hero-in">
+    <figure class="facade" style="margin:0">
+      <img src="media/hero.jpg" alt="קולנוע קטן בכיכר, ובתור: חתול על שואב רובוטי, ילד בובת עץ, סבתא עם טלפון ומקרר חכם" width="1152" height="1440">
+      <div class="marquee" aria-hidden="true"><div><small>עכשיו בהקרנה</small><b>8 עשורים של אנימציה</b></div></div>
+    </figure>
+    <div>
+      <h1>8 סגנונות אנימציה מ-100 שנה<em>שלא הכרתם</em><span>ואיך מוציאים כל אחד במשפט אחד</span></h1>
+      <p class="lead">כל המשפטים מהקרוסלה, מלאים ומוכנים להעתקה. ולפניהם, הנוסחה שמאחוריהם, כדי שתכתבו סצנה משלכם בכל סגנון.</p>
+      <div class="cta-row">
+        <a class="btn" href="#wall">למשפטים ←</a>
+        <a class="btn ghost" href="#formula">הנוסחה</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="wrap" id="wall">
+    <p class="kicker">עכשיו בהקרנה</p>
+    <h2>8 עשורים, 8 פוסטרים</h2>
+    <div class="wall reveal"><div class="bulbs"></div><div class="posters"><a class="wall-poster" href="#d1930" style="--dc:#E4E0D6"><img src="media/1930.jpg" alt="צינור גומי" loading="lazy"><span><b>1930</b>צינור גומי</span></a><a class="wall-poster" href="#d1940" style="--dc:#C9A27A"><img src="media/1940.jpg" alt="בובות עץ" loading="lazy"><span><b>1940</b>בובות עץ</span></a><a class="wall-poster" href="#d1950" style="--dc:#2E9C93"><img src="media/1950.jpg" alt="גרפי ושטוח" loading="lazy"><span><b>1950</b>גרפי ושטוח</span></a><a class="wall-poster" href="#d1960" style="--dc:#D6338A"><img src="media/1960.jpg" alt="פסיכדלי" loading="lazy"><span><b>1960</b>פסיכדלי</span></a><a class="wall-poster" href="#d1970" style="--dc:#8A8A3C"><img src="media/1970.jpg" alt="גזרי נייר" loading="lazy"><span><b>1970</b>גזרי נייר</span></a><a class="wall-poster" href="#d1980" style="--dc:#F07B2A"><img src="media/1980.jpg" alt="שבת בבוקר" loading="lazy"><span><b>1980</b>שבת בבוקר</span></a><a class="wall-poster" href="#d1990" style="--dc:#7A2E5A"><img src="media/1990.jpg" alt="קולנוע מצויר" loading="lazy"><span><b>1990</b>קולנוע מצויר</span></a><a class="wall-poster" href="#d2000" style="--dc:#9BC53D"><img src="media/2000.jpg" alt="תלת-ממד ראשון" loading="lazy"><span><b>2000</b>תלת-ממד ראשון</span></a></div></div>
+  </section>
+
+  <section class="wrap">
+    <p class="kicker">הסוד</p>
+    <h2>לא מבקשים סגנון. נותנים לו שנה.</h2>
+    <div class="secret reveal">
+      <div class="tk bad"><small>מה רוב האנשים כותבים</small><q>"בסגנון מצויר"</q><p>"סגנון" זו מילה שהמודל ממלא בממוצע. אז הוא מחזיר את מה שכולם מקבלים: תמונה יפה, נקייה, ומתה.</p></div>
+      <div class="tk good"><small>מה כדאי לכתוב</small><q>"אנימציה משנת 1930"</q><p>שנה היא עולם עם חוקים שהמודל מכיר: איך מציירים קו, אילו צבעים יש, איך הדמויות זזות, ואפילו השריטות על הסרט.</p></div>
+    </div>
+  </section>
+
+  <section class="wrap" id="formula">
+    <div class="booth reveal">
+      <p class="kicker">תא ההקרנה</p>
+      <h2>הנוסחה: 4 חלקים במשפט אחד</h2>
+      <div class="parts">
+        <div class="part"><i>1</i><b>שנה</b><span>זה העולם</span></div>
+        <div class="part"><i>2</i><b>החוקים</b><span>ככה הוא נראה</span></div>
+        <div class="part"><i>3</i><b>פעולה אחת</b><span>זה הסיפור</span></div>
+        <div class="part"><i>4</i><b>סוף</b><span>על זה הפריים עוצר</span></div>
+      </div>
+      <p class="note"><b>בלי פעולה יוצאת תמונה יפה ומתה.</b> המשפטים בהמשך מפורטים יותר מהנוסחה, כי תיארתי בהם את הסצנה. תעתיקו אחד, ותחליפו רק את הסיפור.</p>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <p class="kicker">ההקרנות</p>
+    <h2>המשפטים המלאים, אחד לכל עשור</h2>
+    <p style="color:#4b3f39;max-width:720px;margin:0">כל משפט הוציא את הפוסטר שלידו ב-<span class="ltr">GPT Image 2.6</span>, בעברית בדיוק כמו שכתבתי אותו. הגרסה באנגלית היא תרגום, לכלים שעובדים טוב יותר באנגלית.</p>
+    
+    <article class="show reveal" id="d1930" style="--dc:#E4E0D6">
+      <figure class="poster"><img src="media/1930.jpg" alt="שואב רובוטי רודף אחרי חתול, עד שהחתול רוכב עליו." loading="lazy" width="960" height="1200"><figcaption>1930</figcaption></figure>
+      <div class="ticket">
+        <div class="stub"><span>הקרנה</span><b>01</b><span>מתוך 08</span></div>
+        <div class="tbody">
+          <p class="year">1930</p>
+          <h3>צינור גומי</h3>
+          <p class="type">מקלידים: <span class="ltr">Rubber hose</span></p>
+          <p class="origin">הסגנון של הסרטים המצוירים האמריקאיים של שנות ה-20 וה-30: ידיים ורגליים בלי מפרקים, שזזות כמו צינור גומי.</p>
+          <p class="rules"><b>החוקים:</b> שחור-לבן, קווים עבים ועגולים, ידיים כמו צינור גומי, שריטות של סרט ישן</p>
+          <p class="story"><b>הסיפור:</b> שואב רובוטי רודף אחרי חתול, עד שהחתול רוכב עליו.</p>
+        </div>
+      </div>
+      <div class="prompt" data-he="אנימציה משנת 1930: שחור-לבן, קווי מתאר עבים ועגולים, דמויות עם ידיים ורגליים גמישות כמו צינור גומי, עיניים בצורת פרוסת עוגה, הצללה פשוטה, גרעין ושריטות של סרט ישן. בסלון של היום: שואב אבק רובוטי עגול רודף אחרי חתול על הספה ועל המדפים, והחתול קופץ עליו ורוכב עליו כמו על סוס דוהר, עם כובע קאובוי קטן. הרהיטים מתעקמים מהמהירות. פריים אחד, הרגע הכי מצחיק." data-en="A 1930 animation: black and white, thick round outlines, characters with bendy rubber-hose arms and legs, pie-cut eyes, simple shading, old film grain and scratches. In a modern living room: a round robot vacuum chases a cat across the sofa and the shelves, and the cat jumps on and rides it like a galloping horse, wearing a tiny cowboy hat. The furniture bends from the speed. One frame, the funniest moment. No text.">
+        <div class="prompt-top"><span class="ptitle">המשפט המלא</span>
+          <div class="lang"><button type="button" class="on" data-l="he">עברית</button><button type="button" data-l="en">English</button></div>
+          <button class="copy" type="button">העתקה</button></div>
+        <pre dir="rtl">אנימציה משנת 1930: שחור-לבן, קווי מתאר עבים ועגולים, דמויות עם ידיים ורגליים גמישות כמו צינור גומי, עיניים בצורת פרוסת עוגה, הצללה פשוטה, גרעין ושריטות של סרט ישן. בסלון של היום: שואב אבק רובוטי עגול רודף אחרי חתול על הספה ועל המדפים, והחתול קופץ עליו ורוכב עליו כמו על סוס דוהר, עם כובע קאובוי קטן. הרהיטים מתעקמים מהמהירות. פריים אחד, הרגע הכי מצחיק.</pre>
+      </div>
+    </article>
+    <article class="show reveal" id="d1940" style="--dc:#C9A27A">
+      <figure class="poster"><img src="media/1940.jpg" alt="כל המשפחה מחפשת את סיסמת הוויי-פיי, חוץ מהילד." loading="lazy" width="960" height="1200"><figcaption>1940</figcaption></figure>
+      <div class="ticket">
+        <div class="stub"><span>הקרנה</span><b>02</b><span>מתוך 08</span></div>
+        <div class="tbody">
+          <p class="year">1940</p>
+          <h3>בובות עץ</h3>
+          <p class="type">מקלידים: <span class="ltr">Stop-motion puppets</span></p>
+          <p class="origin">בשנות ה-40 ג&#x27;ורג&#x27; פאל צילם בהוליווד סרטים קצרים עם בובות עץ מגולפות: בובה חדשה לכל תנועה, אלפי בובות לסרט אחד.</p>
+          <p class="rules"><b>החוקים:</b> בובות עץ מגולפות, מפרקים נראים, תפאורה מקרטון, אור סטודיו חם</p>
+          <p class="story"><b>הסיפור:</b> כל המשפחה מחפשת את סיסמת הוויי-פיי, חוץ מהילד.</p>
+        </div>
+      </div>
+      <div class="prompt" data-he="אנימציית סטופ-מושן משנת 1940: בובות עץ מגולפות וצבועות ביד, מפרקים נראים, תפאורה מקרטון ועץ, תאורת סטודיו חמה, צבעים רכים של סרט צבעוני ישן, מעט הבהוב בין פריימים. בסלון קטן: משפחה שלמה של בובות עץ, אבא, אמא, סבתא וילד, הופכת את הבית בחיפוש אחרי סיסמת הוויי-פיי. אבא זוחל על הבטן מתחת לספה, וחצי הגוף שלו בחוץ עם הרגליים באוויר. סבתא מרימה את השטיח, ואמא מטלטלת את הנתב מעל הראש. רק הילד עומד רגוע בצד, מחזיק מאחורי הגב פתק קטן, עם חיוך. כל דמות עם שתי ידיים ושתי רגליים, וכל דבר במקום הגיוני. פריים אחד, הרגע הכי מצחיק. בלי טקסט." data-en="A 1940 stop-motion animation: hand-carved, hand-painted wooden puppets with visible joints, a cardboard and wood set, warm studio light, soft colours of an old colour film, a slight flicker between frames. In a small living room: a whole wooden puppet family, father, mother, grandmother and boy, turns the house upside down looking for the Wi-Fi password. The father crawls on his belly under the sofa, half of him sticking out with his legs in the air; the grandmother lifts the rug; the mother shakes the router over her head. Only the boy stands calmly to the side, hiding a small note behind his back, smiling. Every figure has two hands and two legs, everything in a believable place. One frame, the funniest moment. No text.">
+        <div class="prompt-top"><span class="ptitle">המשפט המלא</span>
+          <div class="lang"><button type="button" class="on" data-l="he">עברית</button><button type="button" data-l="en">English</button></div>
+          <button class="copy" type="button">העתקה</button></div>
+        <pre dir="rtl">אנימציית סטופ-מושן משנת 1940: בובות עץ מגולפות וצבועות ביד, מפרקים נראים, תפאורה מקרטון ועץ, תאורת סטודיו חמה, צבעים רכים של סרט צבעוני ישן, מעט הבהוב בין פריימים. בסלון קטן: משפחה שלמה של בובות עץ, אבא, אמא, סבתא וילד, הופכת את הבית בחיפוש אחרי סיסמת הוויי-פיי. אבא זוחל על הבטן מתחת לספה, וחצי הגוף שלו בחוץ עם הרגליים באוויר. סבתא מרימה את השטיח, ואמא מטלטלת את הנתב מעל הראש. רק הילד עומד רגוע בצד, מחזיק מאחורי הגב פתק קטן, עם חיוך. כל דמות עם שתי ידיים ושתי רגליים, וכל דבר במקום הגיוני. פריים אחד, הרגע הכי מצחיק. בלי טקסט.</pre>
+      </div>
+    </article>
+    <article class="show reveal" id="d1950" style="--dc:#2E9C93">
+      <figure class="poster"><img src="media/1950.jpg" alt="שיחת וידאו שמתרבה, עד שהוא בורח מהחלון." loading="lazy" width="960" height="1200"><figcaption>1950</figcaption></figure>
+      <div class="ticket">
+        <div class="stub"><span>הקרנה</span><b>03</b><span>מתוך 08</span></div>
+        <div class="tbody">
+          <p class="year">1950</p>
+          <h3>גרפי ושטוח</h3>
+          <p class="type">מקלידים: <span class="ltr">UPA style</span></p>
+          <p class="origin">בתחילת שנות ה-50 אולפן קטן בשם UPA מרד בריאליזם: צורות שטוחות, מעט צבעים ותנועה חסכונית, וזכה על זה באוסקר.</p>
+          <p class="rules"><b>החוקים:</b> צורות גיאומטריות, טורקיז, חרדל ואדום עמום, קווים דקים ולא מושלמים</p>
+          <p class="story"><b>הסיפור:</b> שיחת וידאו שמתרבה, עד שהוא בורח מהחלון.</p>
+        </div>
+      </div>
+      <div class="prompt" data-he="אנימציה גרפית ושטוחה משנת 1955: צורות גיאומטריות פשוטות, מעט צבעים (טורקיז, חרדל, אדום עמום, שמנת), קווים דקים ולא מושלמים, רקעים מינימליסטיים, דמויות זוויתיות. בחדר עבודה בבית: עובד בחליפה יושב מול מחשב, ושיחת הווידאו מתפצלת לעשרות ריבועים קטנים של פרצופים שמדברים בבת אחת ועפים מהמסך וממלאים את החדר כמו ניירות ברוח. הוא בורח בקפיצה דרך החלון הפתוח, והעניבה שלו עפה מאחוריו. פריים אחד, הרגע הכי מצחיק. בלי טקסט." data-en="A flat graphic 1955 animation: simple geometric shapes, a few colours (turquoise, mustard, muted red, cream), thin imperfect lines, minimal backgrounds, angular characters. In a home office: a worker in a suit sits at a computer, and the video call splits into dozens of small tiles of talking faces that fly out of the screen and fill the room like papers in the wind. He leaps out through the open window, his tie flying behind him. One frame, the funniest moment. No text.">
+        <div class="prompt-top"><span class="ptitle">המשפט המלא</span>
+          <div class="lang"><button type="button" class="on" data-l="he">עברית</button><button type="button" data-l="en">English</button></div>
+          <button class="copy" type="button">העתקה</button></div>
+        <pre dir="rtl">אנימציה גרפית ושטוחה משנת 1955: צורות גיאומטריות פשוטות, מעט צבעים (טורקיז, חרדל, אדום עמום, שמנת), קווים דקים ולא מושלמים, רקעים מינימליסטיים, דמויות זוויתיות. בחדר עבודה בבית: עובד בחליפה יושב מול מחשב, ושיחת הווידאו מתפצלת לעשרות ריבועים קטנים של פרצופים שמדברים בבת אחת ועפים מהמסך וממלאים את החדר כמו ניירות ברוח. הוא בורח בקפיצה דרך החלון הפתוח, והעניבה שלו עפה מאחוריו. פריים אחד, הרגע הכי מצחיק. בלי טקסט.</pre>
+      </div>
+    </article>
+    <article class="show reveal" id="d1960" style="--dc:#D6338A">
+      <figure class="poster"><img src="media/1960.jpg" alt="היא מורידה את האוזניות, והעיר מתפוצצת עליה." loading="lazy" width="960" height="1200"><figcaption>1960</figcaption></figure>
+      <div class="ticket">
+        <div class="stub"><span>הקרנה</span><b>04</b><span>מתוך 08</span></div>
+        <div class="tbody">
+          <p class="year">1960</p>
+          <h3>פסיכדלי</h3>
+          <p class="type">מקלידים: <span class="ltr">Psychedelic pop art</span></p>
+          <p class="origin">סוף שנות ה-60, פופ-ארט ומוזיקה: צבעי קשת, ספירלות ופרחים, כמו בסרט המצויר של הביטלס מ-1968.</p>
+          <p class="rules"><b>החוקים:</b> פופ-ארט, פסי קשת מעוקלים, ספירלות ופרחים ענקיים</p>
+          <p class="story"><b>הסיפור:</b> היא מורידה את האוזניות, והעיר מתפוצצת עליה.</p>
+        </div>
+      </div>
+      <div class="prompt" data-he="אנימציה פסיכדלית משנת 1968: פופ-ארט, פסים מעוקלים בצבעי קשת, ספירלות, פרחים גדולים, קווי מתאר רכים, צבעים רוויים. ברחוב עמוס בעיר: בחורה צעירה מורידה אוזניות עם ביטול רעשים, ובאותו רגע כל רעשי העיר, צופרים, כלבים נובחים, מקדחה ואוטובוס, מתפוצצים סביבה כגלי צבע ענקיים ומתפתלים. השיער שלה עף אחורה מהעוצמה, והעיניים פקוחות לרווחה. פריים אחד, הרגע הכי מצחיק. בלי טקסט." data-en="A psychedelic 1968 animation: pop art, curving rainbow stripes, spirals, giant flowers, soft outlines, saturated colours. On a busy city street: a young woman pulls off her noise-cancelling headphones, and at that moment all the city noise, horns, barking dogs, a drill and a bus, bursts around her as huge twisting waves of colour. Her hair flies back from the force, her eyes wide open. One frame, the funniest moment. No text.">
+        <div class="prompt-top"><span class="ptitle">המשפט המלא</span>
+          <div class="lang"><button type="button" class="on" data-l="he">עברית</button><button type="button" data-l="en">English</button></div>
+          <button class="copy" type="button">העתקה</button></div>
+        <pre dir="rtl">אנימציה פסיכדלית משנת 1968: פופ-ארט, פסים מעוקלים בצבעי קשת, ספירלות, פרחים גדולים, קווי מתאר רכים, צבעים רוויים. ברחוב עמוס בעיר: בחורה צעירה מורידה אוזניות עם ביטול רעשים, ובאותו רגע כל רעשי העיר, צופרים, כלבים נובחים, מקדחה ואוטובוס, מתפוצצים סביבה כגלי צבע ענקיים ומתפתלים. השיער שלה עף אחורה מהעוצמה, והעיניים פקוחות לרווחה. פריים אחד, הרגע הכי מצחיק. בלי טקסט.</pre>
+      </div>
+    </article>
+    <article class="show reveal" id="d1970" style="--dc:#8A8A3C">
+      <figure class="poster"><img src="media/1970.jpg" alt="הקופה לא מזהה פריט, אז הוא שוקל את עצמו." loading="lazy" width="960" height="1200"><figcaption>1970</figcaption></figure>
+      <div class="ticket">
+        <div class="stub"><span>הקרנה</span><b>05</b><span>מתוך 08</span></div>
+        <div class="tbody">
+          <p class="year">1970</p>
+          <h3>גזרי נייר</h3>
+          <p class="type">מקלידים: <span class="ltr">Cut-out animation</span></p>
+          <p class="origin">מונטי פייתון: טרי גיליאם הזיז גזרי נייר של תחריטים ויקטוריאניים מול המצלמה, כי זו הייתה הדרך הכי מהירה להנפיש.</p>
+          <p class="rules"><b>החוקים:</b> גזרי נייר ותחריטים ישנים, מפרקים מסיכות, תנועה בקפיצות</p>
+          <p class="story"><b>הסיפור:</b> הקופה לא מזהה פריט, אז הוא שוקל את עצמו.</p>
+        </div>
+      </div>
+      <div class="prompt" data-he="אנימציית גזרי נייר משנת 1972: קולאז׳ של תחריטים ישנים מהמאה ה-19 וגזרי נייר צבעוניים, דמויות עם מפרקים מסיכות פליז קטנות, ראש גדול על גוף קטן, צבעים דהויים של דפוס ישן, צל דק מתחת לכל גזיר, הכל שטוח כמו על שולחן. בסופרמרקט: קופה לשירות עצמי מהבהבת באדום עם פרצוף כועס על המסך, וקונה עם כובע צילינדר ושפם עומד בעצמו על משטח השקילה, ידיים מורמות, כאילו הוא הפריט שלא זוהה. תור ארוך של אנשים גזורים מאחוריו מסתכל בהלם. כל דמות עם שתי ידיים ושתי רגליים. פריים אחד, הרגע הכי מצחיק. בלי טקסט." data-en="A 1972 paper cut-out animation: a collage of old 19th-century engravings and coloured paper cut-outs, figures jointed with small brass paper fasteners, a big head on a small body, faded colours of old print, a thin shadow under every cut-out, everything flat as if on a table. In a supermarket: a self-checkout flashes red with an angry face on its screen, and a shopper in a top hat with a moustache stands on the weighing plate himself, hands raised, as if he is the unidentified item. A long queue of cut-out people behind him stares in shock. Every figure has two hands and two legs. One frame, the funniest moment. No text.">
+        <div class="prompt-top"><span class="ptitle">המשפט המלא</span>
+          <div class="lang"><button type="button" class="on" data-l="he">עברית</button><button type="button" data-l="en">English</button></div>
+          <button class="copy" type="button">העתקה</button></div>
+        <pre dir="rtl">אנימציית גזרי נייר משנת 1972: קולאז׳ של תחריטים ישנים מהמאה ה-19 וגזרי נייר צבעוניים, דמויות עם מפרקים מסיכות פליז קטנות, ראש גדול על גוף קטן, צבעים דהויים של דפוס ישן, צל דק מתחת לכל גזיר, הכל שטוח כמו על שולחן. בסופרמרקט: קופה לשירות עצמי מהבהבת באדום עם פרצוף כועס על המסך, וקונה עם כובע צילינדר ושפם עומד בעצמו על משטח השקילה, ידיים מורמות, כאילו הוא הפריט שלא זוהה. תור ארוך של אנשים גזורים מאחוריו מסתכל בהלם. כל דמות עם שתי ידיים ושתי רגליים. פריים אחד, הרגע הכי מצחיק. בלי טקסט.</pre>
+      </div>
+    </article>
+    <article class="show reveal" id="d1980" style="--dc:#F07B2A">
+      <figure class="poster"><img src="media/1980.jpg" alt="רחפן גונב פיצה, והגבינה נמתחת כמו חבל." loading="lazy" width="960" height="1200"><figcaption>1980</figcaption></figure>
+      <div class="ticket">
+        <div class="stub"><span>הקרנה</span><b>06</b><span>מתוך 08</span></div>
+        <div class="tbody">
+          <p class="year">1980</p>
+          <h3>שבת בבוקר</h3>
+          <p class="type">מקלידים: <span class="ltr">Saturday morning cartoon</span></p>
+          <p class="origin">סדרות הבוקר של שבת בטלוויזיה האמריקאית: צלולואיד מצויר ביד, צבעים שטוחים וקו שחור עבה.</p>
+          <p class="rules"><b>החוקים:</b> צבעים שטוחים ורוויים, קו שחור עבה, רעש של קלטת וידאו</p>
+          <p class="story"><b>הסיפור:</b> רחפן גונב פיצה, והגבינה נמתחת כמו חבל.</p>
+        </div>
+      </div>
+      <div class="prompt" data-he="סרט מצויר של שבת בבוקר משנות ה-80, מצויר ביד על צלולואיד: צבעים שטוחים ורוויים, קו מתאר שחור ועבה, צל אחד חד בכל דמות, רקע מצויר בגואש עם שמיים כתומים של שקיעה, ומעט רעש של קלטת וידאו. על גג של בניין בעיר: ילד בן 10 בכובע מצחייה אוחז בשתי ידיים קופסת פיצה פתוחה, ורחפן משלוחים קטן מושך אותה ממנו לשמיים. הגבינה נמתחת ביניהם כמו חבל. פריים אחד, הרגע הכי מצחיק." data-en="A 1980s Saturday-morning cartoon, hand-painted on cels: flat saturated colours, a thick even black outline, one hard shadow on every character, a gouache background with an orange sunset sky, a little video-tape noise. On a city rooftop: a 10-year-old boy in a cap holds an open pizza box with both hands, and a small delivery drone pulls the pizza up into the sky. The cheese stretches between them like a rope. One frame, the funniest moment. No text.">
+        <div class="prompt-top"><span class="ptitle">המשפט המלא</span>
+          <div class="lang"><button type="button" class="on" data-l="he">עברית</button><button type="button" data-l="en">English</button></div>
+          <button class="copy" type="button">העתקה</button></div>
+        <pre dir="rtl">סרט מצויר של שבת בבוקר משנות ה-80, מצויר ביד על צלולואיד: צבעים שטוחים ורוויים, קו מתאר שחור ועבה, צל אחד חד בכל דמות, רקע מצויר בגואש עם שמיים כתומים של שקיעה, ומעט רעש של קלטת וידאו. על גג של בניין בעיר: ילד בן 10 בכובע מצחייה אוחז בשתי ידיים קופסת פיצה פתוחה, ורחפן משלוחים קטן מושך אותה ממנו לשמיים. הגבינה נמתחת ביניהם כמו חבל. פריים אחד, הרגע הכי מצחיק.</pre>
+      </div>
+    </article>
+    <article class="show reveal" id="d1990" style="--dc:#7A2E5A">
+      <figure class="poster"><img src="media/1990.jpg" alt="סבתא שולחת הודעה קולית ראשונה, כמו בסוף של מחזמר." loading="lazy" width="960" height="1200"><figcaption>1990</figcaption></figure>
+      <div class="ticket">
+        <div class="stub"><span>הקרנה</span><b>07</b><span>מתוך 08</span></div>
+        <div class="tbody">
+          <p class="year">1990</p>
+          <h3>קולנוע מצויר</h3>
+          <p class="type">מקלידים: <span class="ltr">Hand-drawn feature</span></p>
+          <p class="origin">שנות ה-90 היו תור הזהב השני של הסרט המצויר בהוליווד: זרקורים, צבעים עשירים ושירים גדולים.</p>
+          <p class="rules"><b>החוקים:</b> קווים נקיים, צבעים עשירים, זרקור דרמטי, רקע בצבעי שמן</p>
+          <p class="story"><b>הסיפור:</b> סבתא שולחת הודעה קולית ראשונה, כמו בסוף של מחזמר.</p>
+        </div>
+      </div>
+      <div class="prompt" data-he="אנימציה מצוירת ביד של סרט קולנוע משנות ה-90: קווי מתאר נקיים, צבעים עשירים, תאורה דרמטית של זרקור, רקע מצויר בצבעי שמן, ניצוצות באוויר. בסלון: סבתא עומדת על הכורסה כמו על במה. ביד ימין היא מחזיקה טלפון חכם קרוב לפה ושולחת את ההודעה הקולית הראשונה שלה, ויד שמאל מושטת גבוה לצד, עיניים עצומות, כמו בשיר הגדול של מחזמר. לסבתא יש בדיוק שתי ידיים. הנכד מציץ מהדלת המום, והחתול מתחבא מתחת לשולחן. פריים אחד, הרגע הכי מצחיק. בלי טקסט." data-en="A 1990s hand-drawn feature-film animation: clean outlines, rich colours, dramatic spotlight, an oil-painted background, sparkles in the air. In a living room: a grandmother stands on the armchair as if on a stage. In her right hand she holds a smartphone close to her mouth, sending her very first voice message, her left arm stretched high to the side, eyes closed, like the big song of a musical. She has exactly two arms. Her grandson peeks in from the door, stunned, and the cat hides under the table. One frame, the funniest moment. No text.">
+        <div class="prompt-top"><span class="ptitle">המשפט המלא</span>
+          <div class="lang"><button type="button" class="on" data-l="he">עברית</button><button type="button" data-l="en">English</button></div>
+          <button class="copy" type="button">העתקה</button></div>
+        <pre dir="rtl">אנימציה מצוירת ביד של סרט קולנוע משנות ה-90: קווי מתאר נקיים, צבעים עשירים, תאורה דרמטית של זרקור, רקע מצויר בצבעי שמן, ניצוצות באוויר. בסלון: סבתא עומדת על הכורסה כמו על במה. ביד ימין היא מחזיקה טלפון חכם קרוב לפה ושולחת את ההודעה הקולית הראשונה שלה, ויד שמאל מושטת גבוה לצד, עיניים עצומות, כמו בשיר הגדול של מחזמר. לסבתא יש בדיוק שתי ידיים. הנכד מציץ מהדלת המום, והחתול מתחבא מתחת לשולחן. פריים אחד, הרגע הכי מצחיק. בלי טקסט.</pre>
+      </div>
+    </article>
+    <article class="show reveal" id="d2000" style="--dc:#9BC53D">
+      <figure class="poster"><img src="media/2000.jpg" alt="המקרר החכם לא נותן לפתוח אותו בחצות." loading="lazy" width="960" height="1200"><figcaption>2000</figcaption></figure>
+      <div class="ticket">
+        <div class="stub"><span>הקרנה</span><b>08</b><span>מתוך 08</span></div>
+        <div class="tbody">
+          <p class="year">2000</p>
+          <h3>תלת-ממד ראשון</h3>
+          <p class="type">מקלידים: <span class="ltr">Early 3D CGI</span></p>
+          <p class="origin">ב-1995 יצא הסרט הראשון שנעשה כולו במחשב, ובתחילת שנות ה-2000 הכל נראה כמו פלסטיק מבריק.</p>
+          <p class="rules"><b>החוקים:</b> פלסטיק מבריק, צבעים עזים, השתקפויות חזקות, ראשים גדולים</p>
+          <p class="story"><b>הסיפור:</b> המקרר החכם לא נותן לפתוח אותו בחצות.</p>
+        </div>
+      </div>
+      <div class="prompt" data-he="אנימציית תלת-ממד מוקדמת משנת 2001: משטחים חלקים ומבריקים כמו פלסטיק, צבעים עזים, תאורה רכה עם השתקפויות חזקות, מרקמים פשוטים, דמויות עם ראש גדול ועיניים גדולות. במטבח חשוך בחצות: גבר בפיג׳מה מושך בכל הכוח את הידית של מקרר חכם, והמקרר מחזיק את הדלת סגורה בשתי זרועות רובוטיות, עם פרצוף זועף על המסך שלו. האור שבורח מהחריץ של הדלת הוא האור היחיד במטבח. פריים אחד, הרגע הכי מצחיק. בלי טקסט." data-en="An early 3D animation from 2001: smooth glossy surfaces like plastic, bold colours, soft light with strong reflections, simple textures, characters with big heads and big eyes. In a dark kitchen at midnight: a man in pyjamas pulls the handle of a smart fridge with all his strength, and the fridge holds its door shut with two robot arms, an angry face on its screen. The light escaping through the crack of the door is the only light in the kitchen. One frame, the funniest moment. No text.">
+        <div class="prompt-top"><span class="ptitle">המשפט המלא</span>
+          <div class="lang"><button type="button" class="on" data-l="he">עברית</button><button type="button" data-l="en">English</button></div>
+          <button class="copy" type="button">העתקה</button></div>
+        <pre dir="rtl">אנימציית תלת-ממד מוקדמת משנת 2001: משטחים חלקים ומבריקים כמו פלסטיק, צבעים עזים, תאורה רכה עם השתקפויות חזקות, מרקמים פשוטים, דמויות עם ראש גדול ועיניים גדולות. במטבח חשוך בחצות: גבר בפיג׳מה מושך בכל הכוח את הידית של מקרר חכם, והמקרר מחזיק את הדלת סגורה בשתי זרועות רובוטיות, עם פרצוף זועף על המסך שלו. האור שבורח מהחריץ של הדלת הוא האור היחיד במטבח. פריים אחד, הרגע הכי מצחיק. בלי טקסט.</pre>
+      </div>
+    </article>
+  </section>
+
+  <section class="wrap">
+    <p class="kicker">בקיצור</p>
+    <div class="sum reveal">
+      <div>לא "בסגנון מצויר". נותנים לו שנה.</div>
+      <div>שנה ← חוקים ← פעולה אחת ← סוף.</div>
+      <div>שומרים את 8 המשפטים, ומחליפים רק את הסיפור.</div>
+    </div>
+
+    <div class="premiere reveal" id="waitlist">
+      <div class="bulbs"></div>
+      <div class="txt">
+        <span class="soon">הקרנת בכורה בקרוב</span>
+        <h2>סדנת AI מקיפה</h2>
+        <p>אני בונה סדנה שמלמדת ליצור תמונות וסרטונים עם AI, מהרעיון ועד התוצאה.<br>רוצים לשמוע עליה ראשונים? השאירו פרטים, ואעדכן אתכם כשהיא נפתחת.</p>
+        <a class="btn" href="https://yuvalmoyal2.github.io/Yuvi.Ai-guides/waitlist/?src=decades" target="_blank" rel="noopener">אני רוצה כרטיס ראשון ←</a>
+      </div>
+      <img src="media/usher_s.png" alt="" aria-hidden="true">
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p class="bye">שמרו את המדריך, ותייגו אותי כשתעשו סצנה משלכם.</p>
+  <p>איזה עשור הכי שלכם? <a href="https://www.instagram.com/yuvi.ai1/" target="_blank" rel="noopener" class="ltr">@yuvi.ai1</a></p>
+</footer>
+
+<script>
+(function(){
+  requestAnimationFrame(function(){ document.body.classList.add('loaded'); });
+  var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); }, {threshold:.1});
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  var bar = document.getElementById('progress');
+  addEventListener('scroll', function(){ var h = document.documentElement; bar.style.width = (100 * h.scrollTop / (h.scrollHeight - h.clientHeight)) + '%'; }, {passive:true});
+
+  // language toggles
+  document.querySelectorAll('.prompt[data-he]').forEach(function(p){
+    var pre = p.querySelector('pre');
+    p.querySelectorAll('.lang button').forEach(function(b){ b.addEventListener('click', function(){
+      p.querySelectorAll('.lang button').forEach(function(x){ x.classList.toggle('on', x === b); });
+      var l = b.getAttribute('data-l'); pre.textContent = p.getAttribute('data-' + l); pre.dir = l === 'en' ? 'ltr' : 'rtl'; }); });
+  });
+
+  // copy: the ticket stub tears and a little confetti pops
+  var colors = ['#E2553F', '#FFD66B', '#A8DCC8', '#1F3B5A', '#F6B9C6'];
+  function confetti(x, y0){ if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    for (var i = 0; i < 18; i++){ var c = document.createElement('i'); c.className = 'confetti'; c.style.background = colors[i % 5];
+      c.style.left = x + 'px'; c.style.top = y0 + 'px'; document.body.appendChild(c);
+      var dx = (Math.random() - .5) * 220, dy = -80 - Math.random() * 140, r = Math.random() * 540;
+      c.animate([{transform:'translate(0,0) rotate(0)', opacity:1}, {transform:'translate(' + dx + 'px,' + (dy + 260) + 'px) rotate(' + r + 'deg)', opacity:0}], {duration:1100 + Math.random() * 500, easing:'cubic-bezier(.2,.7,.4,1)'}).onfinish = (function(el){ return function(){ el.remove(); }; })(c); } }
+  document.querySelectorAll('.prompt').forEach(function(p){
+    var b = p.querySelector('.copy');
+    b.addEventListener('click', function(){
+      var t = p.querySelector('pre').innerText, show = p.closest('.show');
+      var done = function(){ b.textContent = 'הועתק ✓'; b.classList.add('ok'); if (show) show.classList.add('torn');
+        var r = b.getBoundingClientRect(); confetti(r.left + r.width / 2, r.top);
+        setTimeout(function(){ b.textContent = 'העתקה'; b.classList.remove('ok'); }, 1600); };
+      if (navigator.clipboard) navigator.clipboard.writeText(t).then(done, function(){ var r = document.createRange(); r.selectNodeContents(p.querySelector('pre')); var s = getSelection(); s.removeAllRanges(); s.addRange(r); });
+      else done();
+    });
+  });
+})();
+</script>
+</body>
+</html>
