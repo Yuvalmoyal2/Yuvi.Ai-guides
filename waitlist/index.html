@@ -39,7 +39,8 @@ input[type=email],input[type=tel]{direction:ltr;text-align:right}
 .ig::before{content:"@";position:absolute;left:14px;top:12px;color:var(--muted)}
 .or{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:14px;margin:-4px 0 12px}
 .or::before,.or::after{content:"";flex:1;height:1px;background:rgba(255,255,255,.1)}
-.trap{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+/* hidden without an off-screen offset: in a right-to-left page, left:-9999px makes the whole page scroll sideways */
+.trap{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 button{width:100%;font:inherit;font-weight:700;font-size:18px;background:var(--turq);color:var(--ink);border:0;border-radius:999px;padding:14px 22px;cursor:pointer;margin-top:6px;transition:transform .2s;box-shadow:0 12px 26px -14px var(--turq)}
 button:hover{transform:translateY(-2px)}
 button:disabled{opacity:.6;cursor:wait;transform:none}
